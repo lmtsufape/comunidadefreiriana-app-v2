@@ -1,3 +1,5 @@
+import 'package:comunidadefreiriana/components/primary_button.dart';
+import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                     ' Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.'),
               ),
+              VerticalSpacerBox(size: SpacerSize.medium),
             ],
           ),
         ),

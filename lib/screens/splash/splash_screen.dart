@@ -2,7 +2,7 @@ import 'package:comunidadefreiriana/screens/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const String routeName = '/splash_screen';
+  static const String id = 'splash_screen';
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
