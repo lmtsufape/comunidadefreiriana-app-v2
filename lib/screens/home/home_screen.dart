@@ -17,20 +17,42 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Image.asset(
-            'lib/assets/logo.png',
-            width: size.width * 0.25,
+          backgroundColor: Colors.white,
+          toolbarHeight: 150,
+          title: Center(
+            child: Image.asset(
+              'lib/assets/images/logo.png',
+              width: size.width * 0.5,
+            ),
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(28),
+          padding: const EdgeInsets.all(30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
               Center(
                 child: Text(
-                    ' Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.'),
+                  'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
+                  strutStyle: StrutStyle(fontFamily: 'Roboto', fontSize: 15),
+                ),
+              ),
+              Spacer(),
+              ElevatedButton(
+                child: Text('Conheça Paulo Freire'),
+                onPressed: null,
+              ),
+              ElevatedButton(
+                child: Text('Mapa'),
+                onPressed: null,
+              ),
+              ElevatedButton(
+                child: Text('Solicitar cadastro'),
+                onPressed: null,
+              ),
+              ElevatedButton(
+                child: Text('Sair do aplicativo'),
+                onPressed: null,
               ),
               VerticalSpacerBox(size: SpacerSize.medium),
             ],

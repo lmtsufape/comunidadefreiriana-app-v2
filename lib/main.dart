@@ -1,3 +1,5 @@
+import 'package:comunidadefreiriana/screens/home/home_screen.dart';
+import 'package:comunidadefreiriana/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,7 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return const MaterialApp(
+      home: HomeScreen(),
+    );
   }
 }
   // This widget is the root of your application.

@@ -13,6 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   final SplashScreenController controller = SplashScreenController();
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
   }
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Container(
                 padding: const EdgeInsets.all(28),
-                child: Image.asset('lib/assets/logo_pf.png',
+                child: Image.asset('lib/assets/images/logo_pf.png',
                     width: size.width * 0.5),
               ),
               //const Spacer(),
