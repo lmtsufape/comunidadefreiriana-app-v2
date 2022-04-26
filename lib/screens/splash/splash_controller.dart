@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 class SplashScreenController {
   void startApp(BuildContext context) {
     Future.delayed(const Duration(seconds: 5), () {
-      Navigator.popAndPushNamed(context, HomeScreen.id);
+      print('Chegou');
+      //Navigator.popAndPushNamed(context, HomeScreen.id);
       // Navigator.popAndPushNamed(context, HomeScreen.id);
     });
   }

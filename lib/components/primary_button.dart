@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:comunidadefreiriana/constants/constants.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
   final Icon icon;
+  final Color color;
   final Function() onPressed;
   const PrimaryButton(
       {Key? key,
       required this.icon,
       required this.text,
       required this.onPressed,
+      required this.color,
       Text? child})
       : super(key: key);
 
@@ -20,7 +23,14 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         child: Text(text),
-        style: Theme.of(context).elevatedButtonTheme.style,
+        style: ElevatedButton.styleFrom(
+          primary: color,
+          textStyle: const TextStyle(
+            color: kLightColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
     );
   }

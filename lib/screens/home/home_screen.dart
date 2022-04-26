@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:comunidadefreiriana/components/primary_button.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
+import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -30,30 +34,43 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Center(
+            children: [
+              const Center(
                 child: Text(
                   'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
                   strutStyle: StrutStyle(fontFamily: 'Roboto', fontSize: 15),
                 ),
               ),
               Spacer(),
-              ElevatedButton(
-                child: Text('Conheça Paulo Freire'),
-                onPressed: null,
+              PrimaryButton(
+                  icon: Icon(Icons.access_alarm_outlined),
+                  color: kHomeButtonColor1,
+                  text: 'Conheça Paulo Freire',
+                  onPressed: () {}),
+              SizedBox(
+                height: 10,
               ),
-              ElevatedButton(
-                child: Text('Mapa'),
-                onPressed: null,
+              PrimaryButton(
+                  icon: Icon(Icons.access_alarm_outlined),
+                  color: kHomeButtonColor2,
+                  text: 'Mapa',
+                  onPressed: () {}),
+              SizedBox(
+                height: 10,
               ),
-              ElevatedButton(
-                child: Text('Solicitar cadastro'),
-                onPressed: null,
+              PrimaryButton(
+                  icon: Icon(Icons.access_alarm_outlined),
+                  color: kHomeButtonColor3,
+                  text: 'Solicitar Cadastro',
+                  onPressed: () {}),
+              SizedBox(
+                height: 10,
               ),
-              ElevatedButton(
-                child: Text('Sair do aplicativo'),
-                onPressed: null,
-              ),
+              PrimaryButton(
+                  icon: Icon(Icons.access_alarm_outlined),
+                  color: kHomeButtonColor4,
+                  text: 'Sair do Aplicativo',
+                  onPressed: () {}),
               VerticalSpacerBox(size: SpacerSize.medium),
             ],
           ),
