@@ -24,6 +24,7 @@ class PrimaryButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(text),
         style: ElevatedButton.styleFrom(
+          alignment: AlignmentDirectional.centerStart,
           primary: color,
           textStyle: const TextStyle(
             color: kLightColor,

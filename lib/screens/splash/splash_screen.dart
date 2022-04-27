@@ -3,7 +3,7 @@ import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/splash/splash_controller.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const String id = '/splash_screen';
+  static const String routeName = '/splash_screen';
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -23,12 +23,14 @@ class _SplashScreenState extends State<SplashScreen> {
     controller.startApp(context);
     Size size = MediaQuery.of(context).size;
     TextTheme textTheme = Theme.of(context).textTheme;
-    return Container(
-      child: Image.asset(
-        'lib/assets/images/splash.png',
-        height: double.maxFinite,
-        width: double.infinity,
-      ),
+    return Column(
+      children: [
+        Image.asset(
+          'lib/assets/images/splash.png',
+          height: size.height * 1,
+          width: size.width * 1,
+        ),
+      ],
     );
   }
 }

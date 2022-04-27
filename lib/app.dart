@@ -1,4 +1,7 @@
+import 'package:comunidadefreiriana/screens/cadastro/new_cadastro.dart';
 import 'package:comunidadefreiriana/screens/home/home_screen.dart';
+import 'package:comunidadefreiriana/screens/mapa/maps.dart';
+import 'package:comunidadefreiriana/screens/paulofreire/paulo_freire.dart';
 import 'package:flutter/material.dart';
 import 'screens/splash/splash_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -23,8 +26,11 @@ class App extends StatelessWidget {
       ),
       home: const SplashScreen(),
       routes: {
-        SplashScreen.id: (context) => const SplashScreen(),
+        SplashScreen.routeName: (context) => const SplashScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
+        PauloFreire.id: (context) => const PauloFreire(),
+        SolicitarCadastro.id: (context) => const SolicitarCadastro(),
+        Maps.id: (context) => const Maps(),
       },
     );
   }

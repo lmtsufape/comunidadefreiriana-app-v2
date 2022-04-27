@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:comunidadefreiriana/components/primary_button.dart';
-import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
+import 'package:comunidadefreiriana/screens/cadastro/new_cadastro.dart';
+import 'package:comunidadefreiriana/screens/mapa/maps.dart';
+import 'package:comunidadefreiriana/screens/paulofreire/paulo_freire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          toolbarHeight: 150,
+          toolbarHeight: 170,
           title: Center(
             child: Image.asset(
               'lib/assets/images/logo.png',
@@ -38,40 +40,93 @@ class _HomeScreenState extends State<HomeScreen> {
               const Center(
                 child: Text(
                   'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
-                  strutStyle: StrutStyle(fontFamily: 'Roboto', fontSize: 15),
+                  strutStyle: StrutStyle(fontSize: 20),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               PrimaryButton(
-                  icon: Icon(Icons.access_alarm_outlined),
+                  icon: const Icon(
+                    Icons.access_alarm_outlined,
+                    color: Colors.white,
+                  ),
                   color: kHomeButtonColor1,
                   text: 'Conheça Paulo Freire',
-                  onPressed: () {}),
-              SizedBox(
+                  onPressed: () {
+                    Navigator.pushNamed(context, PauloFreire.id);
+                  }),
+              const SizedBox(
                 height: 10,
               ),
               PrimaryButton(
-                  icon: Icon(Icons.access_alarm_outlined),
+                  icon: const Icon(
+                    Icons.map_outlined,
+                    color: Colors.white,
+                  ),
                   color: kHomeButtonColor2,
                   text: 'Mapa',
-                  onPressed: () {}),
-              SizedBox(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Maps.id);
+                  }),
+              const SizedBox(
                 height: 10,
               ),
               PrimaryButton(
-                  icon: Icon(Icons.access_alarm_outlined),
+                  icon: const Icon(
+                    Icons.access_alarm_outlined,
+                    color: Colors.white,
+                  ),
                   color: kHomeButtonColor3,
                   text: 'Solicitar Cadastro',
-                  onPressed: () {}),
-              SizedBox(
+                  onPressed: () {
+                    Navigator.pushNamed(context, SolicitarCadastro.id);
+                  }),
+              const SizedBox(
                 height: 10,
               ),
               PrimaryButton(
-                  icon: Icon(Icons.access_alarm_outlined),
+                  icon: const Icon(
+                    Icons.access_alarm_outlined,
+                    color: Colors.white,
+                  ),
                   color: kHomeButtonColor4,
                   text: 'Sair do Aplicativo',
-                  onPressed: () {}),
-              VerticalSpacerBox(size: SpacerSize.medium),
+                  onPressed: () {
+                    SystemNavigator.pop();
+                  }),
+              const Spacer(),
+              Row(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'lib/assets/images/logo_ipf.png',
+                        width: size.width * 0.3,
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'lib/assets/images/logo_ufape.png',
+                        width: size.width * 0.1,
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        'lib/assets/images/logo_lmts.png',
+                        width: size.width * 0.3,
+                      ),
+                    ],
+                  ),
+                ],
+              )
             ],
           ),
         ),

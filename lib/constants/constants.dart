@@ -28,6 +28,9 @@ const TextStyle kTextButtonTextStyle = TextStyle(
   color: kPrimaryColor,
 );
 
+const TextStyle kTitlePaulo =
+    TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: kTextColor);
+
 const TextStyle kTitleStyles = TextStyle(
   fontSize: 25,
   fontWeight: FontWeight.bold,
