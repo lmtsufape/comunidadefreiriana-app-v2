@@ -15,5 +15,4 @@ class MyApp extends StatelessWidget {
     return const App();
   }
 }
-  // This widget is the root of your application.
   

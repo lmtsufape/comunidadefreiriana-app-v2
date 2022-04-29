@@ -33,18 +33,24 @@ class _PauloFreireState extends State<PauloFreire> {
                 Row(
                   children: [
                     ElevatedButton(
-                        onPressed: () {
-                          () => Link(
-                              'http://memorial.paulofreire.org/conheca-paulo-freire.html');
-                        },
-                        child: Image.asset(
-                          'lib/assets/images/paulo_freire.jpg',
-                          width: size.width * 0.3,
-                        )),
+                      onPressed: () {
+                        () => Link(
+                            'http://memorial.paulofreire.org/conheca-paulo-freire.html');
+                      },
+                      child: Image.asset(
+                        'lib/assets/images/paulo_freire.jpg',
+                        width: size.width * 0.35,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        fixedSize: size * 0.22,
+                      ),
+                    ),
                     const Spacer(),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
+                        fixedSize: size * 0.22,
                       ),
                       onPressed: () {
                         () => Link(
@@ -53,15 +59,18 @@ class _PauloFreireState extends State<PauloFreire> {
                       child: const Icon(
                         Icons.history,
                         color: Colors.red,
+                        size: 60,
                       ),
                     ),
                   ],
                 ),
+                const Spacer(),
                 Row(
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
+                        fixedSize: size * 0.22,
                       ),
                       onPressed: () {
                         () => Link('http://acervo.paulofreire.org:8080/xmlui/');
@@ -69,12 +78,14 @@ class _PauloFreireState extends State<PauloFreire> {
                       child: const Icon(
                         Icons.video_library,
                         color: Colors.red,
+                        size: 60,
                       ),
                     ),
                     const Spacer(),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
+                        fixedSize: size * 0.22,
                       ),
                       onPressed: () {
                         () => Link('http://biblioteca.paulofreire.org/');
@@ -82,15 +93,18 @@ class _PauloFreireState extends State<PauloFreire> {
                       child: const Icon(
                         Icons.library_books,
                         color: Colors.red,
+                        size: 60,
                       ),
                     ),
                   ],
                 ),
+                const Spacer(),
                 Row(
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
+                        fixedSize: size * 0.22,
                       ),
                       onPressed: () {
                         () => Link('http://glossario.paulofreire.org/');
@@ -98,12 +112,14 @@ class _PauloFreireState extends State<PauloFreire> {
                       child: const Icon(
                         Icons.sort_by_alpha,
                         color: Colors.red,
+                        size: 60,
                       ),
                     ),
                     const Spacer(),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
+                        fixedSize: size * 0.22,
                       ),
                       onPressed: () {
                         () => Link('http://memorial.paulofreire.org/');
@@ -111,6 +127,7 @@ class _PauloFreireState extends State<PauloFreire> {
                       child: const Icon(
                         Icons.call,
                         color: Colors.red,
+                        size: 60,
                       ),
                     ),
                   ],

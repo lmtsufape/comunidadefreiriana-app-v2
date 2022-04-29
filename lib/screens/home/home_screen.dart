@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:comunidadefreiriana/components/primary_button.dart';
+import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/new_cadastro.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
@@ -22,21 +23,16 @@ class _HomeScreenState extends State<HomeScreen> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          toolbarHeight: 170,
-          title: Center(
-            child: Image.asset(
-              'lib/assets/images/logo.png',
-              width: size.width * 0.5,
-            ),
-          ),
-        ),
         body: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+                'lib/assets/images/logo.png',
+                width: size.width * 0.7,
+              ),
+              const VerticalSpacerBox(size: SpacerSize.medium),
               const Center(
                 child: Text(
                   'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
