@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:comunidadefreiriana/components/primary_button.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
@@ -20,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final Uri _url = Uri.parse('http://lmts.uag.ufrpe.br/br');
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -102,14 +101,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'lib/assets/images/logo_ufape.png',
-                        width: size.width * 0.1,
-                      ),
-                    ],
+                  InkWell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'lib/assets/images/logo_ufape.png',
+                          width: size.width * 0.1,
+                        ),
+                      ],
+                    ),
+                    onTap: () => _url,
                   ),
                   const Spacer(),
                   Row(

@@ -13,6 +13,15 @@ class PauloFreire extends StatefulWidget {
 class _PauloFreireState extends State<PauloFreire> {
   @override
   Widget build(BuildContext context) {
+    final Uri _PauloFreire =
+        Uri.parse('http://memorial.paulofreire.org/conheca-paulo-freire.html');
+    final Uri _LinhaTempo = Uri.parse(
+        'http://memorial.paulofreire.org/Linha_do_tempo/linha_do_tempo.html');
+    final Uri _Acervo = Uri.parse('http://acervo.paulofreire.org:8080/xmlui/');
+    final Uri _Biblioteca = Uri.parse('http://biblioteca.paulofreire.org/');
+    final Uri _Glossario = Uri.parse('http://glossario.paulofreire.org/');
+    final Uri _Memorial = Uri.parse('http://memorial.paulofreire.org/');
+    final Uri _url = Uri.parse('http://lmts.uag.ufrpe.br/br');
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -34,8 +43,7 @@ class _PauloFreireState extends State<PauloFreire> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        () => Link(
-                            'http://memorial.paulofreire.org/conheca-paulo-freire.html');
+                        _PauloFreire;
                       },
                       child: Image.asset(
                         'lib/assets/images/paulo_freire.jpg',
@@ -53,8 +61,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        () => Link(
-                            'http://memorial.paulofreire.org/Linha_do_tempo/linha_do_tempo.html');
+                        _LinhaTempo;
                       },
                       child: const Icon(
                         Icons.history,
@@ -73,7 +80,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        () => Link('http://acervo.paulofreire.org:8080/xmlui/');
+                        _Acervo;
                       },
                       child: const Icon(
                         Icons.video_library,
@@ -88,7 +95,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        () => Link('http://biblioteca.paulofreire.org/');
+                        _Biblioteca;
                       },
                       child: const Icon(
                         Icons.library_books,
@@ -107,7 +114,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        () => Link('http://glossario.paulofreire.org/');
+                        _Glossario;
                       },
                       child: const Icon(
                         Icons.sort_by_alpha,
@@ -122,7 +129,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        () => Link('http://memorial.paulofreire.org/');
+                        _Memorial;
                       },
                       child: const Icon(
                         Icons.call,
@@ -145,14 +152,17 @@ class _PauloFreireState extends State<PauloFreire> {
                       ],
                     ),
                     const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'lib/assets/images/logo_ufape.png',
-                          width: size.width * 0.1,
-                        ),
-                      ],
+                    InkWell(
+                      onTap: () => _url,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'lib/assets/images/logo_ufape.png',
+                            width: size.width * 0.1,
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     Row(
