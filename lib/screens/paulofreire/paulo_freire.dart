@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PauloFreire extends StatefulWidget {
   static const String id = 'paulo_freire';
@@ -43,7 +43,7 @@ class _PauloFreireState extends State<PauloFreire> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        _PauloFreire;
+                        launchUrl(_PauloFreire);
                       },
                       child: Image.asset(
                         'lib/assets/images/paulo_freire.jpg',
@@ -61,7 +61,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        _LinhaTempo;
+                        launchUrl(_LinhaTempo);
                       },
                       child: const Icon(
                         Icons.history,
@@ -80,7 +80,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        _Acervo;
+                        launchUrl(_Acervo);
                       },
                       child: const Icon(
                         Icons.video_library,
@@ -95,7 +95,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        _Biblioteca;
+                        launchUrl(_Biblioteca);
                       },
                       child: const Icon(
                         Icons.library_books,
@@ -114,7 +114,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        _Glossario;
+                        launchUrl(_Glossario);
                       },
                       child: const Icon(
                         Icons.sort_by_alpha,
@@ -129,7 +129,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        _Memorial;
+                        launchUrl(_Memorial);
                       },
                       child: const Icon(
                         Icons.call,
@@ -153,7 +153,7 @@ class _PauloFreireState extends State<PauloFreire> {
                     ),
                     const Spacer(),
                     InkWell(
-                      onTap: () => _url,
+                      onTap: () => launchUrl(_url),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
