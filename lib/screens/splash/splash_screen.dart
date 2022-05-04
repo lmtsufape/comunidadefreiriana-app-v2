@@ -22,15 +22,18 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     controller.startApp(context);
     Size size = MediaQuery.of(context).size;
-    TextTheme textTheme = Theme.of(context).textTheme;
-    return Column(
-      children: [
-        Image.asset(
-          'lib/assets/images/splash.png',
-          height: size.height * 1,
-          width: size.width * 1,
-        ),
-      ],
+    return Scaffold(
+      body: Column(
+        children: [
+          Center(
+            child: Image.asset(
+              'lib/assets/images/splash.png',
+              height: size.height * 1,
+              width: size.width * 1,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

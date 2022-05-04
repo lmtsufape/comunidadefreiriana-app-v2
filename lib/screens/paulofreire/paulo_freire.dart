@@ -13,15 +13,15 @@ class PauloFreire extends StatefulWidget {
 class _PauloFreireState extends State<PauloFreire> {
   @override
   Widget build(BuildContext context) {
-    final Uri _PauloFreire =
-        Uri.parse('http://memorial.paulofreire.org/conheca-paulo-freire.html');
-    final Uri _LinhaTempo = Uri.parse(
-        'http://memorial.paulofreire.org/Linha_do_tempo/linha_do_tempo.html');
-    final Uri _Acervo = Uri.parse('http://acervo.paulofreire.org:8080/xmlui/');
-    final Uri _Biblioteca = Uri.parse('http://biblioteca.paulofreire.org/');
-    final Uri _Glossario = Uri.parse('http://glossario.paulofreire.org/');
-    final Uri _Memorial = Uri.parse('http://memorial.paulofreire.org/');
-    final Uri _url = Uri.parse('http://lmts.uag.ufrpe.br/br');
+    final Uri PauloFreire =
+        Uri.parse('https://memorial.paulofreire.org/conheca-paulo-freire.html');
+    final Uri LinhaTempo = Uri.parse(
+        'https://memorial.paulofreire.org/Linha_do_tempo/linha_do_tempo.html');
+    final Uri Acervo = Uri.parse('https://acervo.paulofreire.org:8080/xmlui/');
+    final Uri Biblioteca = Uri.parse('https://biblioteca.paulofreire.org/');
+    final Uri Glossario = Uri.parse('https://glossario.paulofreire.org/');
+    final Uri Memorial = Uri.parse('https://memorial.paulofreire.org/');
+    final Uri _url = Uri.parse('https://lmts.uag.ufrpe.br/br');
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -43,7 +43,7 @@ class _PauloFreireState extends State<PauloFreire> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        launchUrl(_PauloFreire);
+                        launchUrl(PauloFreire);
                       },
                       child: Image.asset(
                         'lib/assets/images/paulo_freire.jpg',
@@ -61,7 +61,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        launchUrl(_LinhaTempo);
+                        launchUrl(LinhaTempo);
                       },
                       child: const Icon(
                         Icons.history,
@@ -80,7 +80,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        launchUrl(_Acervo);
+                        launchUrl(Acervo);
                       },
                       child: const Icon(
                         Icons.video_library,
@@ -95,7 +95,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        launchUrl(_Biblioteca);
+                        launchUrl(Biblioteca);
                       },
                       child: const Icon(
                         Icons.library_books,
@@ -114,7 +114,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        launchUrl(_Glossario);
+                        launchUrl(Glossario);
                       },
                       child: const Icon(
                         Icons.sort_by_alpha,
@@ -129,7 +129,7 @@ class _PauloFreireState extends State<PauloFreire> {
                         fixedSize: size * 0.22,
                       ),
                       onPressed: () {
-                        launchUrl(_Memorial);
+                        launchUrl(Memorial);
                       },
                       child: const Icon(
                         Icons.call,
@@ -152,27 +152,27 @@ class _PauloFreireState extends State<PauloFreire> {
                       ],
                     ),
                     const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'lib/assets/images/logo_ufape.png',
+                          width: size.width * 0.1,
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
                     InkWell(
-                      onTap: () => launchUrl(_url),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Image.asset(
-                            'lib/assets/images/logo_ufape.png',
-                            width: size.width * 0.1,
+                            'lib/assets/images/logo_lmts.png',
+                            width: size.width * 0.3,
                           ),
                         ],
                       ),
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Image.asset(
-                          'lib/assets/images/logo_lmts.png',
-                          width: size.width * 0.3,
-                        ),
-                      ],
+                      onTap: () => launchUrl(_url),
                     ),
                   ],
                 )
