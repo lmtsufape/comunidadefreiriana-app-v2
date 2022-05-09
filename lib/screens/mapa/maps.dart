@@ -1,7 +1,4 @@
-import 'package:comunidadefreiriana/components/primary_button.dart';
-import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/new_cadastro.dart';
-import 'package:comunidadefreiriana/screens/paulofreire/paulo_freire.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -39,12 +36,12 @@ class _MapsState extends State<Maps> {
             titleTextStyle: const TextStyle(
               fontSize: 21,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Colors.white,
             ),
             title: const Text(
               'Mapa',
             ),
-            backgroundColor: Colors.white),
+            backgroundColor: Colors.blue),
         body: Stack(
           children: <Widget>[
             GoogleMap(

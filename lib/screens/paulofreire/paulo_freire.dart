@@ -16,10 +16,10 @@ class _PauloFreireState extends State<PauloFreire> {
     // ignore: non_constant_identifier_names
     final Uri PauloFreire =
         Uri.parse('https://memorial.paulofreire.org/conheca-paulo-freire.html');
-        // ignore: non_constant_identifier_names
+    // ignore: non_constant_identifier_names
     final Uri LinhaTempo = Uri.parse(
         'https://memorial.paulofreire.org/Linha_do_tempo/linha_do_tempo.html');
-        // ignore: non_constant_identifier_names
+    // ignore: non_constant_identifier_names
     final Uri Acervo = Uri.parse('https://acervo.paulofreire.org:8080/xmlui/');
     // ignore: non_constant_identifier_names
     final Uri Biblioteca = Uri.parse('https://biblioteca.paulofreire.org/');
@@ -27,8 +27,8 @@ class _PauloFreireState extends State<PauloFreire> {
     final Uri Glossario = Uri.parse('https://glossario.paulofreire.org/');
     // ignore: non_constant_identifier_names
     final Uri Memorial = Uri.parse('https://memorial.paulofreire.org/');
-    // ignore: non_constant_identifier_names
-    final Uri _url = Uri.parse('https://lmts.uag.ufrpe.br/br');
+    // ignore: non_constant_identifier_names, unused_local_variable
+    final Uri lmts = Uri.parse('https://lmts.uag.ufrpe.br/br');
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -41,108 +41,205 @@ class _PauloFreireState extends State<PauloFreire> {
               title: const Text(
                 'Conheça Paulo Freire',
               ),
+              elevation: 0.0,
               backgroundColor: Colors.white),
           body: Padding(
-            padding: const EdgeInsets.all(kDefaultPadding),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
                 Row(
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        launchUrl(PauloFreire);
-                      },
-                      child: Image.asset(
-                        'lib/assets/images/paulo_freire.jpg',
-                        width: size.width * 0.35,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        fixedSize: size * 0.22,
-                      ),
+                    InkWell(
+                        onTap: () {
+                          launchUrl(PauloFreire);
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 180,
+                          decoration: const ShapeDecoration(
+                              shape: RoundedRectangleBorder(),
+                              color: Colors.white),
+                          child: Center(
+                              child: Image.asset(
+                            'lib/assets/images/paulo_freire.jpg',
+                            width: 190,
+                            height: 190,
+                          )),
+                        )),
+                    const Spacer(),
+                    InkWell(
+                        onTap: () {
+                          launchUrl(LinhaTempo);
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 180,
+                          decoration: const ShapeDecoration(
+                              shape: RoundedRectangleBorder(),
+                              color: Colors.white),
+                          child: const Center(
+                            child: Icon(
+                              Icons.history,
+                              color: Colors.red,
+                              size: 100,
+                            ),
+                          ),
+                        )),
+                  ],
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Conheça Paulo Freire',
+                          style: kTextIcons,
+                        ),
+                      ],
                     ),
                     const Spacer(),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        fixedSize: size * 0.22,
-                      ),
-                      onPressed: () {
-                        launchUrl(LinhaTempo);
-                      },
-                      child: const Icon(
-                        Icons.history,
-                        color: Colors.red,
-                        size: 60,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'Linha do Tempo',
+                          style: kTextIcons,
+                        ),
+                      ],
                     ),
                   ],
                 ),
                 const Spacer(),
                 Row(
                   children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        fixedSize: size * 0.22,
-                      ),
-                      onPressed: () {
-                        launchUrl(Acervo);
-                      },
-                      child: const Icon(
-                        Icons.video_library,
-                        color: Colors.red,
-                        size: 60,
-                      ),
+                    InkWell(
+                        onTap: () {
+                          launchUrl(Acervo);
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 180,
+                          decoration: const ShapeDecoration(
+                              shape: RoundedRectangleBorder(),
+                              color: Colors.white),
+                          child: const Center(
+                            child: Icon(
+                              Icons.video_library,
+                              color: Colors.red,
+                              size: 100,
+                            ),
+                          ),
+                        )),
+                    const Spacer(),
+                    InkWell(
+                        onTap: () {
+                          launchUrl(Biblioteca);
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 180,
+                          decoration: const ShapeDecoration(
+                              shape: RoundedRectangleBorder(),
+                              color: Colors.white),
+                          child: const Center(
+                            child: Icon(
+                              Icons.library_books,
+                              color: Colors.red,
+                              size: 100,
+                            ),
+                          ),
+                        )),
+                  ],
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Acervo Digital',
+                          style: kTextIcons,
+                        ),
+                      ],
                     ),
                     const Spacer(),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        fixedSize: size * 0.22,
-                      ),
-                      onPressed: () {
-                        launchUrl(Biblioteca);
-                      },
-                      child: const Icon(
-                        Icons.library_books,
-                        color: Colors.red,
-                        size: 60,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'Biblioteca',
+                          style: kTextIcons,
+                        ),
+                      ],
                     ),
                   ],
                 ),
                 const Spacer(),
                 Row(
                   children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        fixedSize: size * 0.22,
-                      ),
-                      onPressed: () {
-                        launchUrl(Glossario);
-                      },
-                      child: const Icon(
-                        Icons.sort_by_alpha,
-                        color: Colors.red,
-                        size: 60,
-                      ),
+                    InkWell(
+                        onTap: () {
+                          launchUrl(Glossario);
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 180,
+                          decoration: const ShapeDecoration(
+                              shape: RoundedRectangleBorder(),
+                              color: Colors.white),
+                          child: const Center(
+                            child: Icon(
+                              Icons.sort_by_alpha,
+                              color: Colors.red,
+                              size: 100,
+                            ),
+                          ),
+                        )),
+                    const Spacer(),
+                    InkWell(
+                        onTap: () {
+                          launchUrl(Memorial);
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 180,
+                          decoration: const ShapeDecoration(
+                              shape: RoundedRectangleBorder(),
+                              color: Colors.white),
+                          child: const Center(
+                            child: Icon(
+                              Icons.call,
+                              color: Colors.red,
+                              size: 100,
+                            ),
+                          ),
+                        )),
+                  ],
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Glossário',
+                          style: kTextIcons,
+                        ),
+                      ],
                     ),
                     const Spacer(),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        fixedSize: size * 0.22,
-                      ),
-                      onPressed: () {
-                        launchUrl(Memorial);
-                      },
-                      child: const Icon(
-                        Icons.call,
-                        color: Colors.red,
-                        size: 60,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'Contato',
+                          style: kTextIcons,
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -179,7 +276,9 @@ class _PauloFreireState extends State<PauloFreire> {
                           ),
                         ],
                       ),
-                      onTap: () => launchUrl(_url),
+                      onTap: () {
+                        launchUrl(lmts);
+                      },
                     ),
                   ],
                 )
