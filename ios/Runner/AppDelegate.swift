@@ -9,7 +9,7 @@ import flutter_config
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    let key: String = FlutterConfigPlugin.env(for: 'AIzaSyDDePftEcwsO_3FbqR5L6PEFKZy0_i5tao')
+    let key: String = FlutterConfigPlugin.env(for: 'AIzaSyBWwLApDrWgzxqZYw4ONQyi3RbBIwy2Hd8')
     GeneratedPluginRegistrant.register(with: self)
     GMSServices.provideAPIKey(key)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)

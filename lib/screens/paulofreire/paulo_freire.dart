@@ -13,14 +13,21 @@ class PauloFreire extends StatefulWidget {
 class _PauloFreireState extends State<PauloFreire> {
   @override
   Widget build(BuildContext context) {
+    // ignore: non_constant_identifier_names
     final Uri PauloFreire =
         Uri.parse('https://memorial.paulofreire.org/conheca-paulo-freire.html');
+        // ignore: non_constant_identifier_names
     final Uri LinhaTempo = Uri.parse(
         'https://memorial.paulofreire.org/Linha_do_tempo/linha_do_tempo.html');
+        // ignore: non_constant_identifier_names
     final Uri Acervo = Uri.parse('https://acervo.paulofreire.org:8080/xmlui/');
+    // ignore: non_constant_identifier_names
     final Uri Biblioteca = Uri.parse('https://biblioteca.paulofreire.org/');
+    // ignore: non_constant_identifier_names
     final Uri Glossario = Uri.parse('https://glossario.paulofreire.org/');
+    // ignore: non_constant_identifier_names
     final Uri Memorial = Uri.parse('https://memorial.paulofreire.org/');
+    // ignore: non_constant_identifier_names
     final Uri _url = Uri.parse('https://lmts.uag.ufrpe.br/br');
     Size size = MediaQuery.of(context).size;
     return SafeArea(
