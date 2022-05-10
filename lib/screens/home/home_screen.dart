@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/primary_button.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
@@ -8,6 +7,7 @@ import 'package:comunidadefreiriana/screens/mapa/maps.dart';
 import 'package:comunidadefreiriana/screens/paulofreire/paulo_freire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -20,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final Uri _url = Uri.parse('https://lmts.uag.ufrpe.br/br');
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -28,6 +29,25 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Row(
+                children: [
+                  Row(
+                    children: const [
+                      Icon(
+                        Icons.public,
+                        color: Colors.grey,
+                      ),
+                      HorizontalSpacerBox(size: SpacerSize.tiny),
+                      Text(
+                        'PT-BR',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.blue),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
               Image.asset(
                 'lib/assets/images/logo.png',
                 width: size.width * 0.7,
@@ -42,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Spacer(),
               PrimaryButton(
                   icon: const Icon(
-                    Icons.access_alarm_outlined,
+                    Icons.flag,
                     color: Colors.white,
                   ),
                   color: kHomeButtonColor1,
@@ -68,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               PrimaryButton(
                   icon: const Icon(
-                    Icons.access_alarm_outlined,
+                    Icons.feed,
                     color: Colors.white,
                   ),
                   color: kHomeButtonColor3,
@@ -81,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               PrimaryButton(
                   icon: const Icon(
-                    Icons.access_alarm_outlined,
+                    Icons.exit_to_app,
                     color: Colors.white,
                   ),
                   color: kHomeButtonColor4,
@@ -112,14 +132,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Image.asset(
-                        'lib/assets/images/logo_lmts.png',
-                        width: size.width * 0.3,
-                      ),
-                    ],
+                  InkWell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.asset(
+                          'lib/assets/images/logo_lmts.png',
+                          width: size.width * 0.3,
+                        ),
+                      ],
+                    ),
+                    onTap: () => launchUrl(_url),
                   ),
                 ],
               )
