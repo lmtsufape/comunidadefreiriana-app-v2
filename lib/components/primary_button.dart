@@ -22,7 +22,7 @@ class PrimaryButton extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.06,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(text),
+        child: Center(child: Text(text)),
         style: ElevatedButton.styleFrom(
           alignment: AlignmentDirectional.centerStart,
           primary: color,

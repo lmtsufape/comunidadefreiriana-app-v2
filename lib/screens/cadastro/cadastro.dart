@@ -1,10 +1,7 @@
 import 'package:comunidadefreiriana/components/auth_form_field.dart';
-import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
-import 'package:comunidadefreiriana/image_control/image_selector.dart';
+import 'package:comunidadefreiriana/components/finish_dialog.dart';
 import 'package:comunidadefreiriana/components/primary_button.dart';
-import 'package:comunidadefreiriana/components/secundary_button.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
-import 'package:comunidadefreiriana/image_control/image_controller.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,12 +16,12 @@ class SolicitarCadastro extends StatefulWidget {
 }
 
 class _SolicitarCadastroState extends State<SolicitarCadastro> {
-  late ImageController? controller;
+  //late ImageController? controller;
   @override
-  void didChangeDependencies() {
-    controller = Provider.of<ImageController>(context);
-    super.didChangeDependencies();
-  }
+  //void didChangeDependencies() {
+  //controller = Provider.of<ImageController>(context);
+  //super.didChangeDependencies();
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -43,60 +40,147 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
               child: SingleChildScrollView(
                 child: Form(
                     child: Column(children: [
+                  Row(
+                    children: const [
+                      Text(
+                        'Nome*',
+                        style: kCadastro,
+                      ),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.small),
                   AuthFormField(
                       label: 'Nome',
                       isPassword: false,
                       inputType: TextInputType.name,
                       onChanged: (String value) => _controller.setNome(value)),
                   const VerticalSpacerBox(size: SpacerSize.small),
+                  Row(
+                    children: const [
+                      Text(
+                        'Telefone (Com DDD)*',
+                        style: kCadastro,
+                      ),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.small),
                   AuthFormField(
-                      label: 'Telefone(Com DDD)',
+                      label: '(00) 0000-0000',
                       isPassword: false,
                       inputType: TextInputType.phone,
                       onChanged: (String value) =>
                           _controller.setTelefone(value)),
                   const VerticalSpacerBox(size: SpacerSize.small),
+                  Row(
+                    children: const [
+                      Text(
+                        'Email*',
+                        style: kCadastro,
+                      ),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.small),
                   AuthFormField(
-                      label: 'Email',
+                      label: 'example@example.com',
                       isPassword: false,
                       inputType: TextInputType.emailAddress,
                       onChanged: (String value) => _controller.setEmail(value)),
                   const VerticalSpacerBox(size: SpacerSize.small),
+                  Row(
+                    children: const [
+                      Text(
+                        'Cidade*',
+                        style: kCadastro,
+                      ),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.small),
                   AuthFormField(
-                      label: 'Cidade',
+                      label: 'Garanhuns',
                       isPassword: false,
                       inputType: TextInputType.name,
                       onChanged: (String value) =>
                           _controller.setCidade(value)),
                   const VerticalSpacerBox(size: SpacerSize.small),
+                  Row(
+                    children: const [
+                      Text(
+                        'Estado*',
+                        style: kCadastro,
+                      ),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.small),
                   AuthFormField(
-                      label: 'Estado',
+                      label: 'PE',
                       isPassword: false,
                       inputType: TextInputType.name,
                       onChanged: (String value) =>
                           _controller.setEstado(value)),
                   const VerticalSpacerBox(size: SpacerSize.small),
+                  Row(
+                    children: const [
+                      Text(
+                        'Data da Realização*',
+                        style: kCadastro,
+                      ),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.small),
                   AuthFormField(
-                      label: 'Data da Realização',
+                      label: '00/00/0000',
                       isPassword: false,
                       inputType: TextInputType.datetime,
                       onChanged: (String value) =>
                           _controller.setDataRealizacao(value)),
                   const VerticalSpacerBox(size: SpacerSize.small),
+                  Row(
+                    children: const [
+                      Text(
+                        'Nome da Realização*',
+                        style: kCadastro,
+                      ),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.small),
                   AuthFormField(
-                      label: 'Nome da Realização',
+                      label: 'LMTS',
                       isPassword: false,
                       inputType: TextInputType.name,
                       onChanged: (String value) =>
                           _controller.setNomeRealizacao(value)),
                   const VerticalSpacerBox(size: SpacerSize.small),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Title(
+                          color: kPrimaryColor,
+                          child: const Text(
+                            'Mais Informações',
+                            style: kCadastro,
+                          )),
+                      const VerticalSpacerBox(size: SpacerSize.small),
+                      SizedBox(
+                        height: size.height * 0.09,
+                        child: TextFormField(
+                            maxLines: null,
+                            keyboardType: TextInputType.multiline,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              fillColor: kPrimaryColor,
+                            ),
+                            onChanged: (String value) =>
+                                _controller.setMaisInfomacoes(value)),
+                      ),
+                    ],
+                  ),
                   InkWell(
-                    onTap: () => controller!.selectImages(context),
+                    //onTap: () => controller!.selectImages(context),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Text(
-                          'MÍDIA',
+                          'Mídia',
                           style: kHomeScreen2,
                         ),
                         Icon(
@@ -108,6 +192,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                   ),
                   const SizedBox(),
                   const VerticalSpacerBox(size: SpacerSize.small),
+                  /*
                   !controller!.isUploadingImages
                       ? SizedBox(
                           child: controller!.selectedImageLength > 0
@@ -144,12 +229,16 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   onPressed: () {})
                               : const SizedBox(),
                         )
-                      : const SizedBox(),
+                      : const SizedBox(),*/
                   const Divider(color: kSecondaryTextColor),
                   PrimaryButton(
                       icon: const Icon(Icons.access_alarm_rounded),
                       text: 'Efetuar Cadastro',
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => const FinishVisitDialog());
+                      },
                       color: kDetailColor2),
                 ])),
               ),

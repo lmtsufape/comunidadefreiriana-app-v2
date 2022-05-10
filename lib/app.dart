@@ -1,3 +1,4 @@
+import 'package:comunidadefreiriana/image_control/edit_image.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
 import 'package:comunidadefreiriana/screens/home/home_screen.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
@@ -31,6 +32,7 @@ class App extends StatelessWidget {
         PauloFreire.id: (context) => const PauloFreire(),
         SolicitarCadastro.id: (context) => const SolicitarCadastro(),
         Maps.id: (context) => const Maps(),
+        EditImageScreen.id: (context) => const EditImageScreen(),
       },
     );
   }

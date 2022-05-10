@@ -31,5 +31,8 @@ class CadastroController with ChangeNotifier {
   void setDataRealizacao(String value) {
     cadastroModel.dataRealizacao = value;
   }
-}
 
+  void setMaisInfomacoes(String value) {
+    cadastroModel.info = value;
+  }
+}

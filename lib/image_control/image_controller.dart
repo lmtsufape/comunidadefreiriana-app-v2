@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'dart:io';
 import 'package:comunidadefreiriana/core/api.dart';
 import 'package:comunidadefreiriana/image_control/image_picker.controller.dart';
 import 'package:flutter/cupertino.dart';

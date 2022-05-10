@@ -31,6 +31,9 @@ const TextStyle kTextButtonTextStyle = TextStyle(
 const TextStyle kTitlePaulo =
     TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: kTextColor);
 
+const TextStyle kCadastro =
+    TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: kTextColor);
+
 const TextStyle kTitleStyles = TextStyle(
   fontSize: 25,
   fontWeight: FontWeight.bold,
@@ -87,10 +90,21 @@ const TextStyle kdrawerText = TextStyle(
   color: kDetailColor,
 );
 
+const TextStyle kdrawerText2 = TextStyle(
+  fontSize: 15,
+  color: kDetailColor2,
+);
+
 const TextStyle kTextDetails = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.bold,
   color: kPrimaryColor,
+);
+
+const TextStyle kTextDetails2 = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.bold,
+  color: Colors.blue,
 );
 
 const TextStyle kUnderline = TextStyle(

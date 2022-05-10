@@ -7,6 +7,8 @@ class CadastroModel {
   String? dataRealizacao;
   String? nomeRealizacao;
   String? info;
+  String? latitute;
+  String? longitude;
 
   CadastroModel({
     this.nome,
@@ -17,5 +19,7 @@ class CadastroModel {
     this.dataRealizacao,
     this.nomeRealizacao,
     this.info,
+    this.latitute,
+    this.longitude,
   });
 }
