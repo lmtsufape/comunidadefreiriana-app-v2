@@ -1,5 +1,6 @@
 import 'package:comunidadefreiriana/core/models/cadastro_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CadastroController with ChangeNotifier {
   late CadastroModel cadastroModel;
@@ -31,3 +32,4 @@ class CadastroController with ChangeNotifier {
     cadastroModel.dataRealizacao = value;
   }
 }
+
