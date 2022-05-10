@@ -1,4 +1,4 @@
-import 'package:comunidadefreiriana/screens/cadastro/new_cadastro.dart';
+import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
 import 'package:comunidadefreiriana/screens/home/home_screen.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
 import 'package:comunidadefreiriana/screens/paulofreire/paulo_freire.dart';

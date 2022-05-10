@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:comunidadefreiriana/components/primary_button.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
-import 'package:comunidadefreiriana/screens/cadastro/new_cadastro.dart';
+import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
 import 'package:comunidadefreiriana/screens/paulofreire/paulo_freire.dart';
 import 'package:flutter/material.dart';
