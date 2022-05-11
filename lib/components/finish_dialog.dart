@@ -1,6 +1,6 @@
 import 'package:comunidadefreiriana/components/general_loader.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
-import 'package:comunidadefreiriana/core/api.dart';
+import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +8,6 @@ class FinishVisitDialog extends StatelessWidget {
   const FinishVisitDialog({
     Key? key,
   }) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class FinishVisitDialog extends StatelessWidget {
                 child: GeneralLoader(),
               ),
             );
-            Provider.of<Api>(context, listen: false)
+            Provider.of<CadastroController>(context, listen: false)
                 .finishCadastro(context);
           },
           child: const Text(

@@ -1,6 +1,6 @@
 import 'package:comunidadefreiriana/components/auth_form_field.dart';
 import 'package:comunidadefreiriana/components/finish_dialog.dart';
-import 'package:comunidadefreiriana/components/primary_button.dart';
+import 'package:comunidadefreiriana/components/primary_buttonCadastro.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
 import 'package:flutter/material.dart';
@@ -190,11 +190,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                    width: 10,
-                  ),
                   const VerticalSpacerBox(size: SpacerSize.small),
+
                   /*
                   !controller!.isUploadingImages
                       ? SizedBox(
@@ -234,7 +231,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         )
                       : const SizedBox(),*/
                   const Divider(color: kSecondaryTextColor),
-                  PrimaryButton(
+                  PrimaryButtonCadastro(
                       icon: const Icon(Icons.access_alarm_rounded),
                       text: 'Efetuar Cadastro',
                       onPressed: () {
