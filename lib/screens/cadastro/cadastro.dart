@@ -190,7 +190,10 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                       ],
                     ),
                   ),
-                  const SizedBox(),
+                  const SizedBox(
+                    height: 10,
+                    width: 10,
+                  ),
                   const VerticalSpacerBox(size: SpacerSize.small),
                   /*
                   !controller!.isUploadingImages

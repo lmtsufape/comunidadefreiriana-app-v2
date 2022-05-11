@@ -1,11 +1,15 @@
 import 'package:comunidadefreiriana/components/general_loader.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
+import 'package:comunidadefreiriana/core/api.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FinishVisitDialog extends StatelessWidget {
   const FinishVisitDialog({
     Key? key,
   }) : super(key: key);
+  
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -31,17 +35,12 @@ class FinishVisitDialog extends StatelessWidget {
             showDialog(
               barrierDismissible: false,
               context: context,
-              builder: (context) => const AlertDialog(
-                title: Text(
-                  'Solicitar Cadastro',
-                  style: kHomeScreen2,
-                ),
-                content: Text(
-                  "Solitação realizada com Sucesso!",
-                  style: kdrawerText2,
-                ),
+              builder: (context) => const Dialog(
+                child: GeneralLoader(),
               ),
             );
+            Provider.of<Api>(context, listen: false)
+                .finishCadastro(context);
           },
           child: const Text(
             'Concluir',
