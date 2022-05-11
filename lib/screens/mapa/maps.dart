@@ -1,7 +1,9 @@
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
+import 'package:comunidadefreiriana/screens/mapa/maps_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 class Maps extends StatefulWidget {
   static const String id = 'maps';
@@ -18,12 +20,6 @@ class _MapsState extends State<Maps> {
   double lat = -8.8240327;
   double long = -36.0143199;
   late String title;
-
-  void _setText(value) {
-    setState(() {
-      title = value;
-    });
-  }
 
 // funcao que atualiza o estado do mapa e salva a coordenada na lista tappedPoints.
   void _handleTap(LatLng latlng) {
@@ -42,6 +38,7 @@ class _MapsState extends State<Maps> {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
+    final _controller = Provider.of<MapsController>(context);
     return Scaffold(
         appBar: AppBar(
             titleTextStyle: const TextStyle(
