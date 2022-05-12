@@ -191,7 +191,11 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                     ),
                   ),
                   const VerticalSpacerBox(size: SpacerSize.small),
-
+                  const Center(
+                      child: Text(
+                    'Campos com (*) são obrigatórios!',
+                    style: kCadastro,
+                  )),
                   /*
                   !controller!.isUploadingImages
                       ? SizedBox(

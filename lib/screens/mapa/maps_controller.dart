@@ -1,41 +1,27 @@
 import 'package:comunidadefreiriana/core/api.dart';
-import 'package:comunidadefreiriana/screens/mapa/maps_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:comunidadefreiriana/screens/mapa/maps.dart';
+import 'package:comunidadefreiriana/screens/mapa/maps_detalhes.dart';
+import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapsController with ChangeNotifier {
   double lat = 0.0;
   double long = 0.0;
-  late MapsModel mapsModel;
   bool isLoading = false;
   final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
 
+  get mapsController => mapController;
 
-   get mapsController => mapController;
-   
-
-   onMapCreated(GoogleMapController gmc) async {
+  onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    //loadPostos();
+    loadInstituition();
   }
 
-  List<LatLng> tappedPoints = [];
-
-// funcao que atualiza o estado do mapa e salva a coordenada na lista tappedPoints.
-  void _handleTap(LatLng latlng) {
-    setState(() {
-      if (kDebugMode) {
-        print(latlng);
-      }
-      tappedPoints.add(latlng);
-    });
-  }
-  
   Future getInstituition(BuildContext context) async {
     isLoading = true;
     _api.getInstituition(context).then((value) {
@@ -47,8 +33,23 @@ class MapsController with ChangeNotifier {
     });
   }
 
-  void setSearch(String value) {
-    mapsModel.search = value;
+  loadInstituition() {
+    final cadastromodel = MapsRepository().cadastromodel;
+    cadastromodel.forEach((cadastro) async {
+      makers.add(Marker(
+        markerId: MarkerId(cadastro.nome),
+        position: LatLng(cadastro.latitute, cadastro.longitude),
+        icon: await BitmapDescriptor.fromAssetImage(
+            const ImageConfiguration(), 'lib/assets/images/map.png'),
+        onTap: () => {
+          showModalBottomSheet(
+            context: appKey.currentState!.context,
+            builder: (context) => MapsDetalhes(model: cadastro),
+          )
+        },
+      ));
+    });
+    notifyListeners();
   }
 
   getPosicao() async {
@@ -87,6 +88,4 @@ class MapsController with ChangeNotifier {
   }
 
   void setState(Null Function() param0) {}
-
-  
 }

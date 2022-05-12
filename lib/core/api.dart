@@ -1,4 +1,4 @@
-import 'package:comunidadefreiriana/core/models/user_model.dart';
+import 'package:comunidadefreiriana/core/models/cadastro_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +15,7 @@ class Api {
         options: Options(
           headers: {
             'Authorization':
-                'Bearer ${Provider.of<UserModel>(context, listen: false).token}',
+                'Bearer ${Provider.of<CadastroModel>(context, listen: false)}',
             'Content-Type': 'application/json',
             'Accept': 'application/json',
           },

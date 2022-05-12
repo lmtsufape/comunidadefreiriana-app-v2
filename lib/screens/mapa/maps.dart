@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
+final appKey = GlobalKey();
+
 class Maps extends StatefulWidget {
   static const String id = 'maps';
   const Maps({Key? key}) : super(key: key);
@@ -13,10 +15,7 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
-  late GoogleMapController mapController;
   List<LatLng> tappedPoints = [];
-
-  late String title;
 
 // funcao que atualiza o estado do mapa e salva a coordenada na lista tappedPoints.
   void _handleTap(LatLng latlng) {
@@ -26,10 +25,6 @@ class _MapsState extends State<Maps> {
       }
       tappedPoints.add(latlng);
     });
-  }
-
-  void onMapCreated(GoogleMapController controller) {
-    mapController = controller;
   }
 
   @override
