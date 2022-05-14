@@ -1,6 +1,7 @@
 import 'package:comunidadefreiriana/components/general_loader.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
+import 'package:comunidadefreiriana/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,8 +35,23 @@ class FinishVisitDialog extends StatelessWidget {
             showDialog(
               barrierDismissible: false,
               context: context,
-              builder: (context) => const Dialog(
-                child: GeneralLoader(),
+              builder: (context) => const AlertDialog(
+                title: Text(
+                  'SOLICITAR CADASTRO',
+                  style: kHomeScreen2,
+                ),
+                content: Text(
+                  "Solicitação realizada com sucesso!",
+                  style: kDescriptionFinish,
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: null,
+                      child: Text(
+                        'Fechar',
+                        style: kdrawerText,
+                      )),
+                ],
               ),
             );
             Provider.of<CadastroController>(context, listen: false)

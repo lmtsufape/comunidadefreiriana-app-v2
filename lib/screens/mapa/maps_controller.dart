@@ -33,9 +33,9 @@ class MapsController with ChangeNotifier {
     });
   }
 
-  loadInstituition() {
+  loadInstituition() async {
     final cadastromodel = MapsRepository().cadastromodel;
-    cadastromodel.forEach((cadastro) async {
+    for (var cadastro in cadastromodel) {
       makers.add(Marker(
         markerId: MarkerId(cadastro.nome),
         position: LatLng(cadastro.latitute, cadastro.longitude),
@@ -48,7 +48,7 @@ class MapsController with ChangeNotifier {
           )
         },
       ));
-    });
+    }
     notifyListeners();
   }
 

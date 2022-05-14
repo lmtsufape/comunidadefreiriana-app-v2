@@ -9,6 +9,7 @@
                android:value="AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU"/>
         <activity
             android:name=".MainActivity"
+            android:requestLegacyExternalStorage="true"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

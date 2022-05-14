@@ -6,13 +6,15 @@ class AuthFormField extends StatefulWidget {
   final bool isPassword;
   final TextInputType inputType;
   final Function(String) onChanged;
+  final validator;
 
   const AuthFormField(
       {Key? key,
       required this.label,
       required this.isPassword,
       required this.inputType,
-      required this.onChanged})
+      required this.onChanged,
+      required this.validator})
       : super(key: key);
 
   @override

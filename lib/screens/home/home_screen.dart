@@ -1,3 +1,4 @@
+import 'package:comunidadefreiriana/components/custom_text_button.dart';
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/primary_button.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';

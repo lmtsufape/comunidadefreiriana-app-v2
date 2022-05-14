@@ -15,8 +15,8 @@ class MapsRepository extends ChangeNotifier {
       dataRealizacao: '',
       nomeRealizacao: '',
       info: '',
-      latitute: 321321,
-      longitude: 312313,
+      latitute: 1,
+      longitude: 1,
     )
   ];
 
