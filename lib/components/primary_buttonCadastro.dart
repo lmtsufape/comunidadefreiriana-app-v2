@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 
-class PrimaryButton extends StatelessWidget {
+class PrimaryButtonCadastro extends StatelessWidget {
   final String text;
   final Icon icon;
   final Color color;
   final Function() onPressed;
-  const PrimaryButton(
+  const PrimaryButtonCadastro(
       {Key? key,
       required this.icon,
       required this.text,
@@ -22,7 +22,7 @@ class PrimaryButton extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.06,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(text),
+        child: Center(child: Text(text)),
         style: ElevatedButton.styleFrom(
           alignment: AlignmentDirectional.centerStart,
           primary: color,

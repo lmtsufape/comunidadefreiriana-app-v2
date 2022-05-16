@@ -2,6 +2,7 @@
     package="com.example.comunidadefreiriana">
    <application
         android:label="comunidadefreiriana"
+        android:requestLegacyExternalStorage='true'
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
@@ -9,6 +10,7 @@
                android:value="AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU"/>
         <activity
             android:name=".MainActivity"
+            android:requestLegacyExternalStorage="true"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

@@ -52,6 +52,9 @@ const TextStyle kDescription = TextStyle(
   color: kDetailColor,
 );
 
+const TextStyle kDescriptionFinish = TextStyle(
+    fontSize: 17, fontWeight: FontWeight.bold, color: kHomeButtonColor2);
+
 const TextStyle kHomeScreen = TextStyle(
   fontSize: 22,
   fontWeight: FontWeight.bold,
