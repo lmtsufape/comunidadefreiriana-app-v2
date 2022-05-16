@@ -15,7 +15,7 @@ class MapsRepository extends ChangeNotifier {
     _api.getInstituition(context).then((value) {
       isLoading = false;
       if (value != null) {
-        CadastroModel(
+        InstituicaoModel(
           nome: value['nome'],
           telefone: value['telefone'],
           email: value['email'],
@@ -34,8 +34,8 @@ class MapsRepository extends ChangeNotifier {
     });
   }
 
-  final List<CadastroModel> _cadastro = [
-    CadastroModel(
+  final List<InstituicaoModel> _cadastro = [
+    InstituicaoModel(
       nome: '',
       telefone: '',
       email: '',
@@ -50,5 +50,5 @@ class MapsRepository extends ChangeNotifier {
     )
   ];
 
-  List<CadastroModel> get cadastromodel => _cadastro;
+  List<InstituicaoModel> get cadastromodel => _cadastro;
 }

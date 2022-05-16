@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CadastroController with ChangeNotifier {
-  late CadastroModel cadastroModel;
-  late CadastroModel getInstituicoes;
+  late InstituicaoModel cadastroModel;
+  late InstituicaoModel getInstituicoes;
 
   final _dio = Dio();
   static const String baseUrl = 'http://185.28.23.76/login';
@@ -17,7 +17,7 @@ class CadastroController with ChangeNotifier {
           options: Options(
             headers: {
               'Authorization':
-                  'Bearer ${Provider.of<CadastroModel>(context, listen: false)}',
+                  'Bearer ${Provider.of<InstituicaoModel>(context, listen: false)}',
               'Content-Type': 'application/json',
               'Accept': 'application/json',
             },

@@ -15,7 +15,7 @@ class Api {
         options: Options(
           headers: {
             'Authorization':
-                'Bearer ${Provider.of<CadastroModel>(context, listen: false)}',
+                'Bearer ${Provider.of<InstituicaoModel>(context, listen: false)}',
             'Content-Type': 'application/json',
             'Accept': 'application/json',
           },

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MapsDetalhes extends StatelessWidget {
-  CadastroModel model;
+  InstituicaoModel model;
   MapsDetalhes({Key? key, required this.model}) : super(key: key);
 
   @override

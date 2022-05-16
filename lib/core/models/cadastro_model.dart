@@ -1,5 +1,5 @@
 
-class CadastroModel {
+class InstituicaoModel {
   String nome;
   String telefone;
   String email;
@@ -12,7 +12,7 @@ class CadastroModel {
   double latitute;
   double longitude;
   
-  CadastroModel({
+  InstituicaoModel({
     required this.nome,
     required this.telefone,
     required this.email,
