@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Mapeamento da Comunidade Freiriana Internacional" title="Mapeamento da Comunidade Freiriana Internacional" src="lib/assets/logo.png" />
+  <img alt="Mapeamento da Comunidade Freiriana Internacional" title="Mapeamento da Comunidade Freiriana Internacional" src="lib/assets/images/logo.png" />
 </h1>
 
 <br>
