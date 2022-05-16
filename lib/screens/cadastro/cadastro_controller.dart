@@ -64,6 +64,14 @@ class CadastroController with ChangeNotifier {
     cadastroModel.info = value;
   }
 
+  void setLatitude(double value) {
+    cadastroModel.latitute = value;
+  }
+
+  void setLongitude(double value) {
+    cadastroModel.longitude = value;
+  }
+
   // -> RECEBENDO DADOS DA API DAS INSTITUIÇÕES
 
   void getNome(String value) {
@@ -96,5 +104,13 @@ class CadastroController with ChangeNotifier {
 
   void getMaisInfomacoes(String value) {
     getInstituicoes.info = value;
+  }
+
+  void getLatitude(double value) {
+    cadastroModel.latitute = value;
+  }
+
+  void getLongitude(double value) {
+    cadastroModel.longitude = value;
   }
 }

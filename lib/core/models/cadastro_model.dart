@@ -1,3 +1,4 @@
+
 class CadastroModel {
   String nome;
   String telefone;
@@ -10,7 +11,7 @@ class CadastroModel {
   String info;
   double latitute;
   double longitude;
-
+  
   CadastroModel({
     required this.nome,
     required this.telefone,
@@ -23,5 +24,6 @@ class CadastroModel {
     required this.info,
     required this.latitute,
     required this.longitude,
+    
   });
 }

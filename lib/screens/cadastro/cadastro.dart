@@ -18,7 +18,10 @@ import 'package:path/path.dart';
 
 class SolicitarCadastro extends StatefulWidget {
   static const String id = 'solicitar_cadastro';
-  const SolicitarCadastro({Key? key}) : super(key: key);
+
+  const SolicitarCadastro({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SolicitarCadastro> createState() => _SolicitarCadastroState();
@@ -55,12 +58,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
     return File(imagePath).copy(image.path);
   }
 
-  //late ImageController? controller;
-  //@override
-  //void didChangeDependencies() {
-  //controller = Provider.of<ImageController>(context);
-  //super.didChangeDependencies();
-  //}
+  
 
   @override
   Widget build(BuildContext context) {
@@ -322,7 +320,3 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                 }))));
   }
 }
-
-
-
-

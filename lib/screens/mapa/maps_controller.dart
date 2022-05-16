@@ -9,13 +9,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class MapsController with ChangeNotifier {
   double lat = 0.0;
   double long = 0.0;
-  bool isLoading = false;
-  final _api = Api();
+
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
 
   get mapsController => mapController;
-  
 
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
@@ -23,16 +21,6 @@ class MapsController with ChangeNotifier {
     loadInstituition();
   }
 
-  Future getInstituition(BuildContext context) async {
-    isLoading = true;
-    _api.getInstituition(context).then((value) {
-      isLoading = false;
-      if (value != null) {
-      } else {
-        //print('Deu Ruim');
-      }
-    });
-  }
   loadInstituition() async {
     final cadastromodel = MapsRepository().cadastromodel;
     for (var cadastro in cadastromodel) {
@@ -40,7 +28,9 @@ class MapsController with ChangeNotifier {
         markerId: MarkerId(cadastro.nome),
         position: LatLng(cadastro.latitute, cadastro.longitude),
         icon: await BitmapDescriptor.fromAssetImage(
-            const ImageConfiguration(), 'lib/assets/images/map.png'),
+          const ImageConfiguration(),
+          'lib/assets/images/icone_marker.png',
+        ),
         onTap: () => {
           showModalBottomSheet(
             context: appKey.currentState!.context,

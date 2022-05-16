@@ -1,7 +1,5 @@
-import 'package:comunidadefreiriana/components/general_loader.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
-import 'package:comunidadefreiriana/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

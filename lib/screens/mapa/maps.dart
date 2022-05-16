@@ -1,3 +1,4 @@
+import 'package:comunidadefreiriana/core/api.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_controller.dart';
 import 'package:flutter/foundation.dart';
@@ -17,7 +18,8 @@ class Maps extends StatefulWidget {
 
 class _MapsState extends State<Maps> {
   List<LatLng> tappedPoints = [];
-
+  late double lat;
+  late double long;
 // funcao que atualiza o estado do mapa e salva a coordenada na lista tappedPoints.
   void _handleTap(LatLng latlng) {
     setState(() {
@@ -27,6 +29,15 @@ class _MapsState extends State<Maps> {
       tappedPoints.add(latlng);
     });
   }
+
+  // late Future getInstituittion;
+  // @override
+  // void didChangeDependencies() {
+  //   getInstituittion = Api().getInstituition(context);
+  //   final controller = Provider.of<Api>(context);
+  //   controller.getInstituition(context);
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +56,7 @@ class _MapsState extends State<Maps> {
           create: (context) => MapsController(),
           child: Builder(builder: (context) {
             final local = context.watch<MapsController>();
+            //getInstituittion;
             return GoogleMap(
               myLocationButtonEnabled: false,
               initialCameraPosition: CameraPosition(
@@ -68,7 +80,7 @@ class _MapsState extends State<Maps> {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               FloatingActionButton.extended(
                 label: const Text('Adicionar'), // <-- Text
