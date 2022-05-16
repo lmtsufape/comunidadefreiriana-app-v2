@@ -1,4 +1,3 @@
-import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,10 +12,12 @@ class Api {
     final body = FormData.fromMap({
       'nome': cadastroModel.nome,
       'telefone': cadastroModel.telefone,
-      'cidade': cadastroModel.cidade,
       'email': cadastroModel.email,
+      'cidade': cadastroModel.cidade,
       'estado': cadastroModel.estado,
+      'endereco': cadastroModel.endereco,
       'pais': cadastroModel.pais,
+      'cep': cadastroModel.cep,
       'info': cadastroModel.info,
       'latitude': cadastroModel.latitute.toString(),
       'longitude': cadastroModel.longitude.toString()

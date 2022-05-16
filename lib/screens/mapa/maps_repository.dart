@@ -3,56 +3,51 @@ import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 // ignore: unused_import
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class MapsRepository extends ChangeNotifier {
   // ignore: unused_field
   final _api = Api();
+  final _dio = Dio();
+  static const String baseUrl = 'http://185.28.23.76/login';
   bool isLoading = false;
 
-  Future loadInst(BuildContext context) async {
+  Future getInstituition(BuildContext context) async {
+    var response = await _dio.get(
+      baseUrl + 'instituicao/aprovados',
+    );
+    if (kDebugMode) {
+      print(response);
+    }
+  }
+
+  Future setInst(BuildContext context) async {
     isLoading = true;
-    _api.getInstituition(context).then((value) {
+    getInstituition(context).then((value) {
       isLoading = false;
       if (value != null) {
-        InstituicaoModel(
-          nome: value['nome'],
-          telefone: value['telefone'],
-          email: value['email'],
-          cidade: value['cidade'],
-          estado: value['estado'],
-          endereco: value['endereco'],
-          pais: value['pais'],
-          dataRealizacao: value['dataRealizacao'],
-          nomeRealizacao: value['nomeRealizacao'],
-          info: value['info'],
-          latitute: value['latitute'],
-          longitude: value['longitude'],
-          cep: value['cep'],
-        );
+        // ignore: unused_local_variable
+        final List<InstituicaoModel> _inst = [
+          InstituicaoModel(
+            nome: value['nome'],
+            telefone: value['telefone'],
+            email: value['email'],
+            cidade: value['cidade'],
+            estado: value['estado'],
+            endereco: value['endereco'],
+            pais: value['pais'],
+            dataRealizacao: value['dataRealizacao'],
+            nomeRealizacao: value['nomeRealizacao'],
+            info: value['info'],
+            latitute: value['latitute'],
+            longitude: value['longitude'],
+            cep: value['cep'],
+          )
+        ];
       } else {
-        //print('Deu Ruim');
+        return null;
       }
     });
   }
-
-  final List<InstituicaoModel> _cadastro = [
-    InstituicaoModel(
-      nome: '',
-      telefone: '',
-      email: '',
-      cidade: '',
-      estado: '',
-      endereco: '',
-      pais: '',
-      dataRealizacao: '',
-      nomeRealizacao: '',
-      info: '',
-      latitute:0,
-      longitude: 0,
-      cep: '',
-    )
-  ];
-
-  List<InstituicaoModel> get cadastromodel => _cadastro;
 }

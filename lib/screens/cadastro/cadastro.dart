@@ -165,6 +165,22 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         Row(
                           children: const [
                             Text(
+                              'Endereço*',
+                              style: kCadastro,
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        AuthFormField(
+                          label: 'Rua Fulano de Tal',
+                          isPassword: false,
+                          inputType: TextInputType.name,
+                          onChanged: (String value) =>
+                              _controller.setEnd(value),
+                        ),
+                        Row(
+                          children: const [
+                            Text(
                               'País*',
                               style: kCadastro,
                             ),
@@ -177,6 +193,22 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.name,
                           onChanged: (String value) =>
                               _controller.setPais(value),
+                        ),
+                        Row(
+                          children: const [
+                            Text(
+                              'CEP*',
+                              style: kCadastro,
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        AuthFormField(
+                          label: '55415-000',
+                          isPassword: false,
+                          inputType: TextInputType.name,
+                          onChanged: (String value) =>
+                              _controller.setcep(value),
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(

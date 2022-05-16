@@ -1,3 +1,4 @@
+import 'package:comunidadefreiriana/core/api.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_detalhes.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
@@ -8,7 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class MapsController with ChangeNotifier {
   double lat = 0.0;
   double long = 0.0;
-
+  final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
 
@@ -17,29 +18,30 @@ class MapsController with ChangeNotifier {
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    loadInstituition();
+    //loadInstituition();
   }
 
-  loadInstituition() async {
-    final cadastromode = MapsRepository().cadastromodel;
-    for (var cadastro in cadastromode) {
-      makers.add(Marker(
-        markerId: MarkerId(cadastro.nome),
-        position: LatLng(cadastro.latitute, cadastro.longitude),
-        icon: await BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(),
-          'lib/assets/images/icone_marker.png',
-        ),
-        onTap: () => {
-          showModalBottomSheet(
-            context: appKey.currentState!.context,
-            builder: (context) => MapsDetalhes(model: cadastro),
-          )
-        },
-      ));
-    }
-    notifyListeners();
-  }
+  // loadInstituition() async {
+  //   // ignore: non_constant_identifier_names
+  //   final InstituicaoModel = MapsRepository().setInst();
+  //   InstituicaoModel.forEach((inst) async {
+  //     makers.add(Marker(
+  //       markerId: MarkerId(inst.nome),
+  //       position: LatLng(inst.latitute, inst.longitude),
+  //       icon: await BitmapDescriptor.fromAssetImage(
+  //         const ImageConfiguration(),
+  //         'lib/assets/images/icone_marker.png',
+  //       ),
+  //       onTap: () => {
+  //         showModalBottomSheet(
+  //           context: appKey.currentState!.context,
+  //           builder: (context) => MapsDetalhes(model: inst),
+  //         )
+  //       },
+  //     ));
+  //   };
+  //   notifyListeners();
+  // }
 
   getPosicao() async {
     try {

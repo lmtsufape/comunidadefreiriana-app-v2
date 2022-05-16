@@ -1,8 +1,8 @@
 import 'package:comunidadefreiriana/core/api.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CadastroController with ChangeNotifier {
   bool isLoading = false;
@@ -16,12 +16,34 @@ class CadastroController with ChangeNotifier {
       isLoading = false;
       notifyListeners();
       if (value = true) {
-        print('Deu Bom');
+        if (kDebugMode) {
+          print('Deu Bom');
+        }
       } else {
-        print('Deu não');
+        if (kDebugMode) {
+          print('Deu não');
+        }
       }
     });
     notifyListeners();
+  }
+
+  bool validateFields() {
+    if (cadastroModel.nome == '' ||
+        cadastroModel.telefone == '' ||
+        cadastroModel.email == '' ||
+        cadastroModel.pais == '' ||
+        cadastroModel.cep == '' ||
+        cadastroModel.estado == '' ||
+        cadastroModel.cidade == '' ||
+        cadastroModel.endereco == '' ||
+        cadastroModel.dataRealizacao == '' ||
+        cadastroModel.nomeRealizacao == '' ||
+        cadastroModel.info == '') {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   void setNome(String value) {
@@ -33,7 +55,7 @@ class CadastroController with ChangeNotifier {
   }
 
   void setEmail(String value) {
-    cadastroModel.telefone = value;
+    cadastroModel.email = value;
   }
 
   void setCidade(String value) {
@@ -46,6 +68,14 @@ class CadastroController with ChangeNotifier {
 
   void setPais(String value) {
     cadastroModel.pais = value;
+  }
+
+  void setcep(String value) {
+    cadastroModel.cep = value;
+  }
+
+  void setEnd(String value) {
+    cadastroModel.endereco = value;
   }
 
   void setNomeRealizacao(String value) {
