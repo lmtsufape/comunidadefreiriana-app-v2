@@ -1,4 +1,4 @@
-import 'package:comunidadefreiriana/core/models/cadastro_model.dart';
+import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

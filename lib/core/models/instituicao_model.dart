@@ -1,4 +1,3 @@
-
 class InstituicaoModel {
   String nome;
   String telefone;
@@ -6,12 +5,13 @@ class InstituicaoModel {
   String cidade;
   String estado;
   String endereco;
+  String pais;
   String dataRealizacao;
   String nomeRealizacao;
   String info;
   double latitute;
   double longitude;
-  
+
   InstituicaoModel({
     required this.nome,
     required this.telefone,
@@ -19,11 +19,11 @@ class InstituicaoModel {
     required this.cidade,
     required this.estado,
     required this.endereco,
+    required this.pais,
     required this.dataRealizacao,
     required this.nomeRealizacao,
     required this.info,
     required this.latitute,
     required this.longitude,
-    
   });
 }

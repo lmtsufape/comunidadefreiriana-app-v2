@@ -1,4 +1,5 @@
-import 'package:comunidadefreiriana/core/models/cadastro_model.dart';
+
+import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,10 @@ class CadastroController with ChangeNotifier {
     cadastroModel.estado = value;
   }
 
+  void setPais(String value) {
+    cadastroModel.pais = value;
+  }
+
   void setNomeRealizacao(String value) {
     cadastroModel.nomeRealizacao = value;
   }
@@ -94,6 +99,10 @@ class CadastroController with ChangeNotifier {
     getInstituicoes.estado = value;
   }
 
+  void getPais(String value) {
+    getInstituicoes.pais = value;
+  }
+
   void getNomeRealizacao(String value) {
     getInstituicoes.nomeRealizacao = value;
   }
@@ -107,10 +116,10 @@ class CadastroController with ChangeNotifier {
   }
 
   void getLatitude(double value) {
-    cadastroModel.latitute = value;
+    getInstituicoes.latitute = value;
   }
 
   void getLongitude(double value) {
-    cadastroModel.longitude = value;
+    getInstituicoes.longitude = value;
   }
 }

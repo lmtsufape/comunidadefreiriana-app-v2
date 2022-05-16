@@ -58,8 +58,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
     return File(imagePath).copy(image.path);
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -191,6 +189,29 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.name,
                           onChanged: (String value) =>
                               _controller.setEstado(value),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Este campo não pode ficar vazio';
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                        Row(
+                          children: const [
+                            Text(
+                              'País*',
+                              style: kCadastro,
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        AuthFormField(
+                          label: 'Brasil',
+                          isPassword: false,
+                          inputType: TextInputType.name,
+                          onChanged: (String value) =>
+                              _controller.setPais(value),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Este campo não pode ficar vazio';

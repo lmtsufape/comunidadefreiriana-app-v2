@@ -1,4 +1,4 @@
-import 'package:comunidadefreiriana/core/models/cadastro_model.dart';
+import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

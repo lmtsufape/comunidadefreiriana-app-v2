@@ -1,5 +1,5 @@
 import 'package:comunidadefreiriana/core/api.dart';
-import 'package:comunidadefreiriana/core/models/cadastro_model.dart';
+import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 // ignore: unused_import
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,6 +22,7 @@ class MapsRepository extends ChangeNotifier {
           cidade: value['cidade'],
           estado: value['estado'],
           endereco: value['endereco'],
+          pais: value['pais'],
           dataRealizacao: value['dataRealizacao'],
           nomeRealizacao: value['nomeRealizacao'],
           info: value['info'],
@@ -42,6 +43,7 @@ class MapsRepository extends ChangeNotifier {
       cidade: '',
       estado: '',
       endereco: '',
+      pais: '',
       dataRealizacao: '',
       nomeRealizacao: '',
       info: '',
