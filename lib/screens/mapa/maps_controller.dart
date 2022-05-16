@@ -1,4 +1,3 @@
-import 'package:comunidadefreiriana/core/api.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_detalhes.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
@@ -22,8 +21,8 @@ class MapsController with ChangeNotifier {
   }
 
   loadInstituition() async {
-    final cadastromodel = MapsRepository().cadastromodel;
-    for (var cadastro in cadastromodel) {
+    final cadastromode = MapsRepository().cadastromodel;
+    for (var cadastro in cadastromode) {
       makers.add(Marker(
         markerId: MarkerId(cadastro.nome),
         position: LatLng(cadastro.latitute, cadastro.longitude),

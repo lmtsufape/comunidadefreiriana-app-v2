@@ -6,7 +6,7 @@ class AuthFormField extends StatefulWidget {
   final bool isPassword;
   final TextInputType inputType;
   final Function(String) onChanged;
-  final validator;
+
 
   const AuthFormField(
       {Key? key,
@@ -14,7 +14,7 @@ class AuthFormField extends StatefulWidget {
       required this.isPassword,
       required this.inputType,
       required this.onChanged,
-      required this.validator})
+      })
       : super(key: key);
 
   @override
@@ -29,13 +29,6 @@ class _AuthFormFieldState extends State<AuthFormField> {
     return SizedBox(
       height: size.height * 0.08,
       child: TextFormField(
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Este campo não pode ficar vazio';
-          } else {
-            return null;
-          }
-        },
         onChanged: widget.onChanged,
         style: const TextStyle(color: kTextColor),
         obscureText: widget.isPassword ? showPassword : false,

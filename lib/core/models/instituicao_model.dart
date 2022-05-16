@@ -6,6 +6,7 @@ class InstituicaoModel {
   String estado;
   String endereco;
   String pais;
+  String cep;
   String dataRealizacao;
   String nomeRealizacao;
   String info;
@@ -20,6 +21,7 @@ class InstituicaoModel {
     required this.estado,
     required this.endereco,
     required this.pais,
+    required this.cep,
     required this.dataRealizacao,
     required this.nomeRealizacao,
     required this.info,

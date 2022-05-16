@@ -28,6 +28,7 @@ class MapsRepository extends ChangeNotifier {
           info: value['info'],
           latitute: value['latitute'],
           longitude: value['longitude'],
+          cep: value['cep'],
         );
       } else {
         //print('Deu Ruim');
@@ -47,8 +48,9 @@ class MapsRepository extends ChangeNotifier {
       dataRealizacao: '',
       nomeRealizacao: '',
       info: '',
-      latitute: -8.830792865216544,
-      longitude: -36.00806761533022,
+      latitute:0,
+      longitude: 0,
+      cep: '',
     )
   ];
 

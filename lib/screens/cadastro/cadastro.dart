@@ -93,13 +93,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.name,
                           onChanged: (String value) =>
                               _controller.setNome(value),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Este campo não pode ficar vazio';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
@@ -117,13 +110,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.phone,
                           onChanged: (String value) =>
                               _controller.setTelefone(value),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Este campo não pode ficar vazio';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
@@ -141,13 +127,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.emailAddress,
                           onChanged: (String value) =>
                               _controller.setEmail(value),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Este campo não pode ficar vazio';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
@@ -165,13 +144,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.name,
                           onChanged: (String value) =>
                               _controller.setCidade(value),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Este campo não pode ficar vazio';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
@@ -189,13 +161,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.name,
                           onChanged: (String value) =>
                               _controller.setEstado(value),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Este campo não pode ficar vazio';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                         Row(
                           children: const [
@@ -212,13 +177,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.name,
                           onChanged: (String value) =>
                               _controller.setPais(value),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Este campo não pode ficar vazio';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
@@ -236,13 +194,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.datetime,
                           onChanged: (String value) =>
                               _controller.setDataRealizacao(value),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Este campo não pode ficar vazio';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
@@ -260,13 +211,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           inputType: TextInputType.name,
                           onChanged: (String value) =>
                               _controller.setNomeRealizacao(value),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Este campo não pode ficar vazio';
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Column(
@@ -325,14 +269,26 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           style: kCadastro,
                         )),
                         const Divider(color: kSecondaryTextColor),
+                        // ignore: avoid_print
+
                         PrimaryButtonCadastro(
                             icon: const Icon(Icons.access_alarm_rounded),
                             text: 'Efetuar Cadastro',
                             onPressed: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) =>
-                                      const FinishVisitDialog());
+                              _controller.validateFields();
+                              if (_controller.validateFields() == true) {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        const FinishVisitDialog());
+                              } else {
+                                const AlertDialog(
+                                  content: Text(
+                                    'Por favor, preencha todos os campos marcados com (*)!',
+                                    style: kTitlePaulo,
+                                  ),
+                                );
+                              }
                             },
                             color: kDetailColor2),
                       ])),
