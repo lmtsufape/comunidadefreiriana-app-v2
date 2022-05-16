@@ -15,6 +15,7 @@ class MapsController with ChangeNotifier {
   late GoogleMapController mapController;
 
   get mapsController => mapController;
+  
 
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
@@ -32,7 +33,6 @@ class MapsController with ChangeNotifier {
       }
     });
   }
-
   loadInstituition() async {
     final cadastromodel = MapsRepository().cadastromodel;
     for (var cadastro in cadastromodel) {

@@ -5,7 +5,7 @@
 <br>
 
 <p align="center">
-  <img alt="App" src="lib/assets/app.png" width="100%">
+  <img alt="App" src="lib/assets/images/app.png" width="100%">
 </p>
 
 ## Tecnologias

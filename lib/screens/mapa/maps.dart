@@ -1,3 +1,4 @@
+import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class _MapsState extends State<Maps> {
           child: Builder(builder: (context) {
             final local = context.watch<MapsController>();
             return GoogleMap(
+              myLocationButtonEnabled: false,
               initialCameraPosition: CameraPosition(
                 target: LatLng(local.lat, local.long),
                 zoom: 15,
@@ -62,6 +64,28 @@ class _MapsState extends State<Maps> {
               markers: local.makers,
             );
           })),
+      floatingActionButton: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton.extended(
+                label: const Text('Adicionar'), // <-- Text
+                backgroundColor: Colors.blue,
+                icon: const Icon(
+                  // <-- Icon
+                  Icons.add,
+                  size: 24.0,
+                ),
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, SolicitarCadastro.id);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
