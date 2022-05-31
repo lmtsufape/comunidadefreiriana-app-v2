@@ -72,7 +72,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
             body: ChangeNotifierProvider<CadastroController>(
                 create: (context) => CadastroController(),
                 child: Builder(builder: (context) {
-                  final _controller = context.watch<CadastroController>();
+                  late CadastroController _controller =
+                      context.watch<CadastroController>();
                   return Padding(
                     padding: const EdgeInsets.all(10),
                     child: SingleChildScrollView(
@@ -286,13 +287,15 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             ],
                           ),
                         ),
+                        const Divider(color: kSecondaryTextColor),
+                        const VerticalSpacerBox(size: SpacerSize.large),
                         SizedBox(
                           child: _image != null
                               ? Image.file(_image!,
                                   width: 250, height: 250, fit: BoxFit.cover)
                               : Image.asset(''),
                           height: 200,
-                          width: 200,
+                          width: 250,
                         ),
                         const VerticalSpacerBox(size: SpacerSize.large),
                         const Center(

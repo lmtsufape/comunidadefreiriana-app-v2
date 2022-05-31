@@ -1,53 +1,88 @@
 import 'package:comunidadefreiriana/core/api.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
-// ignore: unused_import
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MapsRepository extends ChangeNotifier {
   // ignore: unused_field
   final _api = Api();
   final _dio = Dio();
-  static const String baseUrl = 'http://185.28.23.76/login';
+  static const String baseUrl = 'http://185.28.23.76/';
   bool isLoading = false;
 
-  Future getInstituition(BuildContext context) async {
-    var response = await _dio.get(
-      baseUrl + 'instituicao/aprovados',
-    );
-    if (kDebugMode) {
-      print(response);
-    }
-  }
+  final List<InstituicaoModel> instituicoes = [
+    InstituicaoModel(
+      nome: '',
+      telefone: '',
+      email: '',
+      cidade: '',
+      estado: '',
+      endereco: '',
+      dataRealizacao: '',
+      nomeRealizacao: '',
+      info: '',
+      latitute: 0,
+      longitude: 0,
+      cep: '',
+      pais: '',
+    )
+  ];
 
-  Future setInst(BuildContext context) async {
-    isLoading = true;
-    getInstituition(context).then((value) {
-      isLoading = false;
-      if (value != null) {
+  Future getInstituition(BuildContext context) async {
+    try {
+      var response = await _dio.get(
+        baseUrl + '/instituicao/aprovados',
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer ${Provider.of<InstituicaoModel>(context, listen: false)}',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+        ),
+      );
+      print(response.data);
+      if (response.statusCode == 200) {
+        print(response.data);
+        InstituicaoModel(
+            nome: response.data['nome'],
+            telefone: response.data['telefone'],
+            email: response.data['email'],
+            cidade: response.data['cidade'],
+            estado: response.data['estado'],
+            endereco: response.data['endereco'],
+            pais: response.data['pais'],
+            cep: response.data['cep'],
+            dataRealizacao: response.data['dataRealizacao'],
+            nomeRealizacao: response.data['nomeRealizacao'],
+            info: response.data['info'],
+            latitute: response.data['latitute'],
+            longitude: response.data['longitude']);
         // ignore: unused_local_variable
-        final List<InstituicaoModel> _inst = [
+        List<InstituicaoModel> instituicoes = [
           InstituicaoModel(
-            nome: value['nome'],
-            telefone: value['telefone'],
-            email: value['email'],
-            cidade: value['cidade'],
-            estado: value['estado'],
-            endereco: value['endereco'],
-            pais: value['pais'],
-            dataRealizacao: value['dataRealizacao'],
-            nomeRealizacao: value['nomeRealizacao'],
-            info: value['info'],
-            latitute: value['latitute'],
-            longitude: value['longitude'],
-            cep: value['cep'],
+            nome: response.data['nome'],
+            telefone: response.data['telefone'],
+            email: response.data['email'],
+            cidade: response.data['cidade'],
+            estado: response.data['estado'],
+            endereco: response.data['endereco'],
+            pais: response.data['pais'],
+            dataRealizacao: response.data['dataRealizacao'],
+            nomeRealizacao: response.data['nomeRealizacao'],
+            info: response.data['info'],
+            latitute: response.data['latitute'],
+            longitude: response.data['longitude'],
+            cep: response.data['cep'],
           )
         ];
       } else {
         return null;
       }
-    });
+    } catch (e) {
+      return null;
+    }
   }
 }

@@ -58,7 +58,7 @@ class _MapsState extends State<Maps> {
             final local = context.watch<MapsController>();
             //getInstituittion;
             return GoogleMap(
-              myLocationButtonEnabled: false,
+              myLocationButtonEnabled: true,
               initialCameraPosition: CameraPosition(
                 target: LatLng(local.lat, local.long),
                 zoom: 15,
@@ -80,7 +80,7 @@ class _MapsState extends State<Maps> {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               FloatingActionButton.extended(
                 label: const Text('Adicionar'), // <-- Text

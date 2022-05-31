@@ -1,47 +1,48 @@
 import 'package:comunidadefreiriana/core/api.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
-import 'package:comunidadefreiriana/screens/mapa/maps_detalhes.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'maps_detalhes.dart';
+
 class MapsController with ChangeNotifier {
   double lat = 0.0;
   double long = 0.0;
+  // ignore: unused_field
   final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
+  late MapsRepository repository;
 
   get mapsController => mapController;
 
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    //loadInstituition();
+    repository.getInstituition(mapsController);
+    loadInstituition();
   }
 
-  // loadInstituition() async {
-  //   // ignore: non_constant_identifier_names
-  //   final InstituicaoModel = MapsRepository().setInst();
-  //   InstituicaoModel.forEach((inst) async {
-  //     makers.add(Marker(
-  //       markerId: MarkerId(inst.nome),
-  //       position: LatLng(inst.latitute, inst.longitude),
-  //       icon: await BitmapDescriptor.fromAssetImage(
-  //         const ImageConfiguration(),
-  //         'lib/assets/images/icone_marker.png',
-  //       ),
-  //       onTap: () => {
-  //         showModalBottomSheet(
-  //           context: appKey.currentState!.context,
-  //           builder: (context) => MapsDetalhes(model: inst),
-  //         )
-  //       },
-  //     ));
-  //   };
-  //   notifyListeners();
-  // }
+  loadInstituition() {
+    final loadinst = MapsRepository().instituicoes;
+    loadinst.forEach((inst) async {
+      makers.add(Marker(
+        markerId: MarkerId(inst.nome),
+        position: LatLng(inst.latitute, inst.longitude),
+        icon: await BitmapDescriptor.fromAssetImage(const ImageConfiguration(),
+            'lib/assets/images/icone_marker@3x.png'),
+        onTap: () => {
+          showModalBottomSheet(
+            context: appKey.currentState!.context,
+            builder: (context) => MapsDetalhes(model: inst),
+          )
+        },
+      ));
+    });
+    notifyListeners();
+  }
 
   getPosicao() async {
     try {
