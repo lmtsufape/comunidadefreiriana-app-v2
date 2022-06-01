@@ -4,7 +4,6 @@ import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'maps_detalhes.dart';
 
 class MapsController with ChangeNotifier {
@@ -14,15 +13,12 @@ class MapsController with ChangeNotifier {
   final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
-  late MapsRepository repository;
-
-  get mapsController => mapController;
+  late final MapsRepository repository;
 
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    repository.getInstituition(mapsController);
-    loadInstituition();
+    repository.getInstituition(loadInstituition());
   }
 
   loadInstituition() {
@@ -31,8 +27,8 @@ class MapsController with ChangeNotifier {
       makers.add(Marker(
         markerId: MarkerId(inst.nome),
         position: LatLng(inst.latitute, inst.longitude),
-        icon: await BitmapDescriptor.fromAssetImage(const ImageConfiguration(),
-            'lib/assets/images/icone_marker@3x.png'),
+        icon: await BitmapDescriptor.fromAssetImage(
+            const ImageConfiguration(), 'lib/assets/images/icone_marker.png'),
         onTap: () => {
           showModalBottomSheet(
             context: appKey.currentState!.context,
