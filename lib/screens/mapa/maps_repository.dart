@@ -43,7 +43,9 @@ class MapsRepository extends ChangeNotifier {
           },
         ),
       );
+      print(response.data);
       if (response.statusCode == 200) {
+        print(response.data);
         InstituicaoModel(
             nome: response.data['nome'],
             telefone: response.data['telefone'],
@@ -76,7 +78,6 @@ class MapsRepository extends ChangeNotifier {
             cep: response.data['cep'],
           )
         ];
-        return (response.data);
       } else {
         return null;
       }

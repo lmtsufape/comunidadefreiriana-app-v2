@@ -13,23 +13,22 @@ class PauloFreire extends StatefulWidget {
 class _PauloFreireState extends State<PauloFreire> {
   @override
   Widget build(BuildContext context) {
-    // ignore: constant_identifier_names, non_constant_identifier_names
-    final PauloFreire = Uri.parse(
-        'http://www.memorial.paulofreire.org/conheca-paulo-freire.html');
-    // ignore: non_constant_identifier_names, prefer_const_declarations
-    final LinhaTempo = Uri.parse(
-        'http://memorial.paulofreire.org/Linha_do_tempo/linha_do_tempo.html');
     // ignore: non_constant_identifier_names
-    final Acervo = Uri.parse('http://acervo.paulofreire.org:8080/xmlui/');
+    final Uri PauloFreire =
+        Uri.parse('https://memorial.paulofreire.org/conheca-paulo-freire.html');
     // ignore: non_constant_identifier_names
-    final Biblioteca = Uri.parse('http://biblioteca.paulofreire.org');
+    final Uri LinhaTempo = Uri.parse(
+        'https://memorial.paulofreire.org/Linha_do_tempo/linha_do_tempo.html');
     // ignore: non_constant_identifier_names
-    final Glossario = Uri.parse('http://glossario.paulofreire.org');
+    final Uri Acervo = Uri.parse('https://acervo.paulofreire.org:8080/xmlui/');
     // ignore: non_constant_identifier_names
-    final Memorial = Uri.parse('http://memorial.paulofreire.org');
+    final Uri Biblioteca = Uri.parse('https://biblioteca.paulofreire.org/');
+    // ignore: non_constant_identifier_names
+    final Uri Glossario = Uri.parse('https://glossario.paulofreire.org/');
+    // ignore: non_constant_identifier_names
+    final Uri Memorial = Uri.parse('https://memorial.paulofreire.org/');
     // ignore: non_constant_identifier_names, unused_local_variable
-
-    final lmts = Uri.parse('http://lmts.uag.ufrpe.br/br');
+    final Uri lmts = Uri.parse('https://lmts.uag.ufrpe.br/br');
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -51,10 +50,8 @@ class _PauloFreireState extends State<PauloFreire> {
                 Row(
                   children: [
                     InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(PauloFreire)) {
-                            await launchUrl(PauloFreire);
-                          }
+                        onTap: () {
+                          launchUrl(PauloFreire);
                         },
                         child: Container(
                           width: 180,
@@ -71,10 +68,8 @@ class _PauloFreireState extends State<PauloFreire> {
                         )),
                     const Spacer(),
                     InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(LinhaTempo)) {
-                            await launchUrl(LinhaTempo);
-                          }
+                        onTap: () {
+                          launchUrl(LinhaTempo);
                         },
                         child: Container(
                           width: 180,
@@ -120,10 +115,8 @@ class _PauloFreireState extends State<PauloFreire> {
                 Row(
                   children: [
                     InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(Acervo)) {
-                            await launchUrl(Acervo);
-                          }
+                        onTap: () {
+                          launchUrl(Acervo);
                         },
                         child: Container(
                           width: 180,
@@ -141,10 +134,8 @@ class _PauloFreireState extends State<PauloFreire> {
                         )),
                     const Spacer(),
                     InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(Biblioteca)) {
-                            await launchUrl(Biblioteca);
-                          }
+                        onTap: () {
+                          launchUrl(Biblioteca);
                         },
                         child: Container(
                           width: 180,
@@ -190,10 +181,8 @@ class _PauloFreireState extends State<PauloFreire> {
                 Row(
                   children: [
                     InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(Glossario)) {
-                            await launchUrl(Glossario);
-                          }
+                        onTap: () {
+                          launchUrl(Glossario);
                         },
                         child: Container(
                           width: 180,
@@ -211,10 +200,8 @@ class _PauloFreireState extends State<PauloFreire> {
                         )),
                     const Spacer(),
                     InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(Memorial)) {
-                            await launchUrl(Memorial);
-                          }
+                        onTap: () {
+                          launchUrl(Memorial);
                         },
                         child: Container(
                           width: 180,
@@ -289,10 +276,8 @@ class _PauloFreireState extends State<PauloFreire> {
                           ),
                         ],
                       ),
-                      onTap: () async {
-                        if (await canLaunchUrl(lmts)) {
-                          await launchUrl(lmts);
-                        }
+                      onTap: () {
+                        launchUrl(lmts);
                       },
                     ),
                   ],

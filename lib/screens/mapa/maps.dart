@@ -1,3 +1,4 @@
+import 'package:comunidadefreiriana/core/api.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_controller.dart';
 import 'package:flutter/foundation.dart';
@@ -29,6 +30,15 @@ class _MapsState extends State<Maps> {
     });
   }
 
+  // late Future getInstituittion;
+  // @override
+  // void didChangeDependencies() {
+  //   getInstituittion = Api().getInstituition(context);
+  //   final controller = Provider.of<Api>(context);
+  //   controller.getInstituition(context);
+  //   super.didChangeDependencies();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +61,7 @@ class _MapsState extends State<Maps> {
               myLocationButtonEnabled: true,
               initialCameraPosition: CameraPosition(
                 target: LatLng(local.lat, local.long),
-                zoom: 17,
+                zoom: 15,
               ),
               onCameraMove: (position) {
                 if (kDebugMode) {
