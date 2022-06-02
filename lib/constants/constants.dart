@@ -67,6 +67,12 @@ const TextStyle kProfile = TextStyle(
   color: kDetailColor2,
 );
 
+const TextStyle kHomeScreen3 = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+  color: kDetailColor,
+);
+
 const TextStyle kHomeScreen2 = TextStyle(
   fontSize: 18,
   fontWeight: FontWeight.bold,

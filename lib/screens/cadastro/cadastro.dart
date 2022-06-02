@@ -1,6 +1,7 @@
-import 'dart:io';
+import 'dart:io' show File;
 import 'package:comunidadefreiriana/components/auth_form_field.dart';
 import 'package:comunidadefreiriana/components/finish_dialog.dart';
+import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/primary_buttonCadastro.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 // ignore: unused_import
@@ -31,9 +32,9 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
   // ignore: unused_field
   File? _image;
 
-  Future getImage(ImageSource gallery) async {
+  Future getImage(ImageSource source) async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
 
       final imagemPermanente = await salvarPermanente(image.path);
@@ -56,6 +57,14 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
     final image = File('${diretorio.path}/$name');
 
     return File(imagePath).copy(image.path);
+  }
+
+  clearImage() {
+    // ignore: unnecessary_this
+    setState(() {
+      // ignore: unnecessary_this
+      this._image = null;
+    });
   }
 
   @override
@@ -89,12 +98,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: 'Nome',
-                          isPassword: false,
-                          inputType: TextInputType.name,
-                          onChanged: (String value) =>
-                              _controller.setNome(value),
-                        ),
+                            label: 'Nome',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setNome(value);
+                            }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
                           children: const [
@@ -106,12 +115,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: '(00) 0000-0000',
-                          isPassword: false,
-                          inputType: TextInputType.phone,
-                          onChanged: (String value) =>
-                              _controller.setTelefone(value),
-                        ),
+                            label: '(00) 0000-0000',
+                            isPassword: false,
+                            inputType: TextInputType.phone,
+                            onChanged: (String value) {
+                              _controller.setTelefone(value);
+                            }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
                           children: const [
@@ -123,12 +132,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: 'example@example.com',
-                          isPassword: false,
-                          inputType: TextInputType.emailAddress,
-                          onChanged: (String value) =>
-                              _controller.setEmail(value),
-                        ),
+                            label: 'example@example.com',
+                            isPassword: false,
+                            inputType: TextInputType.emailAddress,
+                            onChanged: (String value) {
+                              _controller.setEmail(value);
+                            }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
                           children: const [
@@ -140,12 +149,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: 'Garanhuns',
-                          isPassword: false,
-                          inputType: TextInputType.name,
-                          onChanged: (String value) =>
-                              _controller.setCidade(value),
-                        ),
+                            label: 'Garanhuns',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setCidade(value);
+                            }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
                           children: const [
@@ -157,12 +166,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: 'PE',
-                          isPassword: false,
-                          inputType: TextInputType.name,
-                          onChanged: (String value) =>
-                              _controller.setEstado(value),
-                        ),
+                            label: 'PE',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setEstado(value);
+                            }),
                         Row(
                           children: const [
                             Text(
@@ -173,12 +182,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: 'Rua Fulano de Tal',
-                          isPassword: false,
-                          inputType: TextInputType.name,
-                          onChanged: (String value) =>
-                              _controller.setEnd(value),
-                        ),
+                            label: 'Rua Fulano de Tal',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setEnd(value);
+                            }),
                         Row(
                           children: const [
                             Text(
@@ -189,12 +198,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: 'Brasil',
-                          isPassword: false,
-                          inputType: TextInputType.name,
-                          onChanged: (String value) =>
-                              _controller.setPais(value),
-                        ),
+                            label: 'Brasil',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setPais(value);
+                            }),
                         Row(
                           children: const [
                             Text(
@@ -205,12 +214,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: '55415-000',
-                          isPassword: false,
-                          inputType: TextInputType.name,
-                          onChanged: (String value) =>
-                              _controller.setcep(value),
-                        ),
+                            label: '55415-000',
+                            isPassword: false,
+                            inputType: TextInputType.phone,
+                            onChanged: (String value) {
+                              _controller.setcep(value);
+                            }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
                           children: const [
@@ -222,12 +231,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: '00/00/0000',
-                          isPassword: false,
-                          inputType: TextInputType.datetime,
-                          onChanged: (String value) =>
-                              _controller.setDataRealizacao(value),
-                        ),
+                            label: '00/00/0000',
+                            isPassword: false,
+                            inputType: TextInputType.datetime,
+                            onChanged: (String value) {
+                              _controller.setDataRealizacao(value);
+                            }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
                           children: const [
@@ -239,12 +248,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                          label: 'LMTS',
-                          isPassword: false,
-                          inputType: TextInputType.name,
-                          onChanged: (String value) =>
-                              _controller.setNomeRealizacao(value),
-                        ),
+                            label: 'LMTS',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setNomeRealizacao(value);
+                            }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -266,43 +275,79 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                     border: OutlineInputBorder(),
                                     fillColor: kPrimaryColor,
                                   ),
-                                  onChanged: (String value) =>
-                                      _controller.setMaisInfomacoes(value)),
+                                  onChanged: (String value) {
+                                    _controller.setMaisInfomacoes(value);
+                                  }),
                             ),
                           ],
                         ),
-                        InkWell(
-                          onTap: () => getImage(ImageSource.gallery),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                'Mídia',
-                                style: kHomeScreen2,
-                              ),
-                              Icon(
-                                Icons.add_a_photo,
-                                color: kDetailColor,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Divider(color: kSecondaryTextColor),
-                        const VerticalSpacerBox(size: SpacerSize.large),
-                        SizedBox(
-                          child: _image != null
-                              ? Image.file(_image!,
-                                  width: 250, height: 250, fit: BoxFit.cover)
-                              : Image.asset(''),
-                          height: 200,
-                          width: 250,
-                        ),
-                        const VerticalSpacerBox(size: SpacerSize.large),
                         const Center(
                             child: Text(
                           'Campos com (*) são obrigatórios!',
                           style: kCadastro,
                         )),
+                        const Divider(color: kSecondaryTextColor),
+                        const VerticalSpacerBox(size: SpacerSize.medium),
+                        const Center(
+                            child: Text(
+                          'Mídia',
+                          style: kHomeScreen3,
+                        )),
+                        const VerticalSpacerBox(size: SpacerSize.medium),
+                        Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FloatingActionButton.extended(
+                                label: const Text('Galeria'), // <-- Text
+                                backgroundColor: Colors.blue,
+                                icon: const Icon(
+                                  // <-- Icon
+                                  Icons.photo_library,
+                                  size: 24.0,
+                                ),
+                                onPressed: () {
+                                  getImage(ImageSource.gallery);
+                                },
+                              ),
+                              const HorizontalSpacerBox(
+                                  size: SpacerSize.medium),
+                              FloatingActionButton.extended(
+                                label: const Text('Câmera'), // <-- Text
+                                backgroundColor: Colors.blue,
+                                icon: const Icon(
+                                  // <-- Icon
+                                  Icons.camera,
+                                  size: 24.0,
+                                ),
+                                onPressed: () {
+                                  getImage(ImageSource.camera);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.large),
+                        SizedBox(
+                          child: _image != null
+                              ? Image.file(_image!, fit: BoxFit.fill)
+                              : Image.asset(''),
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.medium),
+                        FloatingActionButton.extended(
+                          label: const Text('Delete'), // <-- Text
+                          backgroundColor: Colors.blue,
+                          icon: const Icon(
+                            // <-- Icon
+                            Icons.delete,
+                            size: 24.0,
+                          ),
+                          onPressed: () {
+                            clearImage();
+                          },
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+
                         const Divider(color: kSecondaryTextColor),
                         // ignore: avoid_print
 
@@ -325,7 +370,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                 );
                               }
                             },
-                            color: kDetailColor2),
+                            color: Colors.blue),
                       ])),
                     ),
                   );
