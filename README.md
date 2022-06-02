@@ -1,7 +1,12 @@
 <h1 align="center">
   <img alt="Mapeamento da Comunidade Freiriana Internacional" title="Mapeamento da Comunidade Freiriana Internacional" src="lib/assets/images/logo.png" />
 </h1>
+
 <br>
+
+<p align="center">
+  <img alt="App" src="lib/assets/images/app.png" width="100%">
+</p>
 
 ## Tecnologias
 

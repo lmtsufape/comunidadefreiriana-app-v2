@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final Uri _url = Uri.parse('https://lmts.uag.ufrpe.br/br');
+    final lmts = Uri.parse('http://lmts.uag.ufrpe.br/br');
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -142,7 +142,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    onTap: () => launchUrl(_url),
+                    onTap: () async {
+                      if (await canLaunchUrl(lmts)) {
+                        await launchUrl(lmts);
+                      }
+                    },
                   ),
                 ],
               )

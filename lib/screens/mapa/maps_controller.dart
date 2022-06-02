@@ -13,16 +13,19 @@ class MapsController with ChangeNotifier {
   final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
-  late final MapsRepository repository;
+
+  get mapsController => mapController;
 
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    repository.getInstituition(loadInstituition());
+    MapsRepository().getInstituition(mapsController);
+    loadInstituition();
   }
 
   loadInstituition() {
     final loadinst = MapsRepository().instituicoes;
+    // ignore: avoid_function_literals_in_foreach_calls
     loadinst.forEach((inst) async {
       makers.add(Marker(
         markerId: MarkerId(inst.nome),
@@ -74,6 +77,4 @@ class MapsController with ChangeNotifier {
 
     return await Geolocator.getCurrentPosition();
   }
-
-  void setState(Null Function() param0) {}
 }

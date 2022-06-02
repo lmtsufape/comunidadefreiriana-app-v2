@@ -8,7 +8,7 @@ class CadastroController with ChangeNotifier {
   bool isLoading = false;
   late InstituicaoModel cadastroModel;
   final _api = Api();
-  static const String baseUrl = 'http://185.28.23.76/login';
+  static const String baseUrl = 'http://185.28.23.76/';
 
   void finishCadastro(BuildContext context) async {
     isLoading = true;

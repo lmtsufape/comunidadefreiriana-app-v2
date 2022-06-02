@@ -1,3 +1,5 @@
+import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
+import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,7 +30,6 @@ class _PauloFreireState extends State<PauloFreire> {
     // ignore: non_constant_identifier_names
     final Memorial = Uri.parse('http://memorial.paulofreire.org');
     // ignore: non_constant_identifier_names, unused_local_variable
-
     final lmts = Uri.parse('http://lmts.uag.ufrpe.br/br');
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -98,6 +99,7 @@ class _PauloFreireState extends State<PauloFreire> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: const [
+                        HorizontalSpacerBox(size: SpacerSize.medium),
                         Text(
                           'Conheça Paulo Freire',
                           style: kTextIcons,
@@ -112,6 +114,7 @@ class _PauloFreireState extends State<PauloFreire> {
                           'Linha do Tempo',
                           style: kTextIcons,
                         ),
+                        HorizontalSpacerBox(size: SpacerSize.medium),
                       ],
                     ),
                   ],
@@ -168,6 +171,7 @@ class _PauloFreireState extends State<PauloFreire> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: const [
+                        HorizontalSpacerBox(size: SpacerSize.large),
                         Text(
                           'Acervo Digital',
                           style: kTextIcons,
@@ -182,6 +186,7 @@ class _PauloFreireState extends State<PauloFreire> {
                           'Biblioteca',
                           style: kTextIcons,
                         ),
+                        HorizontalSpacerBox(size: SpacerSize.large),
                       ],
                     ),
                   ],
@@ -238,6 +243,7 @@ class _PauloFreireState extends State<PauloFreire> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: const [
+                        HorizontalSpacerBox(size: SpacerSize.large),
                         Text(
                           'Glossário',
                           style: kTextIcons,
@@ -252,6 +258,7 @@ class _PauloFreireState extends State<PauloFreire> {
                           'Contato',
                           style: kTextIcons,
                         ),
+                        HorizontalSpacerBox(size: SpacerSize.large),
                       ],
                     ),
                   ],

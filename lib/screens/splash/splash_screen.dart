@@ -17,18 +17,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     controller.startApp(context);
+    // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: [
-          Center(
-            child: Image.asset(
-              'lib/assets/images/splash.png',
-              height: size.height * 1,
-              width: size.width * 1,
-            ),
-          ),
-        ],
+      body: Image.asset(
+        'lib/assets/images/splash.png',
+        fit: BoxFit.cover,
       ),
     );
   }
