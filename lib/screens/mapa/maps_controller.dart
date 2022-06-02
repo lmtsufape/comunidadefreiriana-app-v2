@@ -13,12 +13,12 @@ class MapsController with ChangeNotifier {
   final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
-  late final MapsRepository repository;
+  //late final MapsRepository repository;
 
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    repository.getInstituition(loadInstituition());
+    //repository.getInstituition(loadInstituition());
   }
 
   loadInstituition() {
