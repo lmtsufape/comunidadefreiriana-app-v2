@@ -4,10 +4,6 @@
 
 <br>
 
-<p align="center">
-  <img alt="App" src="lib/assets/images/app.png" width="100%">
-</p>
-
 ## Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
