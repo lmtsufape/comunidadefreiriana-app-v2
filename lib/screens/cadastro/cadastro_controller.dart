@@ -3,10 +3,15 @@ import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter/services.dart';
+import 'package:path/path.dart';
+import 'dart:io' show File;
 
 class CadastroController with ChangeNotifier {
   bool isLoading = false;
-  late InstituicaoModel cadastroModel;
+  File? _image;
+  final InstituicaoModel cadastroModel = InstituicaoModel();
   final _api = Api();
   static const String baseUrl = 'http://185.28.23.76/';
 
@@ -46,8 +51,45 @@ class CadastroController with ChangeNotifier {
     }
   }
 
+/*
+  Future getImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      final imagemPermanente = await salvarPermanente(image.path);
+
+      setState(() {
+        // ignore: unnecessary_this
+        this._image = imagemPermanente;
+      });
+    } on PlatformException catch (e) {
+      if (kDebugMode) {
+        print('Falha ao selecionar imagem: $e');
+      }
+    }
+  }
+
+  Future<File> salvarPermanente(String imagePath) async {
+    final diretorio = await getApplicationDocumentsDirectory();
+    final name = basename(imagePath);
+    // ignore: unnecessary_brace_in_string_interps
+    final image = File('${diretorio.path}/$name');
+
+    return File(imagePath).copy(image.path);
+  }
+
+  clearImage() {
+    // ignore: unnecessary_this
+    setState(() {
+      // ignore: unnecessary_this
+      this._image = null;
+    });
+  }
+*/
   void setNome(String value) {
     cadastroModel.nome = value;
+    print(cadastroModel.nome);
   }
 
   void setTelefone(String value) {

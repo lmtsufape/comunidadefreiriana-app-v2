@@ -30,46 +30,11 @@ class SolicitarCadastro extends StatefulWidget {
 
 class _SolicitarCadastroState extends State<SolicitarCadastro> {
   // ignore: unused_field
-  File? _image;
-
-  Future getImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-
-      final imagemPermanente = await salvarPermanente(image.path);
-
-      setState(() {
-        // ignore: unnecessary_this
-        this._image = imagemPermanente;
-      });
-    } on PlatformException catch (e) {
-      if (kDebugMode) {
-        print('Falha ao selecionar imagem: $e');
-      }
-    }
-  }
-
-  Future<File> salvarPermanente(String imagePath) async {
-    final diretorio = await getApplicationDocumentsDirectory();
-    final name = basename(imagePath);
-    // ignore: unnecessary_brace_in_string_interps
-    final image = File('${diretorio.path}/$name');
-
-    return File(imagePath).copy(image.path);
-  }
-
-  clearImage() {
-    // ignore: unnecessary_this
-    setState(() {
-      // ignore: unnecessary_this
-      this._image = null;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
+    final _controller = Provider.of<CadastroController>(context);
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
@@ -81,8 +46,6 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
             body: ChangeNotifierProvider<CadastroController>(
                 create: (context) => CadastroController(),
                 child: Builder(builder: (context) {
-                  late CadastroController _controller =
-                      context.watch<CadastroController>();
                   return Padding(
                     padding: const EdgeInsets.all(10),
                     child: SingleChildScrollView(
@@ -299,6 +262,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FloatingActionButton.extended(
+                                heroTag: 1,
                                 label: const Text('Galeria'), // <-- Text
                                 backgroundColor: Colors.blue,
                                 icon: const Icon(
@@ -307,12 +271,13 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   size: 24.0,
                                 ),
                                 onPressed: () {
-                                  getImage(ImageSource.gallery);
+                                  //getImage(ImageSource.gallery);
                                 },
                               ),
                               const HorizontalSpacerBox(
                                   size: SpacerSize.medium),
                               FloatingActionButton.extended(
+                                heroTag: 2,
                                 label: const Text('Câmera'), // <-- Text
                                 backgroundColor: Colors.blue,
                                 icon: const Icon(
@@ -321,20 +286,17 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   size: 24.0,
                                 ),
                                 onPressed: () {
-                                  getImage(ImageSource.camera);
+                                  // getImage(ImageSource.camera);
                                 },
                               ),
                             ],
                           ),
                         ),
                         const VerticalSpacerBox(size: SpacerSize.large),
-                        SizedBox(
-                          child: _image != null
-                              ? Image.file(_image!, fit: BoxFit.fill)
-                              : Image.asset(''),
-                        ),
+
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         FloatingActionButton.extended(
+                          heroTag: 3,
                           label: const Text('Delete'), // <-- Text
                           backgroundColor: Colors.blue,
                           icon: const Icon(
@@ -343,7 +305,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             size: 24.0,
                           ),
                           onPressed: () {
-                            clearImage();
+                            //clearImage();
                           },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
