@@ -14,18 +14,18 @@ class InstituicaoModel {
   double longitude;
 
   InstituicaoModel({
-    required this.nome,
-    required this.telefone,
-    required this.email,
-    required this.cidade,
-    required this.estado,
-    required this.endereco,
-    required this.pais,
-    required this.cep,
-    required this.dataRealizacao,
-    required this.nomeRealizacao,
-    required this.info,
-    required this.latitute,
-    required this.longitude,
+    this.nome = '',
+    this.telefone = '',
+    this.email = '',
+    this.cidade = '',
+    this.estado = '',
+    this.endereco = '',
+    this.pais = '',
+    this.cep = '',
+    this.dataRealizacao = '',
+    this.nomeRealizacao = '',
+    this.info = '',
+    this.latitute = 0,
+    this.longitude = 0,
   });
 }
