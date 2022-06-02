@@ -1,4 +1,6 @@
+import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
+import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +83,50 @@ class _MapsState extends State<Maps> {
                   size: 24.0,
                 ),
                 onPressed: () {
-                  Navigator.popAndPushNamed(context, SolicitarCadastro.id);
+                  final local = context.watch<MapsController>();
+                  // ignore: unused_local_variable
+                  final coordenadas = context.watch<CadastroController>();
+                  // ignore: prefer_const_constructors, unused_local_variable
+                  int flag = 0;
+                  AlertDialog(
+                    content: const Text(
+                      'Selecione algum lugar no mapa.',
+                      style: kdrawerText,
+                    ),
+                    actions: [
+                      GoogleMap(
+                        myLocationButtonEnabled: true,
+                        initialCameraPosition: CameraPosition(
+                          target: LatLng(local.lat, local.long),
+                          zoom: 17,
+                        ),
+                        onCameraMove: (position) {
+                          coordenadas.setLat(lat);
+                          coordenadas.setLong(long);
+                          flag = 1;
+                        },
+                        zoomControlsEnabled: true,
+                        mapType: MapType.normal,
+                        myLocationEnabled: true,
+                        onMapCreated: local.onMapCreated,
+                      ),
+                    ],
+                  );
+                  if (flag == 1) {
+                    Navigator.popAndPushNamed(context, SolicitarCadastro.id);
+                  } else {
+                    AlertDialog(
+                      title: const Text("Erro!"),
+                      content: const Text("Selecione algum lugar no mapa."),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Voltar')),
+                      ],
+                    );
+                  }
                 },
               ),
             ],

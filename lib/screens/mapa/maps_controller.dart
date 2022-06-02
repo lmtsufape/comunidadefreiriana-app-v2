@@ -1,4 +1,5 @@
 import 'package:comunidadefreiriana/core/api.dart';
+import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
 import 'package:flutter/material.dart';
@@ -13,18 +14,18 @@ class MapsController with ChangeNotifier {
   final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
-
+  late MapsRepository repository;
   get mapsController => mapController;
 
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    //MapsRepository().getInstituition(mapsController);
-    //loadInstituition();
+    StoreInstitution();
+    loadInstitution();
   }
 
-  loadInstituition() {
-    final loadinst = MapsRepository().instituicoes;
+  loadInstitution() {
+    final loadinst = StoreInstitution();
     // ignore: avoid_function_literals_in_foreach_calls
     loadinst.forEach((inst) async {
       makers.add(Marker(
@@ -41,6 +42,47 @@ class MapsController with ChangeNotifier {
       ));
     });
     notifyListeners();
+  }
+
+  // ignore: non_constant_identifier_names
+  List StoreInstitution() {
+    var model;
+    FutureBuilder(
+        future: repository.getInstituition(mapsController),
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            final List<dynamic> dataList = snapshot.data as List<dynamic>;
+            // ignore: unused_label
+            itemCount:
+            dataList.length;
+            // ignore: unused_label
+            itemBuilder:
+            ((context, index) {
+              var data = dataList[index];
+              // ignore: unused_local_variable
+              model = InstituicaoModel(
+                  id: data['id'] ?? 0,
+                  nome: data['nome'],
+                  categoria: data['categoria'],
+                  pais: data['pais'],
+                  estado: data['estado'],
+                  cidade: data['cidade'],
+                  endereco: data['endereco'],
+                  cep: data['cep'],
+                  telefone: data['telefone'],
+                  email: data['email'],
+                  site: data['site'],
+                  coordenador: data['coordenador'],
+                  dataFundacao: data['dataFundacao'],
+                  latitute: data['latitude'],
+                  longitude: data['longitude'],
+                  info: data['info']);
+            });
+          }
+          return model;
+        }));
+
+    return model;
   }
 
   getPosicao() async {
