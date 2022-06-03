@@ -4,7 +4,7 @@ import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 class Api {
   // ignore: unused_field
   final _dio = Dio();
-  static const String baseUrl = 'http://185.28.23.76/';
+  static const String baseUrl = 'http://185.28.23.76/api';
 
   Future cadastrar(InstituicaoModel cadastroModel) async {
     final body = FormData.fromMap({

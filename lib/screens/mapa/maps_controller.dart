@@ -19,7 +19,7 @@ class MapsController with ChangeNotifier {
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    //MapsRepository().getInstituition(mapsController);
+    //MapsRepository().getInstituition(mapController);
     //loadInstituition();
   }
 

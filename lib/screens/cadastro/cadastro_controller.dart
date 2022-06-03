@@ -8,12 +8,14 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'dart:io' show File;
 
+import 'package:path_provider/path_provider.dart';
+
 class CadastroController with ChangeNotifier {
   bool isLoading = false;
-  File? _image;
   final InstituicaoModel cadastroModel = InstituicaoModel();
   final _api = Api();
-  static const String baseUrl = 'http://185.28.23.76/';
+  File? _image;
+  static const String baseUrl = 'http://185.28.23.76/api';
 
   void finishCadastro(BuildContext context) async {
     isLoading = true;
@@ -51,7 +53,6 @@ class CadastroController with ChangeNotifier {
     }
   }
 
-/*
   Future getImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -86,7 +87,11 @@ class CadastroController with ChangeNotifier {
       this._image = null;
     });
   }
-*/
+
+  File? returnImage() {
+    return _image;
+  }
+
   void setNome(String value) {
     cadastroModel.nome = value;
     print(cadastroModel.nome);
@@ -139,4 +144,6 @@ class CadastroController with ChangeNotifier {
   void setLongitude(double value) {
     cadastroModel.longitude = value;
   }
+
+  void setState(Null Function() param0) {}
 }

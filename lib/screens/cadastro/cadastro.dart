@@ -34,8 +34,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    final _controller = Provider.of<CadastroController>(context);
     Size size = MediaQuery.of(context).size;
+    final _controller = Provider.of<CadastroController>(context);
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -271,7 +271,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   size: 24.0,
                                 ),
                                 onPressed: () {
-                                  //getImage(ImageSource.gallery);
+                                  _controller.getImage(ImageSource.gallery);
                                 },
                               ),
                               const HorizontalSpacerBox(
@@ -286,14 +286,19 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   size: 24.0,
                                 ),
                                 onPressed: () {
-                                  // getImage(ImageSource.camera);
+                                  _controller.getImage(ImageSource.camera);
                                 },
                               ),
                             ],
                           ),
                         ),
                         const VerticalSpacerBox(size: SpacerSize.large),
-
+                        /*SizedBox(
+                          child: _controller.returnImage() != null
+                              ? Image.file(_controller.returnImage()!,
+                                  fit: BoxFit.fill)
+                              : Image.asset(''),
+                        ),*/
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         FloatingActionButton.extended(
                           heroTag: 3,
@@ -305,7 +310,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             size: 24.0,
                           ),
                           onPressed: () {
-                            //clearImage();
+                            _controller.clearImage();
                           },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
