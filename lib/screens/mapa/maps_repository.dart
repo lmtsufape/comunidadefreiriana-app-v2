@@ -9,21 +9,17 @@ class MapsRepository extends ChangeNotifier {
   // ignore: unused_field
   final _api = Api();
   final _dio = Dio();
+<<<<<<< HEAD
+  static const String baseUrl = 'http://185.28.23.76/login';
+=======
   static const String baseUrl = 'http://185.28.23.76/api';
+>>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
   bool isLoading = false;
 
   Future getInstituition(BuildContext context) async {
     try {
       var response = await _dio.get(
         baseUrl + '/instituicao/aprovados',
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer ${Provider.of<InstituicaoModel>(context, listen: false)}',
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-        ),
       );
       if (response.statusCode == 200) {
         return (response.data);

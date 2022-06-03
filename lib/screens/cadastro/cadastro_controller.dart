@@ -5,12 +5,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:io' show File;
 
+import 'package:path_provider/path_provider.dart';
+
 class CadastroController with ChangeNotifier {
   bool isLoading = false;
+<<<<<<< HEAD
+  final InstituicaoModel cadastroModel = InstituicaoModel();
+  final _api = Api();
+  File? _image;
+  static const String baseUrl = 'http://185.28.23.76/api';
+=======
   // ignore: unused_field
   File? _image;
   final InstituicaoModel cadastroModel = InstituicaoModel();
   final _api = Api();
+>>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
 
   void finishCadastro(BuildContext context) async {
     isLoading = true;
@@ -47,7 +56,6 @@ class CadastroController with ChangeNotifier {
     }
   }
 
-/*
   Future getImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -82,7 +90,11 @@ class CadastroController with ChangeNotifier {
       this._image = null;
     });
   }
-*/
+
+  File? returnImage() {
+    return _image;
+  }
+
   void setNome(String value) {
     cadastroModel.nome = value;
   }
@@ -142,4 +154,17 @@ class CadastroController with ChangeNotifier {
   void setMaisInfomacoes(String value) {
     cadastroModel.info = value;
   }
+<<<<<<< HEAD
+
+  void setLatitude(double value) {
+    cadastroModel.latitute = value;
+  }
+
+  void setLongitude(double value) {
+    cadastroModel.longitude = value;
+  }
+
+  void setState(Null Function() param0) {}
+=======
+>>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
 }
