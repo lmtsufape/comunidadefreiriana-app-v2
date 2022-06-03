@@ -1,5 +1,5 @@
-import 'dart:io' show File;
-import 'package:comunidadefreiriana/components/auth_form_field.dart';
+import 'package:comunidadefreiriana/components/auth_form_field.dart'
+    show AuthFormField;
 import 'package:comunidadefreiriana/components/finish_dialog.dart';
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/primary_buttonCadastro.dart';
@@ -7,15 +7,11 @@ import 'package:comunidadefreiriana/constants/constants.dart';
 // ignore: unused_import
 import 'package:comunidadefreiriana/image_control/image_picker.controller.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 // ignore: unused_import
 import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart';
 
 class SolicitarCadastro extends StatefulWidget {
   static const String id = 'solicitar_cadastro';
@@ -71,6 +67,107 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         Row(
                           children: const [
                             Text(
+                              'Categoria*',
+                              style: kCadastro,
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        AuthFormField(
+                            label: 'Categoria da Instituição',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setCategoria(value);
+                            }),
+                        Row(
+                          children: const [
+                            Text(
+                              'País*',
+                              style: kCadastro,
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        AuthFormField(
+                            label: 'Brasil',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setPais(value);
+                            }),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        Row(
+                          children: const [
+                            Text(
+                              'Estado*',
+                              style: kCadastro,
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        AuthFormField(
+                            label: 'PE',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setEstado(value);
+                            }),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        Row(
+                          children: const [
+                            Text(
+                              'Cidade*',
+                              style: kCadastro,
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        AuthFormField(
+                            label: 'Garanhuns',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setCidade(value);
+                            }),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        Row(
+                          children: const [
+                            Text(
+                              'Endereço*',
+                              style: kCadastro,
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        AuthFormField(
+                            label: 'Rua Fulano de Tal',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setEndereco(value);
+                            }),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        Row(
+                          children: const [
+                            Text(
+                              'CEP*',
+                              style: kCadastro,
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        AuthFormField(
+                            label: '55415-000',
+                            isPassword: false,
+                            inputType: TextInputType.name,
+                            onChanged: (String value) {
+                              _controller.setCEP(value);
+                            }),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        Row(
+                          children: const [
+                            Text(
                               'Telefone (Com DDD)*',
                               style: kCadastro,
                             ),
@@ -105,89 +202,41 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         Row(
                           children: const [
                             Text(
-                              'Cidade*',
+                              'Site',
                               style: kCadastro,
                             ),
                           ],
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                            label: 'Garanhuns',
+                            label: 'www.example.com',
                             isPassword: false,
                             inputType: TextInputType.name,
                             onChanged: (String value) {
-                              _controller.setCidade(value);
+                              _controller.setSite(value);
                             }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
                           children: const [
                             Text(
-                              'Estado*',
+                              'Coordenador*',
                               style: kCadastro,
                             ),
                           ],
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                            label: 'PE',
+                            label: 'Sr. Fulano de Tal',
                             isPassword: false,
                             inputType: TextInputType.name,
                             onChanged: (String value) {
-                              _controller.setEstado(value);
-                            }),
-                        Row(
-                          children: const [
-                            Text(
-                              'Endereço*',
-                              style: kCadastro,
-                            ),
-                          ],
-                        ),
-                        const VerticalSpacerBox(size: SpacerSize.small),
-                        AuthFormField(
-                            label: 'Rua Fulano de Tal',
-                            isPassword: false,
-                            inputType: TextInputType.name,
-                            onChanged: (String value) {
-                              _controller.setEnd(value);
-                            }),
-                        Row(
-                          children: const [
-                            Text(
-                              'País*',
-                              style: kCadastro,
-                            ),
-                          ],
-                        ),
-                        const VerticalSpacerBox(size: SpacerSize.small),
-                        AuthFormField(
-                            label: 'Brasil',
-                            isPassword: false,
-                            inputType: TextInputType.name,
-                            onChanged: (String value) {
-                              _controller.setPais(value);
-                            }),
-                        Row(
-                          children: const [
-                            Text(
-                              'CEP*',
-                              style: kCadastro,
-                            ),
-                          ],
-                        ),
-                        const VerticalSpacerBox(size: SpacerSize.small),
-                        AuthFormField(
-                            label: '55415-000',
-                            isPassword: false,
-                            inputType: TextInputType.phone,
-                            onChanged: (String value) {
-                              _controller.setcep(value);
+                              _controller.setCoord(value);
                             }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
                           children: const [
                             Text(
-                              'Data da Realização*',
+                              'Data de Fundação*',
                               style: kCadastro,
                             ),
                           ],
@@ -198,24 +247,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             isPassword: false,
                             inputType: TextInputType.datetime,
                             onChanged: (String value) {
-                              _controller.setDataRealizacao(value);
-                            }),
-                        const VerticalSpacerBox(size: SpacerSize.small),
-                        Row(
-                          children: const [
-                            Text(
-                              'Nome da Realização*',
-                              style: kCadastro,
-                            ),
-                          ],
-                        ),
-                        const VerticalSpacerBox(size: SpacerSize.small),
-                        AuthFormField(
-                            label: 'LMTS',
-                            isPassword: false,
-                            inputType: TextInputType.name,
-                            onChanged: (String value) {
-                              _controller.setNomeRealizacao(value);
+                              _controller.setDataFund(value);
                             }),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Column(
@@ -292,6 +324,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             ],
                           ),
                         ),
+<<<<<<< HEAD
                         const VerticalSpacerBox(size: SpacerSize.large),
                         /*SizedBox(
                           child: _controller.returnImage() != null
@@ -299,6 +332,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   fit: BoxFit.fill)
                               : Image.asset(''),
                         ),*/
+=======
+>>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         FloatingActionButton.extended(
                           heroTag: 3,

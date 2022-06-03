@@ -3,19 +3,23 @@ import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter/services.dart';
-import 'package:path/path.dart';
 import 'dart:io' show File;
 
 import 'package:path_provider/path_provider.dart';
 
 class CadastroController with ChangeNotifier {
   bool isLoading = false;
+<<<<<<< HEAD
   final InstituicaoModel cadastroModel = InstituicaoModel();
   final _api = Api();
   File? _image;
   static const String baseUrl = 'http://185.28.23.76/api';
+=======
+  // ignore: unused_field
+  File? _image;
+  final InstituicaoModel cadastroModel = InstituicaoModel();
+  final _api = Api();
+>>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
 
   void finishCadastro(BuildContext context) async {
     isLoading = true;
@@ -37,16 +41,15 @@ class CadastroController with ChangeNotifier {
 
   bool validateFields() {
     if (cadastroModel.nome == '' ||
-        cadastroModel.telefone == '' ||
-        cadastroModel.email == '' ||
+        cadastroModel.categoria == '' ||
         cadastroModel.pais == '' ||
-        cadastroModel.cep == '' ||
         cadastroModel.estado == '' ||
         cadastroModel.cidade == '' ||
         cadastroModel.endereco == '' ||
-        cadastroModel.dataRealizacao == '' ||
-        cadastroModel.nomeRealizacao == '' ||
-        cadastroModel.info == '') {
+        cadastroModel.cep == '' ||
+        cadastroModel.email == '' ||
+        cadastroModel.coordenador == '' ||
+        cadastroModel.dataFundacao == '') {
       return false;
     } else {
       return true;
@@ -94,7 +97,30 @@ class CadastroController with ChangeNotifier {
 
   void setNome(String value) {
     cadastroModel.nome = value;
-    print(cadastroModel.nome);
+  }
+
+  void setCategoria(String value) {
+    cadastroModel.categoria = value;
+  }
+
+  void setPais(String value) {
+    cadastroModel.pais = value;
+  }
+
+  void setEstado(String value) {
+    cadastroModel.estado = value;
+  }
+
+  void setCidade(String value) {
+    cadastroModel.cidade = value;
+  }
+
+  void setEndereco(String value) {
+    cadastroModel.endereco = value;
+  }
+
+  void setCEP(String value) {
+    cadastroModel.cep = value;
   }
 
   void setTelefone(String value) {
@@ -105,37 +131,30 @@ class CadastroController with ChangeNotifier {
     cadastroModel.email = value;
   }
 
-  void setCidade(String value) {
-    cadastroModel.cidade = value;
+  void setSite(String value) {
+    cadastroModel.site = value;
   }
 
-  void setEstado(String value) {
-    cadastroModel.estado = value;
+  void setCoord(String value) {
+    cadastroModel.coordenador = value;
   }
 
-  void setPais(String value) {
-    cadastroModel.pais = value;
+  void setDataFund(String value) {
+    cadastroModel.dataFundacao = value;
   }
 
-  void setcep(String value) {
-    cadastroModel.cep = value;
+  void setLat(double value) {
+    cadastroModel.latitute = value;
   }
 
-  void setEnd(String value) {
-    cadastroModel.endereco = value;
-  }
-
-  void setNomeRealizacao(String value) {
-    cadastroModel.nomeRealizacao = value;
-  }
-
-  void setDataRealizacao(String value) {
-    cadastroModel.dataRealizacao = value;
+  void setLong(double value) {
+    cadastroModel.longitude = value;
   }
 
   void setMaisInfomacoes(String value) {
     cadastroModel.info = value;
   }
+<<<<<<< HEAD
 
   void setLatitude(double value) {
     cadastroModel.latitute = value;
@@ -146,4 +165,6 @@ class CadastroController with ChangeNotifier {
   }
 
   void setState(Null Function() param0) {}
+=======
+>>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
 }
