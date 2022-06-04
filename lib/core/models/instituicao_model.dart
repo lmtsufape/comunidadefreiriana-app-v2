@@ -1,7 +1,7 @@
 class InstituicaoModel {
   String id;
   String nome;
-  String categoria;
+  String? categoria;
   String pais;
   String estado;
   String cidade;
@@ -19,7 +19,7 @@ class InstituicaoModel {
   InstituicaoModel({
     this.id = '',
     this.nome = '',
-    this.categoria = '',
+    this.categoria,
     this.pais = '',
     this.estado = '',
     this.cidade = '',

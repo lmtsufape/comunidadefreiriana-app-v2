@@ -3,23 +3,19 @@ import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'dart:io' show File;
 
 import 'package:path_provider/path_provider.dart';
 
 class CadastroController with ChangeNotifier {
   bool isLoading = false;
-<<<<<<< HEAD
-  final InstituicaoModel cadastroModel = InstituicaoModel();
-  final _api = Api();
-  File? _image;
-  static const String baseUrl = 'http://185.28.23.76/api';
-=======
   // ignore: unused_field
   File? _image;
+  String? valorAtualDropbox = 'Selecione';
   final InstituicaoModel cadastroModel = InstituicaoModel();
   final _api = Api();
->>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
 
   void finishCadastro(BuildContext context) async {
     isLoading = true;
@@ -41,7 +37,7 @@ class CadastroController with ChangeNotifier {
 
   bool validateFields() {
     if (cadastroModel.nome == '' ||
-        cadastroModel.categoria == '' ||
+        cadastroModel.categoria == 'Selecione' ||
         cadastroModel.pais == '' ||
         cadastroModel.estado == '' ||
         cadastroModel.cidade == '' ||
@@ -56,6 +52,7 @@ class CadastroController with ChangeNotifier {
     }
   }
 
+/*
   Future getImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -90,17 +87,26 @@ class CadastroController with ChangeNotifier {
       this._image = null;
     });
   }
-
+*/
   File? returnImage() {
     return _image;
+  }
+
+  String? getValorAtual() {
+    return valorAtualDropbox;
+  }
+
+  void setValorAtual(String? value) {
+    valorAtualDropbox = value;
   }
 
   void setNome(String value) {
     cadastroModel.nome = value;
   }
 
-  void setCategoria(String value) {
+  void setCategoria(String? value) {
     cadastroModel.categoria = value;
+    print(cadastroModel.categoria);
   }
 
   void setPais(String value) {
@@ -154,17 +160,4 @@ class CadastroController with ChangeNotifier {
   void setMaisInfomacoes(String value) {
     cadastroModel.info = value;
   }
-<<<<<<< HEAD
-
-  void setLatitude(double value) {
-    cadastroModel.latitute = value;
-  }
-
-  void setLongitude(double value) {
-    cadastroModel.longitude = value;
-  }
-
-  void setState(Null Function() param0) {}
-=======
->>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
 }

@@ -8,6 +8,7 @@ import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/image_control/image_picker.controller.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 // ignore: unused_import
@@ -25,6 +26,7 @@ class SolicitarCadastro extends StatefulWidget {
 }
 
 class _SolicitarCadastroState extends State<SolicitarCadastro> {
+  String? value = 'Selecione';
   // ignore: unused_field
 
   @override
@@ -73,13 +75,46 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           ],
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
-                        AuthFormField(
-                            label: 'Categoria da Instituição',
-                            isPassword: false,
-                            inputType: TextInputType.name,
-                            onChanged: (String value) {
+                        DropdownButtonFormField(
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: kDetailColor),
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(
+                                  color: kDetailColor,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            value: value,
+                            items: const [
+                              DropdownMenuItem(
+                                  child: Text('Selecione'), value: 'Selecione'),
+                              DropdownMenuItem(
+                                  child: Text('Cátedras Paulo Freire'),
+                                  value: 'Cátedras Paulo Freire'),
+                              DropdownMenuItem(
+                                  child: Text('Instituição Paulo Freire'),
+                                  value: 'Instituição Paulo Freire'),
+                              DropdownMenuItem(
+                                  child: Text(
+                                      'Centros e Núcleos de Estudo e Pesquisa'),
+                                  value:
+                                      'Centros e Núcleos de Estudo e Pesquisa'),
+                              DropdownMenuItem(
+                                  child: Text('Homenagens'),
+                                  value: 'Homenagens'),
+                              DropdownMenuItem(
+                                  child: Text('projetos'), value: 'Projetos')
+                            ],
+                            onChanged: (String? value) {
+                              setState(() => this.value = value);
                               _controller.setCategoria(value);
                             }),
+                        const VerticalSpacerBox(size: SpacerSize.small),
                         Row(
                           children: const [
                             Text(
@@ -141,7 +176,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                            label: 'Rua Fulano de Tal',
+                            label: 'Exemplo,99',
                             isPassword: false,
                             inputType: TextInputType.name,
                             onChanged: (String value) {
@@ -158,7 +193,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                            label: '55415-000',
+                            label: '55555-555',
                             isPassword: false,
                             inputType: TextInputType.name,
                             onChanged: (String value) {
@@ -226,7 +261,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         AuthFormField(
-                            label: 'Sr. Fulano de Tal',
+                            label: 'Exemplo',
                             isPassword: false,
                             inputType: TextInputType.name,
                             onChanged: (String value) {
@@ -303,7 +338,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   size: 24.0,
                                 ),
                                 onPressed: () {
-                                  _controller.getImage(ImageSource.gallery);
+                                  // _controller.getImage(ImageSource.gallery);
                                 },
                               ),
                               const HorizontalSpacerBox(
@@ -318,22 +353,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   size: 24.0,
                                 ),
                                 onPressed: () {
-                                  _controller.getImage(ImageSource.camera);
+                                  //  _controller.getImage(ImageSource.camera);
                                 },
                               ),
                             ],
                           ),
                         ),
-<<<<<<< HEAD
-                        const VerticalSpacerBox(size: SpacerSize.large),
-                        /*SizedBox(
-                          child: _controller.returnImage() != null
-                              ? Image.file(_controller.returnImage()!,
-                                  fit: BoxFit.fill)
-                              : Image.asset(''),
-                        ),*/
-=======
->>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         FloatingActionButton.extended(
                           heroTag: 3,
@@ -345,7 +370,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             size: 24.0,
                           ),
                           onPressed: () {
-                            _controller.clearImage();
+                            // _controller.clearImage();
                           },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
