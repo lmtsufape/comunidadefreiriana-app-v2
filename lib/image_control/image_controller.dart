@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 
 class ImageController with ChangeNotifier {
   // ignore: unused_field
-  final _api = Api();
   bool isLoading = false;
   bool isUploadingImages = false;
   // ignore: unused_field
@@ -13,18 +12,18 @@ class ImageController with ChangeNotifier {
 
   int _selectedImageLength = 0;
   int? _selectedImageIndex;
-  bool _showCommentSection = false;
+  //bool _showCommentSection = false;
 
-  List<File> _selectedImages = [];
+  File? _selectedImage;
   // ignore: prefer_final_fields
-  List<String> _imagePaths = [];
+  String? _imagePath;
 
-  List<String> get imagePaths => _imagePaths;
+  String? get imagePath => _imagePath;
 
   // ignore: unnecessary_getters_setters
-  List<File> get selectedImages => _selectedImages;
-  set selectedImages(List<File> value) {
-    _selectedImages = value;
+  File? get selectedImage => _selectedImage;
+  set selectedImage(File? value) {
+    _selectedImage = value;
   }
 
   int get selectedImageIndex => _selectedImageIndex!;
@@ -34,21 +33,16 @@ class ImageController with ChangeNotifier {
 
   // ignore: unnecessary_getters_setters
   int get selectedImageLength => _selectedImageLength;
-  get showCommentSection => _showCommentSection;
+  // get showCommentSection => _showCommentSection;
 
   set selectedImageLength(int length) {
     _selectedImageLength = length;
   }
 
-  set setCommentSection(bool value) {
-    _showCommentSection = value;
-  }
-
-  Future selectImages(BuildContext context) async {
-    List<File>? files =
-        (await _imagePickerController.pickImagesFromGalery())?.cast<File>();
-    selectedImageLength = files!.length;
-    selectedImages = files;
+  Future selectImage(BuildContext context) async {
+    File? file = (await _imagePickerController.pickImageFromGalery());
+    //selectedImageLength = files!.length;
+    selectedImage = file;
   }
 
   void editImage(int index) {
@@ -56,13 +50,13 @@ class ImageController with ChangeNotifier {
   }
 
   void deleteSelectedImage() {
-    selectedImages.removeAt(selectedImageIndex);
-    selectedImageLength = selectedImages.length;
+    selectedImage!.delete();
   }
-
+/*
   void clearWorkingImages() {
-    selectedImages.clear();
+    selectedImage!.clear();
     selectedImageLength = 0;
-    _imagePaths.clear();
+    _imagePath.clear();
   }
+  */
 }

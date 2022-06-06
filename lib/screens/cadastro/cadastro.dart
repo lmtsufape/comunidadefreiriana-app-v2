@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:comunidadefreiriana/components/auth_form_field.dart'
@@ -31,6 +32,31 @@ class SolicitarCadastro extends StatefulWidget {
 
 class _SolicitarCadastroState extends State<SolicitarCadastro> {
   String? value = 'Selecione';
+  // ignore: unused_field
+
+  /*
+  File? selectedImage;
+  String base64Image = "";
+
+  Future<void> chooseImage(type) async {
+    // ignore: prefer_typing_uninitialized_variables
+    var image;
+    if (type == "camera") {
+      image = await ImagePicker()
+          .pickImage(source: ImageSource.camera, imageQuality: 10);
+    } else {
+      image = await ImagePicker()
+          .pickImage(source: ImageSource.gallery, imageQuality: 25);
+    }
+    if (image != null) {
+      setState(() {
+        selectedImage = File(image.path);
+        base64Image = base64Encode(selectedImage!.readAsBytesSync());
+        // won't have any error now
+      });
+    }
+  }
+*/
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -113,7 +139,9 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   child: Text('Projetos'), value: 'Projetos')
                             ],
                             onChanged: (String? value) {
-                              setState(() => this.value = value);
+                              setState(() {
+                                this.value = value;
+                              });
                               _controller.setCategoria(value);
                             }),
                         const VerticalSpacerBox(size: SpacerSize.small),
@@ -331,43 +359,47 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         Center(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FloatingActionButton.extended(
-                                heroTag: 1,
-                                label: const Text('Galeria'), // <-- Text
-                                backgroundColor: Colors.blue,
-                                icon: const Icon(
-                                  // <-- Icon
-                                  Icons.photo_library,
-                                  size: 24.0,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FloatingActionButton.extended(
+                                  heroTag: 1,
+                                  label: const Text('Galeria'), // <-- Text
+                                  backgroundColor: Colors.blue,
+                                  icon: const Icon(
+                                    // <-- Icon
+                                    Icons.photo_library,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () {
+                                    _controller.selectImage();
+                                  },
                                 ),
-                                onPressed: () {
-                                  _controller.imagemGaleria();
-                                },
-                              ),
-                              const HorizontalSpacerBox(
-                                  size: SpacerSize.medium),
-                              FloatingActionButton.extended(
-                                heroTag: 2,
-                                label: const Text('Câmera'), // <-- Text
-                                backgroundColor: Colors.blue,
-                                icon: const Icon(
-                                  // <-- Icon
-                                  Icons.camera,
-                                  size: 24.0,
+                                const HorizontalSpacerBox(
+                                    size: SpacerSize.medium),
+                                FloatingActionButton.extended(
+                                  heroTag: 2,
+                                  label: const Text('Câmera'), // <-- Text
+                                  backgroundColor: Colors.blue,
+                                  icon: const Icon(
+                                    // <-- Icon
+                                    Icons.camera,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () {
+                                    _controller.selectImageCam();
+                                  },
                                 ),
-                                onPressed: () {
-                                  _controller.imagemCamera();
-                                },
-                              ),
-                              const VerticalSpacerBox(size: SpacerSize.large),
-                              _controller.imagemSelecionada == null
-                                  ? Container()
-                                  : Image.file(_controller.imagemSelecionada!),
-                            ],
-                          ),
+                              ]),
                         ),
+                        const VerticalSpacerBox(size: SpacerSize.large),
+                        _controller.checkImg()
+                            ? InkWell(
+                                child: Image.file(
+                                  _controller.selectedImage!,
+                                  width: size.width * 0.2,
+                                ),
+                              )
+                            : const Text("NO img"),
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         FloatingActionButton.extended(
                           heroTag: 3,
@@ -379,7 +411,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             size: 24.0,
                           ),
                           onPressed: () {
-                            _controller.clearImage();
+                            _controller.clearImg();
                           },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),

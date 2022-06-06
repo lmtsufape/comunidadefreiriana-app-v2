@@ -4,16 +4,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io' show File;
 
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+
+import '../../image_control/image_picker.controller.dart';
 
 class CadastroController with ChangeNotifier {
   bool isLoading = false;
   // ignore: unused_field
-  File? _image;
+  File? _selectedImage;
+  String? _imagePath;
+  bool hasImg = false;
   String? valorAtualDropbox = 'Selecione';
+  final _imagePickerController = ImagePickerController();
   final InstituicaoModel cadastroModel = InstituicaoModel();
   final _api = Api();
 
@@ -35,6 +40,13 @@ class CadastroController with ChangeNotifier {
     notifyListeners();
   }
 
+  bool checkImg() {
+    if (_selectedImage == null) {
+      return false;
+    }
+    return true;
+  }
+
   bool validateFields() {
     if (cadastroModel.nome == '' ||
         cadastroModel.categoria == 'Selecione' ||
@@ -47,45 +59,38 @@ class CadastroController with ChangeNotifier {
         cadastroModel.cep == '' ||
         cadastroModel.email == '' ||
         cadastroModel.coordenador == '' ||
-        cadastroModel.dataFundacao == '') {
+        cadastroModel.datafundacao == '') {
       return false;
     } else {
       return true;
     }
   }
 
-  final ImagePicker _imagePicker = ImagePicker();
-  File? imagemSelecionada;
+  String? get imagePaths => _imagePath;
 
-  imagemGaleria() async {
-    final XFile? temp =
-        await _imagePicker.pickImage(source: ImageSource.gallery);
-    if (temp != null) {
-      setState(() {
-        imagemSelecionada = File(temp.path);
-      });
-    }
+  File? get selectedImage => _selectedImage;
+
+  set selectedImage(File? value) {
+    _selectedImage = value;
+    notifyListeners();
   }
 
-  imagemCamera() async {
-    final XFile? temp =
-        await _imagePicker.pickImage(source: ImageSource.camera);
-    if (temp != null) {
-      setState(() {
-        imagemSelecionada = File(temp.path);
-      });
-    }
+  Future selectImageCam() async {
+    File? file = await _imagePickerController.pickImageFromCamera();
+    _imagePath = file!.path;
+    _selectedImage = file;
   }
 
-  clearImage() {
-    // ignore: unnecessary_this
-    setState(() {
-      // ignore: unnecessary_this
-      this.imagemSelecionada = null;
-    });
+  Future selectImage() async {
+    File? file = await _imagePickerController.pickImageFromGalery();
+    _imagePath = file!.path;
+    _selectedImage = file;
   }
 
-  void setState(Null Function() param0) {}
+  Future clearImg() async {
+    _selectedImage = null;
+  }
+
   String? getValorAtual() {
     return valorAtualDropbox;
   }
@@ -139,18 +144,21 @@ class CadastroController with ChangeNotifier {
   }
 
   void setDataFund(String value) {
-    cadastroModel.dataFundacao = value;
+    cadastroModel.datafundacao = value;
   }
 
-  void setLat(double value) {
-    cadastroModel.latitute = value;
+  void setLat(String value) {
+    cadastroModel.latitude = value;
   }
 
-  void setLong(double value) {
+  void setLong(String value) {
     cadastroModel.longitude = value;
   }
 
   void setMaisInfomacoes(String value) {
+    // ignore: prefer_void_to_null
     cadastroModel.info = value;
   }
+
+  basename(String imagePath) {}
 }
