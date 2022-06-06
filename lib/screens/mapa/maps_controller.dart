@@ -20,13 +20,8 @@ class MapsController with ChangeNotifier {
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-<<<<<<< HEAD
-    //MapsRepository().getInstituition(mapController);
-    //loadInstituition();
-=======
     StoreInstitution();
     loadInstitution();
->>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
   }
 
   loadInstitution() {
@@ -50,44 +45,41 @@ class MapsController with ChangeNotifier {
   }
 
   // ignore: non_constant_identifier_names
-  List StoreInstitution() {
+  StoreInstitution() {
     var model;
-    FutureBuilder(
-        future: repository.getInstituition(mapsController),
+    FutureBuilder<dynamic>(
+        future: MapsRepository().getInstituition(),
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
-            final List<dynamic> dataList = snapshot.data as List<dynamic>;
-            // ignore: unused_label
-            itemCount:
-            dataList.length;
-            // ignore: unused_label
-            itemBuilder:
-            ((context, index) {
-              var data = dataList[index];
-              // ignore: unused_local_variable
-              model = InstituicaoModel(
-                  id: data['id'] ?? 0,
-                  nome: data['nome'],
-                  categoria: data['categoria'],
-                  pais: data['pais'],
-                  estado: data['estado'],
-                  cidade: data['cidade'],
-                  endereco: data['endereco'],
-                  cep: data['cep'],
-                  telefone: data['telefone'],
-                  email: data['email'],
-                  site: data['site'],
-                  coordenador: data['coordenador'],
-                  dataFundacao: data['dataFundacao'],
-                  latitute: data['latitude'],
-                  longitude: data['longitude'],
-                  info: data['info']);
-            });
+            return ListView.builder(
+                itemCount: snapshot.data!.lenght,
+                itemBuilder: (context, index) {
+                  var data = snapshot.data![index];
+                  model = InstituicaoModel(
+                    id: data['id'],
+                    nome: data['nome'],
+                    categoria: data['categoria'],
+                    pais: data['pais'],
+                    estado: data['estado'],
+                    cidade: data['cidade'],
+                    cep: data['cep'],
+                    telefone: data['telefone'],
+                    email: data['email'],
+                    site: data['site'],
+                    coordenador: data['coordenador'],
+                    datafundacao: data['dataFundacao'],
+                    latitude: data['latitude'],
+                    longitude: data['longitude'],
+                    info: data['info'],
+                  );
+
+                  return model;
+                });
+          } else if (snapshot.hasError) {
+            return Text('${snapshot.error}0');
           }
           return model;
         }));
-
-    return model;
   }
 
   getPosicao() async {

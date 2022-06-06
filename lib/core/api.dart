@@ -20,9 +20,9 @@ class Api {
       'email': cadastroModel.email,
       'site': cadastroModel.site,
       'coordenador': cadastroModel.coordenador,
-      'dataFundacao': cadastroModel.dataFundacao,
-      'latitude': cadastroModel.latitute.toString(),
-      'longitude': cadastroModel.longitude.toString(),
+      'dataFundacao': cadastroModel.datafundacao,
+      'latitude': cadastroModel.latitude,
+      'longitude': cadastroModel.longitude,
       'info': cadastroModel.info,
     });
     try {

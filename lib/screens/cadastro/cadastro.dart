@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:comunidadefreiriana/components/auth_form_field.dart'
     show AuthFormField;
 import 'package:comunidadefreiriana/components/finish_dialog.dart';
@@ -28,6 +31,27 @@ class SolicitarCadastro extends StatefulWidget {
 class _SolicitarCadastroState extends State<SolicitarCadastro> {
   String? value = 'Selecione';
   // ignore: unused_field
+  File? selectedImage;
+  String base64Image = "";
+
+  Future<void> chooseImage(type) async {
+    // ignore: prefer_typing_uninitialized_variables
+    var image;
+    if (type == "camera") {
+      image = await ImagePicker()
+          .pickImage(source: ImageSource.camera, imageQuality: 10);
+    } else {
+      image = await ImagePicker()
+          .pickImage(source: ImageSource.gallery, imageQuality: 25);
+    }
+    if (image != null) {
+      setState(() {
+        selectedImage = File(image.path);
+        base64Image = base64Encode(selectedImage!.readAsBytesSync());
+        // won't have any error now
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,10 +132,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   child: Text('Homenagens'),
                                   value: 'Homenagens'),
                               DropdownMenuItem(
-                                  child: Text('projetos'), value: 'Projetos')
+                                  child: Text('Projetos'), value: 'Projetos')
                             ],
                             onChanged: (String? value) {
-                              setState(() => this.value = value);
+                              setState(() {
+                                this.value = value;
+                              });
                               _controller.setCategoria(value);
                             }),
                         const VerticalSpacerBox(size: SpacerSize.small),
@@ -326,39 +352,54 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         Center(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FloatingActionButton.extended(
-                                heroTag: 1,
-                                label: const Text('Galeria'), // <-- Text
-                                backgroundColor: Colors.blue,
-                                icon: const Icon(
-                                  // <-- Icon
-                                  Icons.photo_library,
-                                  size: 24.0,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FloatingActionButton.extended(
+                                  heroTag: 1,
+                                  label: const Text('Galeria'), // <-- Text
+                                  backgroundColor: Colors.blue,
+                                  icon: const Icon(
+                                    // <-- Icon
+                                    Icons.photo_library,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () {
+                                    _controller.getImage(ImageSource.gallery);
+                                  },
                                 ),
-                                onPressed: () {
-                                  // _controller.getImage(ImageSource.gallery);
-                                },
-                              ),
-                              const HorizontalSpacerBox(
-                                  size: SpacerSize.medium),
-                              FloatingActionButton.extended(
-                                heroTag: 2,
-                                label: const Text('Câmera'), // <-- Text
-                                backgroundColor: Colors.blue,
-                                icon: const Icon(
-                                  // <-- Icon
-                                  Icons.camera,
-                                  size: 24.0,
+                                const HorizontalSpacerBox(
+                                    size: SpacerSize.medium),
+                                FloatingActionButton.extended(
+                                  heroTag: 2,
+                                  label: const Text('Câmera'), // <-- Text
+                                  backgroundColor: Colors.blue,
+                                  icon: const Icon(
+                                    // <-- Icon
+                                    Icons.camera,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () {
+                                    _controller.getImage(ImageSource.camera);
+                                  },
                                 ),
-                                onPressed: () {
-                                  //  _controller.getImage(ImageSource.camera);
-                                },
-                              ),
-                            ],
-                          ),
+                              ]),
                         ),
+                        const VerticalSpacerBox(size: SpacerSize.large),
+                        Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: _controller.image != null
+                                ? Image.file(
+                                    _controller.image!,
+                                    fit: BoxFit.cover,
+                                    height: 100,
+                                    width: 100,
+                                  )
+                                : Image.network(
+                                    'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg',
+                                    fit: BoxFit.cover,
+                                    height: 150,
+                                    width: 150,
+                                  )),
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         FloatingActionButton.extended(
                           heroTag: 3,
@@ -369,9 +410,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             Icons.delete,
                             size: 24.0,
                           ),
-                          onPressed: () {
-                            // _controller.clearImage();
-                          },
+                          onPressed: () {},
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
 

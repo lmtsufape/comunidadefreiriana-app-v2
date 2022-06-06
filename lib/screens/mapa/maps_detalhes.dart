@@ -15,7 +15,7 @@ class MapsDetalhes extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 24, left: 24),
             child: Text(
-              model.nome,
+              model.nome.toString(),
               style: const TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w600,
@@ -25,7 +25,7 @@ class MapsDetalhes extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 60, left: 24),
             child: Text(
-              model.endereco,
+              model.endereco.toString(),
             ),
           ),
         ],

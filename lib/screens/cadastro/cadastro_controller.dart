@@ -4,15 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io' show File;
 
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CadastroController with ChangeNotifier {
   bool isLoading = false;
   // ignore: unused_field
-  File? _image;
+  File? image;
   String? valorAtualDropbox = 'Selecione';
   final InstituicaoModel cadastroModel = InstituicaoModel();
   final _api = Api();
@@ -45,14 +45,13 @@ class CadastroController with ChangeNotifier {
         cadastroModel.cep == '' ||
         cadastroModel.email == '' ||
         cadastroModel.coordenador == '' ||
-        cadastroModel.dataFundacao == '') {
+        cadastroModel.datafundacao == '') {
       return false;
     } else {
       return true;
     }
   }
 
-/*
   Future getImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -62,7 +61,7 @@ class CadastroController with ChangeNotifier {
 
       setState(() {
         // ignore: unnecessary_this
-        this._image = imagemPermanente;
+        this.image = imagemPermanente;
       });
     } on PlatformException catch (e) {
       if (kDebugMode) {
@@ -84,12 +83,8 @@ class CadastroController with ChangeNotifier {
     // ignore: unnecessary_this
     setState(() {
       // ignore: unnecessary_this
-      this._image = null;
+      this.image = null;
     });
-  }
-*/
-  File? returnImage() {
-    return _image;
   }
 
   String? getValorAtual() {
@@ -146,18 +141,23 @@ class CadastroController with ChangeNotifier {
   }
 
   void setDataFund(String value) {
-    cadastroModel.dataFundacao = value;
+    cadastroModel.datafundacao = value;
   }
 
-  void setLat(double value) {
-    cadastroModel.latitute = value;
+  void setLat(String value) {
+    cadastroModel.latitude = value;
   }
 
-  void setLong(double value) {
+  void setLong(String value) {
     cadastroModel.longitude = value;
   }
 
   void setMaisInfomacoes(String value) {
-    cadastroModel.info = value;
+    // ignore: prefer_void_to_null
+    cadastroModel.info = value as Null?;
   }
+
+  basename(String imagePath) {}
 }
+
+void setState(Null Function() param0) {}

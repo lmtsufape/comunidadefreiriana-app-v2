@@ -56,9 +56,7 @@ class _MapsState extends State<Maps> {
                 zoom: 17,
               ),
               onCameraMove: (position) {
-                if (kDebugMode) {
-                  print(position);
-                }
+                if (kDebugMode) {}
               },
               onTap: _handleTap,
               zoomControlsEnabled: true,
@@ -101,8 +99,8 @@ class _MapsState extends State<Maps> {
                           zoom: 17,
                         ),
                         onCameraMove: (position) {
-                          coordenadas.setLat(lat);
-                          coordenadas.setLong(long);
+                          coordenadas.setLat(lat.toString());
+                          coordenadas.setLong(long.toString());
                           flag = 1;
                         },
                         zoomControlsEnabled: true,
