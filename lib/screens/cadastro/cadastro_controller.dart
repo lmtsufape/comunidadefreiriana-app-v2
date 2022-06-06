@@ -9,11 +9,16 @@ import 'dart:io' show File;
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../image_control/image_picker.controller.dart';
+
 class CadastroController with ChangeNotifier {
   bool isLoading = false;
   // ignore: unused_field
-  File? image;
+  File? _selectedImage;
+  String? _imagePath;
+  bool hasImg = false;
   String? valorAtualDropbox = 'Selecione';
+  final _imagePickerController = ImagePickerController();
   final InstituicaoModel cadastroModel = InstituicaoModel();
   final _api = Api();
 
@@ -35,9 +40,18 @@ class CadastroController with ChangeNotifier {
     notifyListeners();
   }
 
+  bool checkImg() {
+    if (_selectedImage == null) {
+      return false;
+    }
+    return true;
+  }
+
   bool validateFields() {
     if (cadastroModel.nome == '' ||
         cadastroModel.categoria == 'Selecione' ||
+        cadastroModel.categoria == '' ||
+        cadastroModel.categoria == Null ||
         cadastroModel.pais == '' ||
         cadastroModel.estado == '' ||
         cadastroModel.cidade == '' ||
@@ -52,39 +66,29 @@ class CadastroController with ChangeNotifier {
     }
   }
 
-  Future getImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
+  String? get imagePaths => _imagePath;
 
-      final imagemPermanente = await salvarPermanente(image.path);
+  File? get selectedImage => _selectedImage;
 
-      setState(() {
-        // ignore: unnecessary_this
-        this.image = imagemPermanente;
-      });
-    } on PlatformException catch (e) {
-      if (kDebugMode) {
-        print('Falha ao selecionar imagem: $e');
-      }
-    }
+  set selectedImage(File? value) {
+    _selectedImage = value;
+    notifyListeners();
   }
 
-  Future<File> salvarPermanente(String imagePath) async {
-    final diretorio = await getApplicationDocumentsDirectory();
-    final name = basename(imagePath);
-    // ignore: unnecessary_brace_in_string_interps
-    final image = File('${diretorio.path}/$name');
-
-    return File(imagePath).copy(image.path);
+  Future selectImageCam() async {
+    File? file = await _imagePickerController.pickImageFromCamera();
+    _imagePath = file!.path;
+    _selectedImage = file;
   }
 
-  clearImage() {
-    // ignore: unnecessary_this
-    setState(() {
-      // ignore: unnecessary_this
-      this.image = null;
-    });
+  Future selectImage() async {
+    File? file = await _imagePickerController.pickImageFromGalery();
+    _imagePath = file!.path;
+    _selectedImage = file;
+  }
+
+  Future clearImg() async {
+    _selectedImage = null;
   }
 
   String? getValorAtual() {
@@ -101,7 +105,6 @@ class CadastroController with ChangeNotifier {
 
   void setCategoria(String? value) {
     cadastroModel.categoria = value;
-    print(cadastroModel.categoria);
   }
 
   void setPais(String value) {
@@ -154,10 +157,8 @@ class CadastroController with ChangeNotifier {
 
   void setMaisInfomacoes(String value) {
     // ignore: prefer_void_to_null
-    cadastroModel.info = value as Null?;
+    cadastroModel.info = value;
   }
 
   basename(String imagePath) {}
 }
-
-void setState(Null Function() param0) {}

@@ -14,7 +14,7 @@ class InstituicaoModel {
   String? datafundacao;
   String? latitude;
   String? longitude;
-  Null? info;
+  String? info;
   bool? autorizado;
   bool? confirmacaoEmail;
   Null? deletedAt;

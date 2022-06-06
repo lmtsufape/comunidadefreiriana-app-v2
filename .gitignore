@@ -45,3 +45,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 pubspec.lock
+<<<<<<< HEAD
+
+=======
+>>>>>>> b1ad23d94f936e2c5d10f9eeb61bd6e7ed9b6da8

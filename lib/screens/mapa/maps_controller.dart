@@ -14,7 +14,6 @@ class MapsController with ChangeNotifier {
   final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
-  late MapsRepository repository;
   get mapsController => mapController;
 
   onMapCreated(GoogleMapController gmc) async {

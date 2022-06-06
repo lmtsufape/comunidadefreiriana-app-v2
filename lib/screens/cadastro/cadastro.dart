@@ -10,7 +10,9 @@ import 'package:comunidadefreiriana/constants/constants.dart';
 // ignore: unused_import
 import 'package:comunidadefreiriana/image_control/image_picker.controller.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
@@ -31,6 +33,8 @@ class SolicitarCadastro extends StatefulWidget {
 class _SolicitarCadastroState extends State<SolicitarCadastro> {
   String? value = 'Selecione';
   // ignore: unused_field
+
+  /*
   File? selectedImage;
   String base64Image = "";
 
@@ -52,7 +56,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
       });
     }
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -229,7 +233,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         Row(
                           children: const [
                             Text(
-                              'Telefone (Com DDD)*',
+                              'Telefone (Com DDD)',
                               style: kCadastro,
                             ),
                           ],
@@ -350,6 +354,9 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           style: kHomeScreen3,
                         )),
                         const VerticalSpacerBox(size: SpacerSize.medium),
+                        //const VerticalSpacerBox(size: SpacerSize.large),
+
+                        const VerticalSpacerBox(size: SpacerSize.medium),
                         Center(
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -364,7 +371,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                     size: 24.0,
                                   ),
                                   onPressed: () {
-                                    _controller.getImage(ImageSource.gallery);
+                                    _controller.selectImage();
                                   },
                                 ),
                                 const HorizontalSpacerBox(
@@ -379,27 +386,20 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                     size: 24.0,
                                   ),
                                   onPressed: () {
-                                    _controller.getImage(ImageSource.camera);
+                                    _controller.selectImageCam();
                                   },
                                 ),
                               ]),
                         ),
                         const VerticalSpacerBox(size: SpacerSize.large),
-                        Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: _controller.image != null
-                                ? Image.file(
-                                    _controller.image!,
-                                    fit: BoxFit.cover,
-                                    height: 100,
-                                    width: 100,
-                                  )
-                                : Image.network(
-                                    'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg',
-                                    fit: BoxFit.cover,
-                                    height: 150,
-                                    width: 150,
-                                  )),
+                        _controller.checkImg()
+                            ? InkWell(
+                                child: Image.file(
+                                  _controller.selectedImage!,
+                                  width: size.width * 0.2,
+                                ),
+                              )
+                            : const Text("NO img"),
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         FloatingActionButton.extended(
                           heroTag: 3,
@@ -410,7 +410,9 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             Icons.delete,
                             size: 24.0,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            _controller.clearImg();
+                          },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
 
