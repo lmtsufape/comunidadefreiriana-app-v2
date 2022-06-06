@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:comunidadefreiriana/components/auth_form_field.dart'
     show AuthFormField;
 import 'package:comunidadefreiriana/components/finish_dialog.dart';
@@ -7,7 +9,9 @@ import 'package:comunidadefreiriana/constants/constants.dart';
 // ignore: unused_import
 import 'package:comunidadefreiriana/image_control/image_picker.controller.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
@@ -27,8 +31,6 @@ class SolicitarCadastro extends StatefulWidget {
 
 class _SolicitarCadastroState extends State<SolicitarCadastro> {
   String? value = 'Selecione';
-  // ignore: unused_field
-
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -108,7 +110,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   child: Text('Homenagens'),
                                   value: 'Homenagens'),
                               DropdownMenuItem(
-                                  child: Text('projetos'), value: 'Projetos')
+                                  child: Text('Projetos'), value: 'Projetos')
                             ],
                             onChanged: (String? value) {
                               setState(() => this.value = value);
@@ -203,7 +205,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         Row(
                           children: const [
                             Text(
-                              'Telefone (Com DDD)*',
+                              'Telefone (Com DDD)',
                               style: kCadastro,
                             ),
                           ],
@@ -324,6 +326,9 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           style: kHomeScreen3,
                         )),
                         const VerticalSpacerBox(size: SpacerSize.medium),
+                        //const VerticalSpacerBox(size: SpacerSize.large),
+
+                        const VerticalSpacerBox(size: SpacerSize.medium),
                         Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -338,7 +343,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   size: 24.0,
                                 ),
                                 onPressed: () {
-                                  // _controller.getImage(ImageSource.gallery);
+                                  _controller.imagemGaleria();
                                 },
                               ),
                               const HorizontalSpacerBox(
@@ -353,9 +358,13 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                   size: 24.0,
                                 ),
                                 onPressed: () {
-                                  //  _controller.getImage(ImageSource.camera);
+                                  _controller.imagemCamera();
                                 },
                               ),
+                              const VerticalSpacerBox(size: SpacerSize.large),
+                              _controller.imagemSelecionada == null
+                                  ? Container()
+                                  : Image.file(_controller.imagemSelecionada!),
                             ],
                           ),
                         ),
@@ -370,7 +379,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             size: 24.0,
                           ),
                           onPressed: () {
-                            // _controller.clearImage();
+                            _controller.clearImage();
                           },
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),

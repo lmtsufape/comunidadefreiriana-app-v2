@@ -38,6 +38,8 @@ class CadastroController with ChangeNotifier {
   bool validateFields() {
     if (cadastroModel.nome == '' ||
         cadastroModel.categoria == 'Selecione' ||
+        cadastroModel.categoria == '' ||
+        cadastroModel.categoria == Null ||
         cadastroModel.pais == '' ||
         cadastroModel.estado == '' ||
         cadastroModel.cidade == '' ||
@@ -52,46 +54,38 @@ class CadastroController with ChangeNotifier {
     }
   }
 
-/*
-  Future getImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
+  final ImagePicker _imagePicker = ImagePicker();
+  File? imagemSelecionada;
 
-      final imagemPermanente = await salvarPermanente(image.path);
-
+  imagemGaleria() async {
+    final XFile? temp =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+    if (temp != null) {
       setState(() {
-        // ignore: unnecessary_this
-        this._image = imagemPermanente;
+        imagemSelecionada = File(temp.path);
       });
-    } on PlatformException catch (e) {
-      if (kDebugMode) {
-        print('Falha ao selecionar imagem: $e');
-      }
     }
   }
 
-  Future<File> salvarPermanente(String imagePath) async {
-    final diretorio = await getApplicationDocumentsDirectory();
-    final name = basename(imagePath);
-    // ignore: unnecessary_brace_in_string_interps
-    final image = File('${diretorio.path}/$name');
-
-    return File(imagePath).copy(image.path);
+  imagemCamera() async {
+    final XFile? temp =
+        await _imagePicker.pickImage(source: ImageSource.camera);
+    if (temp != null) {
+      setState(() {
+        imagemSelecionada = File(temp.path);
+      });
+    }
   }
 
   clearImage() {
     // ignore: unnecessary_this
     setState(() {
       // ignore: unnecessary_this
-      this._image = null;
+      this.imagemSelecionada = null;
     });
   }
-*/
-  File? returnImage() {
-    return _image;
-  }
 
+  void setState(Null Function() param0) {}
   String? getValorAtual() {
     return valorAtualDropbox;
   }
@@ -106,7 +100,6 @@ class CadastroController with ChangeNotifier {
 
   void setCategoria(String? value) {
     cadastroModel.categoria = value;
-    print(cadastroModel.categoria);
   }
 
   void setPais(String value) {

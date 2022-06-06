@@ -14,19 +14,13 @@ class MapsController with ChangeNotifier {
   final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
-  late MapsRepository repository;
   get mapsController => mapController;
 
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-<<<<<<< HEAD
-    //MapsRepository().getInstituition(mapController);
-    //loadInstituition();
-=======
     StoreInstitution();
     loadInstitution();
->>>>>>> b974bbaa2e78e8089e3e408386d0bf2cb155035b
   }
 
   loadInstitution() {
@@ -53,9 +47,9 @@ class MapsController with ChangeNotifier {
   List StoreInstitution() {
     var model;
     FutureBuilder(
-        future: repository.getInstituition(mapsController),
+        future: MapsRepository().getInstituition(),
         builder: ((context, snapshot) {
-          if (snapshot.hasData) {
+          if (1 == 1) {
             final List<dynamic> dataList = snapshot.data as List<dynamic>;
             // ignore: unused_label
             itemCount:
