@@ -8,7 +8,6 @@ class Api {
 
   Future cadastrar(InstituicaoModel cadastroModel) async {
     final body = FormData.fromMap({
-      'id': cadastroModel.id,
       'nome': cadastroModel.nome,
       'categoria': cadastroModel.categoria,
       'pais': cadastroModel.pais,
@@ -20,10 +19,12 @@ class Api {
       'email': cadastroModel.email,
       'site': cadastroModel.site,
       'coordenador': cadastroModel.coordenador,
-      'dataFundacao': cadastroModel.datafundacao,
       'latitude': cadastroModel.latitude,
       'longitude': cadastroModel.longitude,
       'info': cadastroModel.info,
+      'autorizado': false,
+      'confirmacaoEmail': false,
+      'datafundacao': cadastroModel.datafundacao,
     });
     try {
       Response response = await _dio.post(baseUrl + '/instituicao/store',

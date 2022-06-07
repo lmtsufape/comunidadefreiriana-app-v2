@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io' show File;
-
+import 'package:geocoding/geocoding.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -23,6 +23,11 @@ class CadastroController with ChangeNotifier {
   final _api = Api();
 
   void finishCadastro(BuildContext context) async {
+    if (cadastroModel.latitude == null) {
+      List<Location> locations = await locationFromAddress(
+          '${cadastroModel.endereco} ${cadastroModel.estado} ${cadastroModel.cidade} ${cadastroModel.pais}');
+    }
+
     isLoading = true;
     _api.cadastrar(cadastroModel).then((value) {
       isLoading = false;
@@ -143,7 +148,8 @@ class CadastroController with ChangeNotifier {
     cadastroModel.coordenador = value;
   }
 
-  void setDataFund(String value) {
+  void setDataFund(DateTime? value) {
+    print(value);
     cadastroModel.datafundacao = value;
   }
 

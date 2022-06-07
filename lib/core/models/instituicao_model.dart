@@ -11,7 +11,7 @@ class InstituicaoModel {
   String? email;
   String? site;
   String? coordenador;
-  String? datafundacao;
+  DateTime? datafundacao;
   String? latitude;
   String? longitude;
   String? info;

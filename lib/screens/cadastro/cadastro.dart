@@ -33,30 +33,6 @@ class SolicitarCadastro extends StatefulWidget {
 class _SolicitarCadastroState extends State<SolicitarCadastro> {
   String? value = 'Selecione';
   // ignore: unused_field
-
-  /*
-  File? selectedImage;
-  String base64Image = "";
-
-  Future<void> chooseImage(type) async {
-    // ignore: prefer_typing_uninitialized_variables
-    var image;
-    if (type == "camera") {
-      image = await ImagePicker()
-          .pickImage(source: ImageSource.camera, imageQuality: 10);
-    } else {
-      image = await ImagePicker()
-          .pickImage(source: ImageSource.gallery, imageQuality: 25);
-    }
-    if (image != null) {
-      setState(() {
-        selectedImage = File(image.path);
-        base64Image = base64Encode(selectedImage!.readAsBytesSync());
-        // won't have any error now
-      });
-    }
-  }
-*/
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -307,13 +283,25 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           ],
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
-                        AuthFormField(
-                            label: '00/00/0000',
-                            isPassword: false,
-                            inputType: TextInputType.datetime,
-                            onChanged: (String value) {
-                              _controller.setDataFund(value);
-                            }),
+                        FloatingActionButton.extended(
+                          heroTag: 0,
+                          label: const Text('Data'), // <-- Text
+                          backgroundColor: Colors.blue,
+                          icon: const Icon(
+                            // <-- Icon
+                            Icons.photo_library,
+                            size: 24.0,
+                          ),
+                          onPressed: () {
+                            showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1000),
+                                    lastDate: DateTime(2200))
+                                .then(
+                                    (value) => _controller.setDataFund(value));
+                          },
+                        ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
