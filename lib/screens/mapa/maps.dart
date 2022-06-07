@@ -81,9 +81,9 @@ class _MapsState extends State<Maps> {
                   size: 24.0,
                 ),
                 onPressed: () {
-                  final local = context.watch<MapsController>();
+                  final local = MapsController();
                   // ignore: unused_local_variable
-                  final coordenadas = context.watch<CadastroController>();
+                  final coordenadas = CadastroController();
                   // ignore: prefer_const_constructors, unused_local_variable
                   int flag = 0;
                   AlertDialog(
@@ -98,7 +98,7 @@ class _MapsState extends State<Maps> {
                           target: LatLng(local.lat, local.long),
                           zoom: 17,
                         ),
-                        onCameraMove: (position) {
+                        onCameraMove: (position) async {
                           coordenadas.setLat(lat.toString());
                           coordenadas.setLong(long.toString());
                           flag = 1;
