@@ -24,14 +24,14 @@ class MapsController with ChangeNotifier {
   }
 
   loadInstitution() {
-    final loadinst = StoreInstitution();
+    List? loadinst = StoreInstitution();
     // ignore: avoid_function_literals_in_foreach_calls
-    loadinst.forEach((inst) async {
+    loadinst?.forEach((inst) async {
       makers.add(Marker(
         markerId: MarkerId(inst.nome),
         position: LatLng(inst.latitute, inst.longitude),
-        icon: await BitmapDescriptor.fromAssetImage(
-            const ImageConfiguration(), 'lib/assets/images/icone_marker.png'),
+        icon: await BitmapDescriptor.fromAssetImage(const ImageConfiguration(),
+            'lib/assets/images/icone_marker@3x.png'),
         onTap: () => {
           showModalBottomSheet(
             context: appKey.currentState!.context,

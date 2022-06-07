@@ -384,10 +384,12 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                             ? InkWell(
                                 child: Image.file(
                                   _controller.selectedImage!,
-                                  width: size.width * 0.2,
+                                  width: size.width * 0.7,
                                 ),
                               )
-                            : const Text("NO img"),
+                            : const Text("No image selected",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline)),
                         const VerticalSpacerBox(size: SpacerSize.medium),
                         FloatingActionButton.extended(
                           heroTag: 3,
