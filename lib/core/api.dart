@@ -24,7 +24,9 @@ class Api {
       'info': cadastroModel.info,
       'autorizado': false,
       'confirmacaoEmail': false,
-      'datafundacao': cadastroModel.datafundacao,
+      'datafundacao':
+          ('${cadastroModel.datafundacao!.year}-${cadastroModel.datafundacao!.month}-${cadastroModel.datafundacao!.day}')
+              .toString()
     });
     try {
       Response response = await _dio.post(baseUrl + '/instituicao/store',

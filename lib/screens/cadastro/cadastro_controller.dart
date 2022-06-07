@@ -3,14 +3,9 @@ import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'dart:io' show File;
-<<<<<<< HEAD
 import 'package:geocoding/geocoding.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
+import 'dart:io' show File;
 
-=======
->>>>>>> 5163557af8ee6504b53bbf721c61edeccf757498
 import '../../image_control/image_picker.controller.dart';
 
 class CadastroController with ChangeNotifier {
@@ -28,6 +23,8 @@ class CadastroController with ChangeNotifier {
     if (cadastroModel.latitude == null) {
       List<Location> locations = await locationFromAddress(
           '${cadastroModel.endereco} ${cadastroModel.estado} ${cadastroModel.cidade} ${cadastroModel.pais}');
+      cadastroModel.latitude = locations.first.latitude.toString();
+      cadastroModel.longitude = locations.first.longitude.toString();
     }
 
     isLoading = true;
@@ -58,8 +55,6 @@ class CadastroController with ChangeNotifier {
     if (cadastroModel.nome == '' ||
         cadastroModel.categoria == 'Selecione' ||
         cadastroModel.categoria == '' ||
-        // ignore: unrelated_type_equality_checks
-        cadastroModel.categoria == Null ||
         cadastroModel.pais == '' ||
         cadastroModel.estado == '' ||
         cadastroModel.cidade == '' ||
@@ -67,7 +62,7 @@ class CadastroController with ChangeNotifier {
         cadastroModel.cep == '' ||
         cadastroModel.email == '' ||
         cadastroModel.coordenador == '' ||
-        cadastroModel.datafundacao == '') {
+        cadastroModel.datafundacao == null) {
       return false;
     } else {
       return true;
@@ -152,7 +147,6 @@ class CadastroController with ChangeNotifier {
   }
 
   void setDataFund(DateTime? value) {
-    print(value);
     cadastroModel.datafundacao = value;
   }
 
