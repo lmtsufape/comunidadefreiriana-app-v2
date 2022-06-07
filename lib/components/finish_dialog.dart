@@ -15,10 +15,6 @@ class FinishVisitDialog extends StatelessWidget {
         'Concluir Cadastro?',
         style: kHomeScreen2,
       ),
-      content: const Text(
-        "Você não pode desfazer este processo!",
-        style: kdrawerText,
-      ),
       actions: [
         TextButton(
             onPressed: () {

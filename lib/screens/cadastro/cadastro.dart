@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:comunidadefreiriana/components/auth_form_field.dart'
     show AuthFormField;
 import 'package:comunidadefreiriana/components/finish_dialog.dart';
@@ -10,10 +7,7 @@ import 'package:comunidadefreiriana/constants/constants.dart';
 // ignore: unused_import
 import 'package:comunidadefreiriana/image_control/image_picker.controller.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 // ignore: unused_import
