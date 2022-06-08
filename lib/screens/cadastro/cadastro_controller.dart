@@ -162,6 +162,4 @@ class CadastroController with ChangeNotifier {
     // ignore: prefer_void_to_null
     cadastroModel.info = value;
   }
-
-  basename(String imagePath) {}
 }

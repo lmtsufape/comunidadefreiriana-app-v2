@@ -17,6 +17,7 @@ class InstituicaoModel {
   String? info;
   bool? autorizado;
   bool? confirmacaoEmail;
+  // ignore: prefer_void_to_null, unnecessary_question_mark
   Null? deletedAt;
   String? createdAt;
   String? updatedAt;
