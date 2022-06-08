@@ -11,7 +11,7 @@ class MapsRepository extends ChangeNotifier {
   final _dio = Dio();
   static const String baseUrl = 'http://185.28.23.76/api';
   bool isLoading = false;
-
+/*
   Future getInstitution(context) async {
     try {
       var response = await _dio.get(
@@ -34,4 +34,5 @@ class MapsRepository extends ChangeNotifier {
       return null;
     }
   }
+  */
 }

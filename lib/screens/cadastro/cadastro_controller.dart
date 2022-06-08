@@ -13,20 +13,32 @@ class CadastroController with ChangeNotifier {
   // ignore: unused_field
   File? _selectedImage;
   String? _imagePath;
+  bool hasAddress = false;
   bool hasImg = false;
   String? valorAtualDropbox = 'Selecione';
   final _imagePickerController = ImagePickerController();
   final InstituicaoModel cadastroModel = InstituicaoModel();
   final _api = Api();
 
-  void finishCadastro(BuildContext context) async {
-    if (cadastroModel.latitude == null) {
-      List<Location> locations = await locationFromAddress(
-          '${cadastroModel.endereco} ${cadastroModel.estado} ${cadastroModel.cidade} ${cadastroModel.pais}');
-      cadastroModel.latitude = locations.first.latitude.toString();
-      cadastroModel.longitude = locations.first.longitude.toString();
-    }
+  get getDataTime {
+    return cadastroModel.datafundacao;
+  }
 
+  Future validateAdress() async {
+    if (cadastroModel.latitude == null) {
+      try {
+        List<Location> locations = await locationFromAddress(
+            '${cadastroModel.endereco} ${cadastroModel.estado} ${cadastroModel.cidade} ${cadastroModel.pais}');
+        cadastroModel.latitude = locations.first.latitude.toString();
+        cadastroModel.longitude = locations.first.longitude.toString();
+        hasAddress = true;
+      } catch (e) {
+        hasAddress = false;
+      }
+    }
+  }
+
+  void finishCadastro(BuildContext context) async {
     isLoading = true;
     _api.cadastrar(cadastroModel).then((value) {
       isLoading = false;
@@ -80,18 +92,31 @@ class CadastroController with ChangeNotifier {
 
   Future selectImageCam() async {
     File? file = await _imagePickerController.pickImageFromCamera();
-    _imagePath = file!.path;
+    if (file != null) {
+      _imagePath = file.path;
+    } else {
+      return null;
+    }
+
     _selectedImage = file;
+    notifyListeners();
   }
 
   Future selectImage() async {
     File? file = await _imagePickerController.pickImageFromGalery();
-    _imagePath = file!.path;
+    if (file != null) {
+      _imagePath = file.path;
+    } else {
+      return null;
+    }
+
     _selectedImage = file;
+    notifyListeners();
   }
 
   Future clearImg() async {
     _selectedImage = null;
+    notifyListeners();
   }
 
   String? getValorAtual() {

@@ -19,8 +19,8 @@ class MapsController with ChangeNotifier {
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    StoreInstitution();
-    loadInstitution();
+    // StoreInstitution();
+    //loadInstitution();
   }
 
   // ignore: non_constant_identifier_names
@@ -53,7 +53,7 @@ class MapsController with ChangeNotifier {
   StoreInstitution() {
     var model;
     FutureBuilder<dynamic>(
-        future: MapsRepository().getInstitution(model),
+        future: _api.getAllInstitutions(model),
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
             final List<dynamic> dataList = snapshot.data as List<dynamic>;
@@ -85,6 +85,7 @@ class MapsController with ChangeNotifier {
           }
           return model;
         }));
+    return model;
   }
 
   getPosicao() async {
