@@ -1,4 +1,4 @@
-import 'package:comunidadefreiriana/core/api.dart';
+import '../../core/api.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
@@ -19,19 +19,25 @@ class MapsController with ChangeNotifier {
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    StoreInstitution();
-    loadInstitution();
+    // StoreInstitution();
+    //loadInstitution();
+  }
+
+  // ignore: non_constant_identifier_names
+  OnMapCreatedCadastro(GoogleMapController gmc2) async {
+    mapController = gmc2;
+    getPosicao();
   }
 
   loadInstitution() {
-    List? loadinst = StoreInstitution();
+    var loadinst = StoreInstitution();
     // ignore: avoid_function_literals_in_foreach_calls
-    loadinst?.forEach((inst) async {
+    loadinst.forEach((inst) async {
       makers.add(Marker(
         markerId: MarkerId(inst.nome),
         position: LatLng(inst.latitute, inst.longitude),
-        icon: await BitmapDescriptor.fromAssetImage(const ImageConfiguration(),
-            'lib/assets/images/icone_marker@3x.png'),
+        icon: await BitmapDescriptor.fromAssetImage(
+            const ImageConfiguration(), 'lib/assets/images/icon.png'),
         onTap: () => {
           showModalBottomSheet(
             context: appKey.currentState!.context,
@@ -47,13 +53,14 @@ class MapsController with ChangeNotifier {
   StoreInstitution() {
     var model;
     FutureBuilder<dynamic>(
-        future: MapsRepository().getInstituition(),
+        future: _api.getAllInstitutions(model),
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
+            final List<dynamic> dataList = snapshot.data as List<dynamic>;
             return ListView.builder(
                 itemCount: snapshot.data!.lenght,
                 itemBuilder: (context, index) {
-                  var data = snapshot.data![index];
+                  var data = dataList[index];
                   model = InstituicaoModel(
                     id: data['id'],
                     nome: data['nome'],
@@ -71,7 +78,6 @@ class MapsController with ChangeNotifier {
                     longitude: data['longitude'],
                     info: data['info'],
                   );
-
                   return model;
                 });
           } else if (snapshot.hasError) {
@@ -79,11 +85,12 @@ class MapsController with ChangeNotifier {
           }
           return model;
         }));
+    return model;
   }
 
   getPosicao() async {
     try {
-      Position posicao = await _posicaoAtual();
+      final posicao = await _posicaoAtual();
       lat = posicao.latitude;
       long = posicao.longitude;
       mapController.animateCamera(CameraUpdate.newLatLng(LatLng(lat, long)));

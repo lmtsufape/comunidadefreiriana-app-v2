@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class InstituicaoModel {
   int? id;
   String? nome;
@@ -15,9 +17,10 @@ class InstituicaoModel {
   String? latitude;
   String? longitude;
   String? info;
+  Uint8List? imagem;
   bool? autorizado;
   bool? confirmacaoEmail;
-  Null? deletedAt;
+  String? deletedAt;
   String? createdAt;
   String? updatedAt;
 
@@ -38,6 +41,7 @@ class InstituicaoModel {
       this.latitude,
       this.longitude,
       this.info,
+      this.imagem,
       this.autorizado,
       this.confirmacaoEmail,
       this.deletedAt,

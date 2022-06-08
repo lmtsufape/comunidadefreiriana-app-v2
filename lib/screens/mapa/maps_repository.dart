@@ -1,10 +1,9 @@
-import 'dart:convert';
-
 import 'package:comunidadefreiriana/core/api.dart';
+import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class MapsRepository extends ChangeNotifier {
   // ignore: unused_field
@@ -12,12 +11,28 @@ class MapsRepository extends ChangeNotifier {
   final _dio = Dio();
   static const String baseUrl = 'http://185.28.23.76/api';
   bool isLoading = false;
-
-  getInstituition() async {
-    var url = Uri.parse('http://185.28.23.76/api/instituicao/aprovados');
-    var response = await http.get(url);
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+/*
+  Future getInstitution(context) async {
+    try {
+      var response = await _dio.get(
+        baseUrl + '/instituicao/aprovados',
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer ${Provider.of<InstituicaoModel>(context, listen: false)}',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        return (response.data);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
     }
   }
+  */
 }
