@@ -48,27 +48,28 @@ class InstituicaoModel {
       this.createdAt,
       this.updatedAt});
 
-  InstituicaoModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    nome = json['nome'];
-    categoria = json['categoria'];
-    pais = json['pais'];
-    estado = json['estado'];
-    cidade = json['cidade'];
-    endereco = json['endereco'];
-    cep = json['cep'];
-    telefone = json['telefone'];
-    email = json['email'];
-    site = json['site'];
-    coordenador = json['coordenador'];
-    datafundacao = json['datafundacao'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    info = json['info'];
-    autorizado = json['autorizado'];
-    confirmacaoEmail = json['confirmacaoEmail'];
-    deletedAt = json['deleted_at'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
+  factory InstituicaoModel.fromJson(Map<String, dynamic> json) =>
+      InstituicaoModel(
+        id: json['id'],
+        nome: json['nome'],
+        categoria: json['categoria'],
+        pais: json['pais'],
+        estado: json['estado'],
+        cidade: json['cidade'],
+        endereco: json['endereco'],
+        cep: json['cep'],
+        telefone: json['telefone'],
+        email: json['email'],
+        site: json['site'],
+        coordenador: json['coordenador'],
+        datafundacao: json['datafundacao'],
+        latitude: json['latitude'],
+        longitude: json['longitude'],
+        info: json['info'],
+        autorizado: json['autorizado'],
+        confirmacaoEmail: json['confirmacaoEmail'],
+        deletedAt: json['deleted_at'],
+        createdAt: json['created_at'],
+        updatedAt: json['updated_at'],
+      );
 }
