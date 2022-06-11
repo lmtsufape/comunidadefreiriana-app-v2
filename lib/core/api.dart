@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,10 +11,8 @@ class Api {
     try {
       var response = await _dio.get<List>(baseUrl + '/instituicao/aprovados');
       if (response.statusCode == 200) {
-        print(response.data);
         return response.data;
       } else {
-        print("deu ruim");
         return null;
       }
     } catch (e) {
