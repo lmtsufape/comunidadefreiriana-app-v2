@@ -5,14 +5,11 @@ import 'package:comunidadefreiriana/components/finish_dialog.dart';
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/primary_buttonCadastro.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
-// ignore: unused_import
-import 'package:comunidadefreiriana/image_control/image_picker.controller.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
-import 'package:path_provider/path_provider.dart';
 
 class SolicitarCadastro extends StatefulWidget {
   static const String id = 'solicitar_cadastro';
