@@ -11,22 +11,18 @@ class MapsRepository extends ChangeNotifier {
   final _dio = Dio();
   static const String baseUrl = 'http://185.28.23.76/api';
   bool isLoading = false;
-/*
+
   Future getInstitution(context) async {
     try {
       var response = await _dio.get(
         baseUrl + '/instituicao/aprovados',
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer ${Provider.of<InstituicaoModel>(context, listen: false)}',
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-        ),
       );
       if (response.statusCode == 200) {
-        return (response.data);
+        var listInstitutions = (response.data as List).map((item) {
+          return InstituicaoModel.fromJson(response.data);
+        }).toList();
+        //caso de ruim tenta apagar esse return abaixo e tentar novamente
+        return listInstitutions;
       } else {
         return null;
       }
@@ -34,5 +30,4 @@ class MapsRepository extends ChangeNotifier {
       return null;
     }
   }
-  */
 }
