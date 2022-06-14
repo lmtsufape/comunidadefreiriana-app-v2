@@ -103,8 +103,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                               child: Text('Cátedra Paulo Freire'),
                               value: 'Cátedra Paulo Freire'),
                           DropdownMenuItem(
-                              child: Text('Instituição Paulo Freire'),
-                              value: 'Instituição Paulo Freire'),
+                              child: Text('Instituto Paulo Freire'),
+                              value: 'Instituto Paulo Freire'),
                           DropdownMenuItem(
                               child:
                                   Text('Centro e Núcleo de Estudo e Pesquisa'),
