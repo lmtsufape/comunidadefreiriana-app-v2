@@ -42,7 +42,15 @@ class MapsController with ChangeNotifier {
         showModalBottomSheet<void>(
             context: appKey.currentState!.context,
             builder: (context) {
-              return MapsDetalhes(detalhes: model);
+              return MapsDetalhes(
+                cidade: model.cidade.toString(),
+                endereco: model.endereco.toString(),
+                estado: model.estado.toString(),
+                info: model.info.toString(),
+                nome: model.nome.toString(),
+                site: model.site.toString(),
+                telefone: model.telefone.toString(),
+              );
             })
       },
     ));
