@@ -100,19 +100,19 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           DropdownMenuItem(
                               child: Text('Selecione'), value: 'Selecione'),
                           DropdownMenuItem(
-                              child: Text('Cátedras Paulo Freire'),
-                              value: 'Cátedras Paulo Freire'),
+                              child: Text('Cátedra Paulo Freire'),
+                              value: 'Cátedra Paulo Freire'),
                           DropdownMenuItem(
                               child: Text('Instituição Paulo Freire'),
                               value: 'Instituição Paulo Freire'),
                           DropdownMenuItem(
-                              child: Text(
-                                  'Centros e Núcleos de Estudo e Pesquisa'),
-                              value: 'Centros e Núcleos de Estudo e Pesquisa'),
+                              child:
+                                  Text('Centro e Núcleo de Estudo e Pesquisa'),
+                              value: 'Centro e Núcleo de Estudo e Pesquisa'),
                           DropdownMenuItem(
-                              child: Text('Homenagens'), value: 'Homenagens'),
+                              child: Text('Homenagem'), value: 'Homenagem'),
                           DropdownMenuItem(
-                              child: Text('Projetos'), value: 'Projetos')
+                              child: Text('Projeto'), value: 'Projeto')
                         ],
                         onChanged: (String? value) {
                           setState(() {

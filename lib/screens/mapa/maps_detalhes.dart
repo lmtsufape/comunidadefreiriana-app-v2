@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MapsDetalhes extends StatelessWidget {
-  InstituicaoModel model;
-  MapsDetalhes({Key? key, required this.model}) : super(key: key);
+  InstituicaoModel detalhes;
+  MapsDetalhes({Key? key, required this.detalhes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class MapsDetalhes extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 24, left: 24),
             child: Text(
-              model.nome.toString(),
+              detalhes.nome.toString(),
               style: const TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w600,
@@ -25,7 +25,7 @@ class MapsDetalhes extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 60, left: 24),
             child: Text(
-              model.endereco.toString(),
+              detalhes.endereco.toString(),
             ),
           ),
         ],

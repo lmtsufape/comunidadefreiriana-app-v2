@@ -1,7 +1,7 @@
-import '../../core/api.dart';
-import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
+// ignore_for_file: unnecessary_type_check, prefer_typing_uninitialized_variables
 import 'package:comunidadefreiriana/screens/mapa/maps.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
+import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -11,7 +11,6 @@ class MapsController with ChangeNotifier {
   double lat = 0.0;
   double long = 0.0;
   // ignore: unused_field
-  final _api = Api();
   Set<Marker> makers = <Marker>{};
   late GoogleMapController mapController;
   get mapsController => mapController;
@@ -19,8 +18,7 @@ class MapsController with ChangeNotifier {
   onMapCreated(GoogleMapController gmc) async {
     mapController = gmc;
     getPosicao();
-    // StoreInstitution();
-    //loadInstitution();
+    StoreInstitution();
   }
 
   // ignore: non_constant_identifier_names
@@ -29,63 +27,56 @@ class MapsController with ChangeNotifier {
     getPosicao();
   }
 
-  loadInstitution() {
-    var loadinst = StoreInstitution();
-    // ignore: avoid_function_literals_in_foreach_calls
-    loadinst.forEach((inst) async {
-      makers.add(Marker(
-        markerId: MarkerId(inst.nome),
-        position: LatLng(inst.latitute, inst.longitude),
-        icon: await BitmapDescriptor.fromAssetImage(
-            const ImageConfiguration(), 'lib/assets/images/icon.png'),
-        onTap: () => {
-          showModalBottomSheet(
+  loadInstitution(x) async {
+    InstituicaoModel model = x;
+    var lat = double.parse(model.latitude!);
+    assert(lat is double);
+    var long = double.parse(model.longitude!);
+    assert(long is double);
+    makers.add(Marker(
+      markerId: MarkerId(model.nome.toString()),
+      position: LatLng(lat, long),
+      icon: await BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(), 'lib/assets/images/icone_marker@3x.png'),
+      onTap: () => {
+        showModalBottomSheet<void>(
             context: appKey.currentState!.context,
-            builder: (context) => MapsDetalhes(model: inst),
-          )
-        },
-      ));
-    });
+            builder: (context) {
+              return MapsDetalhes(detalhes: model);
+            })
+      },
+    ));
+
     notifyListeners();
   }
 
   // ignore: non_constant_identifier_names
-  StoreInstitution() {
+  StoreInstitution() async {
     var model;
-    FutureBuilder<dynamic>(
-        future: _api.getAllInstitutions(model),
-        builder: ((context, snapshot) {
-          if (snapshot.hasData) {
-            final List<dynamic> dataList = snapshot.data as List<dynamic>;
-            return ListView.builder(
-                itemCount: snapshot.data!.lenght,
-                itemBuilder: (context, index) {
-                  var data = dataList[index];
-                  model = InstituicaoModel(
-                    id: data['id'],
-                    nome: data['nome'],
-                    categoria: data['categoria'],
-                    pais: data['pais'],
-                    estado: data['estado'],
-                    cidade: data['cidade'],
-                    cep: data['cep'],
-                    telefone: data['telefone'],
-                    email: data['email'],
-                    site: data['site'],
-                    coordenador: data['coordenador'],
-                    datafundacao: data['dataFundacao'],
-                    latitude: data['latitude'],
-                    longitude: data['longitude'],
-                    info: data['info'],
-                  );
-                  return model;
-                });
-          } else if (snapshot.hasError) {
-            return Text('${snapshot.error}0');
-          }
-          return model;
-        }));
-    return model;
+    final data = await MapsRepository().getInstitution();
+
+    // ignore: unused_local_variable
+    var instituicoes = [data];
+    for (var i in data) {
+      model = InstituicaoModel(
+        id: i["id"],
+        nome: i["nome"],
+        categoria: i["categoria"],
+        pais: i["pais"],
+        estado: i["estado"],
+        cidade: i["cidade"],
+        cep: i["cep"],
+        telefone: i["telefone"],
+        email: i["email"],
+        site: i["site"],
+        coordenador: i["coordenador"],
+        datafundacao: i["dataFundacao"],
+        latitude: i["latitude"],
+        longitude: i["longitude"],
+        info: i["info"],
+      );
+      loadInstitution(model);
+    }
   }
 
   getPosicao() async {

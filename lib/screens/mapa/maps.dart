@@ -66,17 +66,17 @@ class _MapsState extends State<Maps> {
                 onCameraMove: (CameraPosition cameraPositiona) {
                   cameraPosition = cameraPositiona; //when map is dragging
                 },
-                onCameraIdle: () async {
-                  List<Placemark> placemarks = await placemarkFromCoordinates(
-                      cameraPosition!.target.latitude,
-                      cameraPosition!.target.longitude);
-                  setState(() {
-                    //get place name from lat and lang
-                    rua = placemarks.first.administrativeArea.toString() +
-                        ", " +
-                        placemarks.first.street.toString();
-                  });
-                },
+                // onCameraIdle: () async {
+                //   List<Placemark> placemarks = await placemarkFromCoordinates(
+                //       cameraPosition!.target.latitude,
+                //       cameraPosition!.target.longitude);
+                //   setState(() {
+                //     //get place name from lat and lang
+                //     rua = placemarks.first.administrativeArea.toString() +
+                //         ", " +
+                //         placemarks.first.street.toString();
+                //   });
+                // },
               );
             })),
         Positioned(
