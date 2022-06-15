@@ -62,8 +62,7 @@ dependencies:
   http: ^0.13.4
   flutter_typeahead: ^4.0.0
   flutter_google_places_hoc081098: ^1.0.0-nullsafety.5
-  flutter_localizations:
-    sdk: flutter
+  
 
 
 
