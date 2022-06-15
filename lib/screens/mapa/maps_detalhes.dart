@@ -1,36 +1,18 @@
-import 'dart:ffi';
-
+import 'package:comunidadefreiriana/constants/constants.dart';
+import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MapsDetalhes extends StatelessWidget {
-  int? id;
-  String nome;
-  String endereco;
-  String cidade;
-  String estado;
-  String telefone;
-  String info;
-  String site;
-  MapsDetalhes(
-      {Key? key,
-      required this.id,
-      required this.nome,
-      required this.endereco,
-      required this.cidade,
-      required this.estado,
-      required this.info,
-      required this.site,
-      required this.telefone})
-      : super(key: key);
-
+  InstituicaoModel inst;
+  MapsDetalhes({Key? key, required this.inst}) : super(key: key);
   final _dio = Dio();
   static const String baseUrl = 'http://185.28.23.76/api';
 
   getImageInstitution() async {
     try {
-      var image = await _dio.get(baseUrl + '/instituicao/show/$id');
+      var image = await _dio.get(baseUrl + '/instituicao/show/${inst.id}');
 
       if (image.statusCode == 200) {
         Map<String, dynamic> map = image.data;
@@ -66,19 +48,63 @@ class MapsDetalhes extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 24, left: 24),
             child: Text(
-              nome,
+              inst.nome.toString(),
               style: const TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
+          const Text(
+            'Endereço',
+            style: kDescription,
+          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 60, left: 24),
             child: Text(
-              endereco,
+              inst.endereco.toString(),
             ),
           ),
+          const Icon(Icons.phone),
+          Padding(
+              padding: const EdgeInsets.only(bottom: 60, left: 24),
+              child: Text(
+                inst.telefone.toString(),
+              )),
+          const Icon(Icons.email),
+          Padding(
+              padding: const EdgeInsets.only(bottom: 60, left: 24),
+              child: Text(
+                inst.email.toString(),
+              )),
+          const Divider(color: kSecondaryTextColor),
+          const Text(
+            'Data da realização',
+            style: kDescription,
+          ),
+          Padding(
+              padding: const EdgeInsets.only(bottom: 60, left: 24),
+              child: Text(
+                inst.datafundacao.toString(),
+              )),
+          const Text(
+            'Nome da realização',
+            style: kDescription,
+          ),
+          Padding(
+              padding: const EdgeInsets.only(bottom: 60, left: 24),
+              child: Text(
+                inst.nome.toString(),
+              )),
+          const Text(
+            'Mais informações',
+            style: kDescription,
+          ),
+          Padding(
+              padding: const EdgeInsets.only(bottom: 60, left: 24),
+              child: Text(
+                inst.info.toString(),
+              )),
         ],
       ),
     );

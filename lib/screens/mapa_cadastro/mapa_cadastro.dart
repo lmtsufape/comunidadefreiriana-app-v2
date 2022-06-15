@@ -1,7 +1,7 @@
+import 'package:comunidadefreiriana/components/error_dialog.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
-import 'package:comunidadefreiriana/screens/mapa/maps_controller.dart';
-import 'package:flutter/foundation.dart';
+import 'package:comunidadefreiriana/screens/mapa_cadastro/mapa_cadastro_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -15,23 +15,34 @@ class MapaCadastro extends StatefulWidget {
 }
 
 class _MapaCadastroState extends State<MapaCadastro> {
-  Set<Marker> makers = <Marker>{};
+  Set<Marker> markers = <Marker>{};
   late double lat;
   late double long;
   List<LatLng> tappedPoints = [];
   int flag = 0;
 
+  void _setMarker(LatLng point) {
+    setState(() {
+      markers.add(
+        Marker(
+          markerId: MarkerId('marker'),
+          position: point,
+        ),
+      );
+    });
+  }
+
   // ignore: unused_element
-  void _handleTap(LatLng latlng) async {
-    final local = MapsController();
+  handleTap(LatLng latlng) async {
+    final local = MapaCadastroController();
     setState(() {
       tappedPoints.add(latlng);
     });
-    makers.add(Marker(
+    markers.add(Marker(
       markerId: const MarkerId(''),
       position: LatLng(local.lat, local.long),
       icon: await BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(), 'lib/assets/images/icone_marker.png'),
+          const ImageConfiguration(), 'lib/assets/images/icone_marker@2x.png'),
     ));
 
     flag = 1;
@@ -51,10 +62,10 @@ class _MapaCadastroState extends State<MapaCadastro> {
           ),
           backgroundColor: Colors.blue),
       body: Stack(children: <Widget>[
-        ChangeNotifierProvider<MapsController>(
-            create: (context) => MapsController(),
+        ChangeNotifierProvider<MapaCadastroController>(
+            create: (context) => MapaCadastroController(),
             child: Builder(builder: (context) {
-              final local = context.watch<MapsController>();
+              final local = context.watch<MapaCadastroController>();
               //getInstituittion;
               return GoogleMap(
                 onMapCreated: local.OnMapCreatedCadastro,
@@ -63,10 +74,14 @@ class _MapaCadastroState extends State<MapaCadastro> {
                   zoom: 17,
                 ),
                 myLocationButtonEnabled: true,
-                onTap: _handleTap,
+                onTap: (point) {
+                  setState(() {
+                    tappedPoints.add(point);
+                  });
+                },
                 zoomControlsEnabled: true,
                 mapType: MapType.normal,
-                markers: local.makers,
+                markers: markers,
               );
             })),
       ]),
@@ -91,17 +106,10 @@ class _MapaCadastroState extends State<MapaCadastro> {
                   if (flag == 1) {
                     Navigator.popAndPushNamed(context, SolicitarCadastro.id);
                   } else {
-                    AlertDialog(
-                      title: const Text("Erro!"),
-                      content: const Text("Selecione algum lugar no mapa."),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Voltar')),
-                      ],
-                    );
+                    showDialog(
+                        context: context,
+                        builder: (context) => const ErrorDialog(
+                            mensage: 'Selecione algum lugar no mapa!'));
                   }
                 },
               ),

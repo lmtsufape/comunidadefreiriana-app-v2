@@ -1,4 +1,8 @@
 // ignore_for_file: unused_import
+import 'package:comunidadefreiriana/components/error_dialog.dart';
+import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
+import 'package:comunidadefreiriana/screens/mapa/maps_detalhes.dart';
+import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
 import 'package:comunidadefreiriana/screens/mapa_cadastro/mapa_cadastro.dart';
 import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
@@ -32,6 +36,129 @@ class _MapsState extends State<Maps> {
   List<LatLng> tappedPoints = [];
   late double lat;
   late double long;
+  Set<Marker> makers = <Marker>{};
+
+  StoreInstitution() async {
+    var model;
+    final data = await MapsRepository().getInstitution();
+
+    for (var i in data) {
+      model = InstituicaoModel(
+        id: i["id"],
+        nome: i["nome"],
+        categoria: i["categoria"],
+        pais: i["pais"],
+        estado: i["estado"],
+        cidade: i["cidade"],
+        cep: i["cep"],
+        telefone: i["telefone"],
+        email: i["email"],
+        site: i["site"],
+        coordenador: i["coordenador"],
+        datafundacao: i["dataFundacao"],
+        latitude: i["latitude"],
+        longitude: i["longitude"],
+        info: i["info"],
+      );
+      loadInstitution(model);
+    }
+  }
+
+  loadInstitution(x) async {
+    InstituicaoModel model = x;
+    var lat = double.parse(model.latitude!);
+    assert(lat is double);
+    var long = double.parse(model.longitude!);
+    assert(long is double);
+    makers.add(Marker(
+        markerId: MarkerId(model.nome.toString()),
+        position: LatLng(lat, long),
+        icon: await BitmapDescriptor.fromAssetImage(const ImageConfiguration(),
+            'lib/assets/images/icone_marker@3x.png'),
+        onTap: () => showModalBottomSheet(
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                child: Wrap(
+                  children: [
+                    // Image.network(
+                    //   'path',
+                    //   height: 250,
+                    //   width: MediaQuery.of(context).size.width,
+                    //   fit: BoxFit.cover,
+                    // ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, left: 24),
+                      child: Text(
+                        model.nome.toString(),
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Endereço',
+                          style: kDescription,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 60, left: 24),
+                          child: Text(
+                            model.endereco.toString(),
+                          ),
+                        ),
+                        const Icon(Icons.phone),
+                        Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 60, left: 24),
+                            child: Text(
+                              model.telefone.toString(),
+                            )),
+                        const Icon(Icons.email),
+                        Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 60, left: 24),
+                            child: Text(
+                              model.email.toString(),
+                            )),
+                      ],
+                    ),
+                    const Divider(color: kSecondaryTextColor),
+                    Row(
+                      children: [
+                        const Text(
+                          'Data da realização',
+                          style: kDescription,
+                        ),
+                        Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 60, left: 24),
+                            child: Text(
+                              model.datafundacao.toString(),
+                            )),
+                        const Text(
+                          'Nome da realização',
+                          style: kDescription,
+                        ),
+                      ],
+                    ),
+
+                    const Text(
+                      'Mais informações',
+                      style: kDescription,
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(bottom: 60, left: 24),
+                        child: Text(
+                          model.info.toString(),
+                        )),
+                  ],
+                ),
+              );
+            })));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +179,7 @@ class _MapsState extends State<Maps> {
             create: (context) => MapsController(),
             child: Builder(builder: (context) {
               final local = context.watch<MapsController>();
+              StoreInstitution();
               //getInstituittion;
               return GoogleMap(
                 onMapCreated: local.onMapCreated,
@@ -62,7 +190,7 @@ class _MapsState extends State<Maps> {
                 zoomGesturesEnabled: true,
                 zoomControlsEnabled: true,
                 mapType: MapType.normal,
-                markers: local.makers,
+                markers: makers,
                 onCameraMove: (CameraPosition cameraPositiona) {
                   cameraPosition = cameraPositiona; //when map is dragging
                 },
@@ -101,8 +229,8 @@ class _MapsState extends State<Maps> {
                   final detail = await plist.getDetailsByPlaceId(placeid);
                   final geometry = detail.result.geometry!;
                   final lat = geometry.location.lat;
-                  final lang = geometry.location.lng;
-                  var newlatlang = LatLng(lat, lang);
+                  final long = geometry.location.lng;
+                  var newlatlang = LatLng(lat, long);
 
                   //move map camera to selected place with animation
                   MapsController().mapController.animateCamera(
@@ -146,16 +274,6 @@ class _MapsState extends State<Maps> {
                   size: 24.0,
                 ),
                 onPressed: () {
-                  const AlertDialog(
-                    title: Text(
-                      'Mapa',
-                      style: kHomeScreen2,
-                    ),
-                    content: Text(
-                      "Selecione o local no mapa...",
-                      style: kDescriptionFinish,
-                    ),
-                  );
                   Navigator.popAndPushNamed(context, MapaCadastro.id);
                 },
               ),
