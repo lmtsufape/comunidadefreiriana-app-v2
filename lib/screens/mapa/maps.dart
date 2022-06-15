@@ -28,7 +28,6 @@ class Maps extends StatefulWidget {
 class _MapsState extends State<Maps> {
   String googleApikey = "AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU";
   String location = "Procurar localidade";
-  String rua = "Localidade: ";
   CameraPosition? cameraPosition;
   List<LatLng> tappedPoints = [];
   late double lat;
@@ -60,23 +59,13 @@ class _MapsState extends State<Maps> {
                   target: LatLng(local.lat, local.long),
                   zoom: 17,
                 ),
+                zoomGesturesEnabled: true,
                 zoomControlsEnabled: true,
                 mapType: MapType.normal,
                 markers: local.makers,
                 onCameraMove: (CameraPosition cameraPositiona) {
                   cameraPosition = cameraPositiona; //when map is dragging
                 },
-                // onCameraIdle: () async {
-                //   List<Placemark> placemarks = await placemarkFromCoordinates(
-                //       cameraPosition!.target.latitude,
-                //       cameraPosition!.target.longitude);
-                //   setState(() {
-                //     //get place name from lat and lang
-                //     rua = placemarks.first.administrativeArea.toString() +
-                //         ", " +
-                //         placemarks.first.street.toString();
-                //   });
-                // },
               );
             })),
         Positioned(
@@ -138,28 +127,6 @@ class _MapsState extends State<Maps> {
                 ),
               )),
         ),
-        Positioned(
-            bottom: 100,
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Card(
-                child: Container(
-                  padding: const EdgeInsets.all(0),
-                  width: MediaQuery.of(context).size.width - 40,
-                  child: ListTile(
-                    leading: Image.asset(
-                      'lib/assets/images/icone_marker.png',
-                      width: 35,
-                    ),
-                    title: Text(
-                      rua,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                    dense: true,
-                  ),
-                ),
-              ),
-            ))
       ]),
       floatingActionButton: Center(
         child: Padding(

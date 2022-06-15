@@ -27,15 +27,14 @@ class _MapaCadastroState extends State<MapaCadastro> {
     setState(() {
       tappedPoints.add(latlng);
     });
-    if (local.lat != 0.0) {
-      makers.add(Marker(
-        markerId: const MarkerId('1'),
-        position: LatLng(local.lat, local.long),
-        icon: await BitmapDescriptor.fromAssetImage(
-            const ImageConfiguration(), 'lib/assets/images/icone_marker.png'),
-      ));
-      flag = 1;
-    }
+    makers.add(Marker(
+      markerId: const MarkerId(''),
+      position: LatLng(local.lat, local.long),
+      icon: await BitmapDescriptor.fromAssetImage(
+          const ImageConfiguration(), 'lib/assets/images/icone_marker.png'),
+    ));
+
+    flag = 1;
   }
 
   @override
@@ -68,9 +67,6 @@ class _MapaCadastroState extends State<MapaCadastro> {
                 zoomControlsEnabled: true,
                 mapType: MapType.normal,
                 markers: local.makers,
-                onCameraMove: (position) {
-                  if (kDebugMode) {}
-                },
               );
             })),
       ]),

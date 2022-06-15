@@ -34,26 +34,22 @@ class MapsController with ChangeNotifier {
     var long = double.parse(model.longitude!);
     assert(long is double);
     makers.add(Marker(
-      markerId: MarkerId(model.nome.toString()),
-      position: LatLng(lat, long),
-      icon: await BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(), 'lib/assets/images/icone_marker@3x.png'),
-      onTap: () => {
-        showModalBottomSheet<void>(
+        markerId: MarkerId(model.nome.toString()),
+        position: LatLng(lat, long),
+        icon: await BitmapDescriptor.fromAssetImage(const ImageConfiguration(),
+            'lib/assets/images/icone_marker@3x.png'),
+        onTap: () => showModalBottomSheet(
             context: appKey.currentState!.context,
-            builder: (context) {
-              return MapsDetalhes(
-                cidade: model.cidade.toString(),
-                endereco: model.endereco.toString(),
-                estado: model.estado.toString(),
-                info: model.info.toString(),
-                nome: model.nome.toString(),
-                site: model.site.toString(),
-                telefone: model.telefone.toString(),
-              );
-            })
-      },
-    ));
+            builder: (context) => MapsDetalhes(
+                  id: model.id,
+                  cidade: model.cidade.toString(),
+                  endereco: model.endereco.toString(),
+                  estado: model.estado.toString(),
+                  info: model.info.toString(),
+                  nome: model.nome.toString(),
+                  site: model.site.toString(),
+                  telefone: model.telefone.toString(),
+                ))));
 
     notifyListeners();
   }
@@ -63,8 +59,6 @@ class MapsController with ChangeNotifier {
     var model;
     final data = await MapsRepository().getInstitution();
 
-    // ignore: unused_local_variable
-    var instituicoes = [data];
     for (var i in data) {
       model = InstituicaoModel(
         id: i["id"],
