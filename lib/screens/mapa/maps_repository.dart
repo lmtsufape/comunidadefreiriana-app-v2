@@ -30,7 +30,7 @@ class MapsRepository extends ChangeNotifier {
 
       if (image.statusCode == 200) {
         Map<String, dynamic> map = image.data;
-        List<dynamic> data = map["data"]["images"];
+        List<dynamic> data = map["images"];
         return data;
       } else {
         print('primeiro null');

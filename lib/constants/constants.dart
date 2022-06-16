@@ -50,7 +50,7 @@ const TextStyle kTextIcons = TextStyle(
 const TextStyle kDescription = TextStyle(
   fontSize: 17,
   fontWeight: FontWeight.bold,
-  color: kDetailColor,
+  color: kTextColor,
 );
 
 const TextStyle kDescriptionFinish = TextStyle(
@@ -80,7 +80,7 @@ const TextStyle kHomeScreen2 = TextStyle(
   color: kTextColor,
 );
 const kSubtitleTextStyle = TextStyle(
-  fontSize: 18,
+  fontSize: 19,
   color: kPrimaryColor,
 );
 const TextStyle kText = TextStyle(

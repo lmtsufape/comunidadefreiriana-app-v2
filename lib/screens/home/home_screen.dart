@@ -53,11 +53,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: size.width * 0.8,
               ),
               const VerticalSpacerBox(size: SpacerSize.medium),
-              const Center(
-                child: Text(
-                  'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
-                  strutStyle: StrutStyle(fontSize: 17),
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Text(
+                    'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
+                    strutStyle: StrutStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
               ),
               const Spacer(),
               OutlinedButton.icon(
@@ -70,8 +75,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.popAndPushNamed(context, PauloFreire.id);
                 },
                 icon: const Icon(
-                  Icons.account_tree_rounded,
-                  size: 24.0,
+                  Icons.ads_click,
+                  size: 25.0,
                   color: Colors.white,
                 ),
                 label: const Text(
@@ -94,6 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(
                   Icons.location_on,
                   color: Colors.white,
+                  size: 25,
                 ),
                 label: const Text(
                   'Mapa',
@@ -116,6 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(
                   Icons.feed,
                   color: Colors.white,
+                  size: 25,
                 ),
                 label: const Text(
                   'Solicitar Cadastro',
@@ -137,6 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(
                   Icons.exit_to_app,
                   color: Colors.white,
+                  size: 25,
                 ),
                 label: const Text(
                   'Sair do Aplicativo',
@@ -195,6 +203,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         await launchUrl(lmts);
                       }
                     },
+                  ),
+                ],
+              ),
+              Row(
+                children: const [
+                  Spacer(),
+                  Icon(Icons.expand_less),
+                  Text(
+                    'Link para site do LMTS.',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue),
                   ),
                 ],
               )

@@ -57,7 +57,7 @@ class _PauloFreireState extends State<PauloFreire> {
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(30),
+            padding: const EdgeInsets.all(22.7),
             child: Column(
               children: [
                 Row(
@@ -333,6 +333,18 @@ class _PauloFreireState extends State<PauloFreire> {
                           await launchUrl(lmts);
                         }
                       },
+                    ),
+                  ],
+                ),
+                Row(
+                  children: const [
+                    Spacer(),
+                    Icon(Icons.expand_less),
+                    Text(
+                      'Link para site do LMTS.',
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue),
                     ),
                   ],
                 )

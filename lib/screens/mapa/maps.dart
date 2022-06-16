@@ -1,5 +1,7 @@
 // ignore_for_file: unused_import
 import 'package:comunidadefreiriana/components/error_dialog.dart';
+import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
+import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
 import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
@@ -37,6 +39,7 @@ class _MapsState extends State<Maps> {
   late double long;
   Set<Marker> makers = <Marker>{};
 
+  // ignore: non_constant_identifier_names
   StoreInstitution() async {
     var model;
     final data = await MapsRepository().getInstitution();
@@ -55,7 +58,7 @@ class _MapsState extends State<Maps> {
         email: i["email"],
         site: i["site"],
         coordenador: i["coordenador"],
-        datafundacao: i["dataFundacao"],
+        datafundacao: DateTime.parse(i["datafundacao"].toString()),
         latitude: i["latitude"],
         longitude: i["longitude"],
         info: i["info"],
@@ -70,10 +73,10 @@ class _MapsState extends State<Maps> {
     assert(lat is double);
     var long = double.parse(model.longitude!);
     assert(long is double);
-    final fotos = await MapsRepository().getImageInstitution(model.id);
-    for (var y in fotos) {
-      path = y["path"];
-    }
+    //final fotos = await MapsRepository().getImageInstitution(model.id);
+    // for (var y in fotos) {
+    //   path = y["path"];
+    // }
     makers.add(Marker(
         markerId: MarkerId(model.nome.toString()),
         position: LatLng(lat, long),
@@ -84,81 +87,105 @@ class _MapsState extends State<Maps> {
             builder: (BuildContext context) {
               // ignore: avoid_unnecessary_containers
               return Container(
-                child: Wrap(
-                  children: [
-                    Image.network(
-                      path,
-                      height: 250,
-                      width: MediaQuery.of(context).size.width,
-                      fit: BoxFit.cover,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 24, left: 24),
-                      child: Text(
-                        model.nome.toString(),
-                        style: const TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          'Endereço',
-                          style: kDescription,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 60, left: 24),
-                          child: Text(
-                            model.endereco.toString(),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Wrap(
+                    children: [
+                      // Image.network(
+                      //   path,
+                      //   height: 250,
+                      //   width: MediaQuery.of(context).size.width,
+                      //   fit: BoxFit.cover,
+                      // ),
+                      const Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const VerticalSpacerBox(size: SpacerSize.verylarge),
+                          Text(
+                            model.nome.toString(),
+                            style: const TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
+                          const VerticalSpacerBox(size: SpacerSize.verylarge),
+                        ],
+                      ),
+
+                      Row(
+                        children: [
+                          const HorizontalSpacerBox(size: SpacerSize.small),
+                          Text(
+                            'Endereço: ${model.endereco.toString()}',
+                            style: kDescription,
+                          ),
+                          const VerticalSpacerBox(size: SpacerSize.medium),
+                        ],
+                      ),
+
+                      Row(
+                        children: [
+                          const HorizontalSpacerBox(size: SpacerSize.small),
+                          const Icon(Icons.phone),
+                          const HorizontalSpacerBox(size: SpacerSize.small),
+                          Text(model.telefone.toString()),
+                          const VerticalSpacerBox(size: SpacerSize.medium),
+                        ],
+                      ),
+
+                      Row(
+                        children: [
+                          const HorizontalSpacerBox(size: SpacerSize.small),
+                          const Icon(Icons.email),
+                          const HorizontalSpacerBox(size: SpacerSize.small),
+                          Text(model.email.toString()),
+                        ],
+                      ),
+                      const Divider(color: kSecondaryTextColor),
+                      Row(
+                        children: [
+                          const HorizontalSpacerBox(size: SpacerSize.small),
+                          Text(
+                            'Data da realização: ${model.datafundacao.toString()}',
+                            style: kDescription,
+                          ),
+                          const VerticalSpacerBox(size: SpacerSize.medium),
+                        ],
+                      ),
+                      const VerticalSpacerBox(size: SpacerSize.medium),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const HorizontalSpacerBox(size: SpacerSize.small),
+                          Text(
+                            'Mais informações: ${model.info.toString()}',
+                            style: kDescription,
+                          ),
+                          const VerticalSpacerBox(size: SpacerSize.large),
+                        ],
+                      ),
+                      FloatingActionButton.extended(
+                        label: const Text(
+                          'Informações',
+                          style: kSubtitleTextStyle,
+                        ), // <-- Text
+                        backgroundColor: Colors.grey,
+                        icon: const Icon(
+                          // <-- Icon
+                          Icons.add,
+                          size: 24.0,
                         ),
-                        const Icon(Icons.phone),
-                        Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 60, left: 24),
-                            child: Text(
-                              model.telefone.toString(),
-                            )),
-                        const Icon(Icons.email),
-                        Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 60, left: 24),
-                            child: Text(
-                              model.email.toString(),
-                            )),
-                      ],
-                    ),
-                    const Divider(color: kSecondaryTextColor),
-                    Row(
-                      children: [
-                        const Text(
-                          'Data da realização',
-                          style: kDescription,
-                        ),
-                        Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 60, left: 24),
-                            child: Text(
-                              model.datafundacao.toString(),
-                            )),
-                        const Text(
-                          'Nome da realização',
-                          style: kDescription,
-                        ),
-                      ],
-                    ),
-                    const Text(
-                      'Mais informações',
-                      style: kDescription,
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(bottom: 60, left: 24),
-                        child: Text(
-                          model.info.toString(),
-                        )),
-                  ],
+                        onPressed: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return const Scaffold();
+                              });
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               );
             })));
@@ -221,7 +248,7 @@ class _MapsState extends State<Maps> {
                     mode: Mode.overlay,
                     types: [],
                     strictbounds: false,
-                    components: [Component(Component.country, 'np')],
+                    components: [Component(Component.country, 'br')],
                     //google_map_webservice package
                     onError: (err) {
                       if (kDebugMode) {
