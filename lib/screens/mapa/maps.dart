@@ -58,7 +58,7 @@ class _MapsState extends State<Maps> {
         email: i["email"],
         site: i["site"],
         coordenador: i["coordenador"],
-        datafundacao: DateTime.parse(i["datafundacao"].toString()),
+        datafundacao: DateTime.parse(i["datafundacao"]),
         latitude: i["latitude"],
         longitude: i["longitude"],
         info: i["info"],
@@ -73,10 +73,10 @@ class _MapsState extends State<Maps> {
     assert(lat is double);
     var long = double.parse(model.longitude!);
     assert(long is double);
-    //final fotos = await MapsRepository().getImageInstitution(model.id);
-    // for (var y in fotos) {
-    //   path = y["path"];
-    // }
+    final fotos = await MapsRepository().getImageInstitution(model.id);
+    for (var y in fotos) {
+      path = y["path"];
+    }
     makers.add(Marker(
         markerId: MarkerId(model.nome.toString()),
         position: LatLng(lat, long),
@@ -98,8 +98,7 @@ class _MapsState extends State<Maps> {
                       //   fit: BoxFit.cover,
                       // ),
                       const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Wrap(
                         children: [
                           const VerticalSpacerBox(size: SpacerSize.verylarge),
                           Text(
@@ -113,7 +112,7 @@ class _MapsState extends State<Maps> {
                         ],
                       ),
 
-                      Row(
+                      Wrap(
                         children: [
                           const HorizontalSpacerBox(size: SpacerSize.small),
                           Text(
@@ -124,7 +123,7 @@ class _MapsState extends State<Maps> {
                         ],
                       ),
 
-                      Row(
+                      Wrap(
                         children: [
                           const HorizontalSpacerBox(size: SpacerSize.small),
                           const Icon(Icons.phone),
@@ -134,7 +133,7 @@ class _MapsState extends State<Maps> {
                         ],
                       ),
 
-                      Row(
+                      Wrap(
                         children: [
                           const HorizontalSpacerBox(size: SpacerSize.small),
                           const Icon(Icons.email),
@@ -147,7 +146,7 @@ class _MapsState extends State<Maps> {
                         children: [
                           const HorizontalSpacerBox(size: SpacerSize.small),
                           Text(
-                            'Data da realização: ${model.datafundacao.toString()}',
+                            'Data da realização: ${model.datafundacao!.day}/${model.datafundacao!.month}/${model.datafundacao!.year}',
                             style: kDescription,
                           ),
                           const VerticalSpacerBox(size: SpacerSize.medium),
