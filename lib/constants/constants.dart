@@ -21,6 +21,7 @@ const double kTinyHeight = 4.0;
 const double kSmallHeight = 8.0;
 const double kMediumtHeight = 24.0;
 const double kLargeHeight = 42;
+const double kVeryLargeHeight = 90;
 
 // =======TEXT STYLE=========//
 const TextStyle kTextButtonTextStyle = TextStyle(
@@ -41,7 +42,7 @@ const TextStyle kTitleStyles = TextStyle(
 );
 
 const TextStyle kTextIcons = TextStyle(
-  fontSize: 18,
+  fontSize: 16,
   fontWeight: FontWeight.bold,
   color: Colors.black,
 );
@@ -70,13 +71,13 @@ const TextStyle kProfile = TextStyle(
 const TextStyle kHomeScreen3 = TextStyle(
   fontSize: 25,
   fontWeight: FontWeight.bold,
-  color: kDetailColor,
+  color: kTextColor,
 );
 
 const TextStyle kHomeScreen2 = TextStyle(
   fontSize: 18,
   fontWeight: FontWeight.bold,
-  color: kDetailColor,
+  color: kTextColor,
 );
 const kSubtitleTextStyle = TextStyle(
   fontSize: 18,
@@ -95,13 +96,14 @@ const TextStyle kProfileStyle = TextStyle(
 );
 
 const TextStyle kdrawerText = TextStyle(
-  fontSize: 15,
-  color: kDetailColor,
+  fontSize: 17,
+  color: kTextColor,
 );
 
 const TextStyle kdrawerText2 = TextStyle(
-  fontSize: 15,
-  color: kDetailColor2,
+  fontSize: 17,
+  color: kTextColor,
+  fontWeight: FontWeight.bold,
 );
 
 const TextStyle kTextDetails = TextStyle(

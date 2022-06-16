@@ -1,9 +1,7 @@
 // ignore_for_file: unused_import
 import 'package:comunidadefreiriana/components/error_dialog.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
-import 'package:comunidadefreiriana/screens/mapa/maps_detalhes.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
-import 'package:comunidadefreiriana/screens/mapa_cadastro/mapa_cadastro.dart';
 import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
@@ -30,6 +28,7 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
+  String path = '';
   String googleApikey = "AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU";
   String location = "Procurar localidade";
   CameraPosition? cameraPosition;
@@ -48,6 +47,7 @@ class _MapsState extends State<Maps> {
         nome: i["nome"],
         categoria: i["categoria"],
         pais: i["pais"],
+        endereco: i["endereco"],
         estado: i["estado"],
         cidade: i["cidade"],
         cep: i["cep"],
@@ -70,23 +70,28 @@ class _MapsState extends State<Maps> {
     assert(lat is double);
     var long = double.parse(model.longitude!);
     assert(long is double);
+    final fotos = await MapsRepository().getImageInstitution(model.id);
+    for (var y in fotos) {
+      path = y["path"];
+    }
     makers.add(Marker(
         markerId: MarkerId(model.nome.toString()),
         position: LatLng(lat, long),
-        icon: await BitmapDescriptor.fromAssetImage(const ImageConfiguration(),
-            'lib/assets/images/icone_marker@3x.png'),
+        infoWindow: InfoWindow(title: model.nome),
+        icon: BitmapDescriptor.defaultMarker,
         onTap: () => showModalBottomSheet(
             context: context,
             builder: (BuildContext context) {
+              // ignore: avoid_unnecessary_containers
               return Container(
                 child: Wrap(
                   children: [
-                    // Image.network(
-                    //   'path',
-                    //   height: 250,
-                    //   width: MediaQuery.of(context).size.width,
-                    //   fit: BoxFit.cover,
-                    // ),
+                    Image.network(
+                      path,
+                      height: 250,
+                      width: MediaQuery.of(context).size.width,
+                      fit: BoxFit.cover,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 24, left: 24),
                       child: Text(
@@ -144,7 +149,6 @@ class _MapsState extends State<Maps> {
                         ),
                       ],
                     ),
-
                     const Text(
                       'Mais informações',
                       style: kDescription,
@@ -165,15 +169,26 @@ class _MapsState extends State<Maps> {
     // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
     return Scaffold(
       appBar: AppBar(
-          titleTextStyle: const TextStyle(
-            fontSize: 21,
-            fontWeight: FontWeight.bold,
+        titleTextStyle: const TextStyle(
+          fontSize: 21,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+        title: const Text(
+          'Mapa',
+        ),
+        backgroundColor: Colors.blue,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
             color: Colors.white,
           ),
-          title: const Text(
-            'Mapa',
-          ),
-          backgroundColor: Colors.blue),
+          //onPressed:() => Navigator.pop(context, false),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Stack(children: <Widget>[
         ChangeNotifierProvider<MapsController>(
             create: (context) => MapsController(),
@@ -274,7 +289,7 @@ class _MapsState extends State<Maps> {
                   size: 24.0,
                 ),
                 onPressed: () {
-                  Navigator.popAndPushNamed(context, MapaCadastro.id);
+                  Navigator.popAndPushNamed(context, SolicitarCadastro.id);
                 },
               ),
             ],

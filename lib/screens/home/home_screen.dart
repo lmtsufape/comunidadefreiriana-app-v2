@@ -1,5 +1,4 @@
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
-import 'package:comunidadefreiriana/components/primary_button.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
@@ -39,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       HorizontalSpacerBox(size: SpacerSize.tiny),
                       Text(
-                        'PT-BR',
+                        'Português - BR',
                         style: TextStyle(
                             decoration: TextDecoration.underline,
                             color: Colors.blue),
@@ -48,68 +47,117 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+              const VerticalSpacerBox(size: SpacerSize.small),
               Image.asset(
                 'lib/assets/images/logo.png',
-                width: size.width * 0.7,
+                width: size.width * 0.8,
               ),
               const VerticalSpacerBox(size: SpacerSize.medium),
               const Center(
                 child: Text(
                   'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
-                  strutStyle: StrutStyle(fontSize: 20),
+                  strutStyle: StrutStyle(fontSize: 17),
                 ),
               ),
               const Spacer(),
-              PrimaryButton(
-                  icon: const Icon(
-                    Icons.flag,
-                    color: Colors.white,
-                  ),
-                  color: kHomeButtonColor1,
-                  text: 'Conheça Paulo Freire',
-                  onPressed: () {
-                    Navigator.pushNamed(context, PauloFreire.id);
-                  }),
-              const SizedBox(
-                height: 10,
+              OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  fixedSize: const Size(1500, 50),
+                  alignment: const AlignmentDirectional(-1, 0),
+                  backgroundColor: kHomeButtonColor1,
+                ),
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, PauloFreire.id);
+                },
+                icon: const Icon(
+                  Icons.account_tree_rounded,
+                  size: 24.0,
+                  color: Colors.white,
+                ),
+                label: const Text(
+                  'Conheça Paulo Freire',
+                  style: kSubtitleTextStyle,
+                ), // <--,
               ),
-              PrimaryButton(
-                  icon: const Icon(
-                    Icons.map_outlined,
-                    color: Colors.white,
-                  ),
-                  color: kHomeButtonColor2,
-                  text: 'Mapa',
-                  onPressed: () {
-                    Navigator.pushNamed(context, Maps.id);
-                  }),
               const SizedBox(
-                height: 10,
+                height: 7,
               ),
-              PrimaryButton(
-                  icon: const Icon(
-                    Icons.feed,
-                    color: Colors.white,
-                  ),
-                  color: kHomeButtonColor3,
-                  text: 'Solicitar Cadastro',
-                  onPressed: () {
-                    Navigator.pushNamed(context, SolicitarCadastro.id);
-                  }),
+              OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  fixedSize: const Size(1500, 50),
+                  alignment: const AlignmentDirectional(-1, 0),
+                  backgroundColor: kHomeButtonColor2,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, Maps.id);
+                },
+                icon: const Icon(
+                  Icons.location_on,
+                  color: Colors.white,
+                ),
+                label: const Text(
+                  'Mapa',
+                  style: kSubtitleTextStyle,
+                ),
+                // <--,
+              ),
               const SizedBox(
-                height: 10,
+                height: 7,
               ),
-              PrimaryButton(
-                  icon: const Icon(
-                    Icons.exit_to_app,
-                    color: Colors.white,
-                  ),
-                  color: kHomeButtonColor4,
-                  text: 'Sair do Aplicativo',
-                  onPressed: () {
-                    SystemNavigator.pop();
-                  }),
+              OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  fixedSize: const Size(1500, 50),
+                  alignment: const AlignmentDirectional(-1, 0),
+                  backgroundColor: kHomeButtonColor3,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, SolicitarCadastro.id);
+                },
+                icon: const Icon(
+                  Icons.feed,
+                  color: Colors.white,
+                ),
+                label: const Text(
+                  'Solicitar Cadastro',
+                  style: kSubtitleTextStyle,
+                ), // <--,
+              ),
+              const SizedBox(
+                height: 7,
+              ),
+              OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  fixedSize: const Size(1500, 50),
+                  alignment: const AlignmentDirectional(-1, 0),
+                  backgroundColor: kHomeButtonColor4,
+                ),
+                onPressed: () {
+                  SystemNavigator.pop();
+                },
+                icon: const Icon(
+                  Icons.exit_to_app,
+                  color: Colors.white,
+                ),
+                label: const Text(
+                  'Sair do Aplicativo',
+                  style: kSubtitleTextStyle,
+                ), // <--,
+              ),
               const Spacer(),
+              Row(
+                children: const [
+                  HorizontalSpacerBox(size: SpacerSize.large),
+                  Text(
+                    'Realização:',
+                    style: kTextIcons,
+                  ),
+                  HorizontalSpacerBox(size: SpacerSize.verylarge),
+                  Text(
+                    'Desenvolvido por:',
+                    style: kTextIcons,
+                  ),
+                ],
+              ),
               Row(
                 children: [
                   Row(

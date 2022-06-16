@@ -182,7 +182,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     AuthFormField(
-                        label: 'Exemplo,99',
+                        label: 'Rua Fulano de Tal, 99',
                         isPassword: false,
                         inputType: TextInputType.name,
                         onChanged: (String value) {
@@ -226,7 +226,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                     Row(
                       children: const [
                         Text(
-                          'Email*',
+                          'E-mail*',
                           style: kCadastro,
                         ),
                       ],
@@ -260,7 +260,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                     Row(
                       children: const [
                         Text(
-                          'Coordenador*',
+                          'Coordenador(a)*',
                           style: kCadastro,
                         ),
                       ],
@@ -339,46 +339,44 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                     )),
                     const Divider(color: kSecondaryTextColor),
                     const VerticalSpacerBox(size: SpacerSize.medium),
-                    const Center(
-                        child: Text(
-                      'Mídia',
-                      style: kHomeScreen3,
-                    )),
-                    const VerticalSpacerBox(size: SpacerSize.medium),
-                    //const VerticalSpacerBox(size: SpacerSize.large),
-
+                    Row(
+                      children: const [
+                        Text(
+                          'Adicionar Imagem',
+                          style: kHomeScreen2,
+                        ),
+                      ],
+                    ),
                     const VerticalSpacerBox(size: SpacerSize.medium),
                     Center(
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            FloatingActionButton.extended(
-                              heroTag: 1,
-                              label: const Text('Galeria'), // <-- Text
-                              backgroundColor: Colors.blue,
-                              icon: const Icon(
-                                // <-- Icon
-                                Icons.photo_library,
-                                size: 24.0,
-                              ),
-                              onPressed: () {
-                                _controller.selectImage();
-                              },
-                            ),
+                            OutlinedButton.icon(
+                                onPressed: () {
+                                  _controller.selectImage();
+                                },
+                                style: OutlinedButton.styleFrom(
+                                    backgroundColor: Colors.grey),
+                                icon: const Icon(Icons.photo_library,
+                                    size: 24.0, color: Colors.white),
+                                label: const Text(
+                                  'Galeria',
+                                  style: kSubtitleTextStyle,
+                                )),
                             const HorizontalSpacerBox(size: SpacerSize.medium),
-                            FloatingActionButton.extended(
-                              heroTag: 2,
-                              label: const Text('Câmera'), // <-- Text
-                              backgroundColor: Colors.blue,
-                              icon: const Icon(
-                                // <-- Icon
-                                Icons.camera,
-                                size: 24.0,
-                              ),
-                              onPressed: () {
-                                _controller.selectImageCam();
-                              },
-                            ),
+                            OutlinedButton.icon(
+                                onPressed: () {
+                                  _controller.selectImageCam();
+                                },
+                                style: OutlinedButton.styleFrom(
+                                    backgroundColor: Colors.grey),
+                                icon: const Icon(Icons.camera,
+                                    size: 24.0, color: Colors.white),
+                                label: const Text(
+                                  'Câmera',
+                                  style: kSubtitleTextStyle,
+                                )),
                           ]),
                     ),
                     const VerticalSpacerBox(size: SpacerSize.large),
@@ -391,23 +389,22 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                               width: size.width * 0.7,
                             ),
                           )
-                        : const Text("No image selected",
+                        : const Text("Imagem não selecionada.",
                             style: TextStyle(
                                 decoration: TextDecoration.underline)),
                     const VerticalSpacerBox(size: SpacerSize.medium),
-                    FloatingActionButton.extended(
-                      heroTag: 3,
-                      label: const Text('Delete'), // <-- Text
-                      backgroundColor: Colors.blue,
-                      icon: const Icon(
-                        // <-- Icon
-                        Icons.delete,
-                        size: 24.0,
-                      ),
-                      onPressed: () {
-                        _controller.clearImg();
-                      },
-                    ),
+                    OutlinedButton.icon(
+                        onPressed: () {
+                          _controller.clearImg();
+                        },
+                        style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.grey),
+                        icon: const Icon(Icons.delete,
+                            size: 24.0, color: Colors.white),
+                        label: const Text(
+                          'Excluir',
+                          style: kSubtitleTextStyle,
+                        )),
                     const VerticalSpacerBox(size: SpacerSize.small),
 
                     const Divider(color: kSecondaryTextColor),
@@ -415,7 +412,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
 
                     PrimaryButtonCadastro(
                         icon: const Icon(Icons.access_alarm_rounded),
-                        text: 'Efetuar Cadastro',
+                        text: 'Solicitar Cadastro',
                         onPressed: () {
                           _controller.validateAdress();
                           if (_controller.validateFields() &&
@@ -438,7 +435,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                                         'Não foi possível identificar esse endereço'));
                           }
                         },
-                        color: Colors.blue),
+                        color: Colors.green),
                   ])),
                 ),
               );

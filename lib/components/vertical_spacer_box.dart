@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 
-enum SpacerSize {
-  tiny,
-  small,
-  medium,
-  large,
-}
+enum SpacerSize { tiny, small, medium, large, verylarge }
 
 class VerticalSpacerBox extends StatelessWidget {
   final SpacerSize size;
@@ -20,6 +15,8 @@ class VerticalSpacerBox extends StatelessWidget {
         return kMediumtHeight;
       case SpacerSize.large:
         return kLargeHeight;
+      case SpacerSize.verylarge:
+        return kVeryLargeHeight;
       default:
         return kMediumtHeight;
     }

@@ -35,18 +35,29 @@ class _PauloFreireState extends State<PauloFreire> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-              titleTextStyle: const TextStyle(
-                fontSize: 21,
-                fontWeight: FontWeight.bold,
+            titleTextStyle: const TextStyle(
+              fontSize: 21,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            title: const Text(
+              'Conheça Paulo Freire',
+            ),
+            elevation: 0.0,
+            backgroundColor: Colors.white,
+            leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back,
                 color: Colors.black,
               ),
-              title: const Text(
-                'Conheça Paulo Freire',
-              ),
-              elevation: 0.0,
-              backgroundColor: Colors.white),
+              //onPressed:() => Navigator.pop(context, false),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
           body: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(30),
             child: Column(
               children: [
                 Row(
@@ -58,16 +69,21 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 180,
-                          height: 180,
+                          width: 150,
+                          height: 150,
                           decoration: const ShapeDecoration(
                               shape: RoundedRectangleBorder(),
                               color: Colors.white),
                           child: Center(
-                              child: Image.asset(
-                            'lib/assets/images/paulo_freire.jpg',
-                            width: 190,
-                            height: 190,
+                              child: ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(25)),
+                            child: Image.asset(
+                              'lib/assets/images/paulo_freire.jpg',
+                              width: 170,
+                              height: 170,
+                              semanticLabel: 'Conheça Paulo Freire',
+                            ),
                           )),
                         )),
                     const Spacer(),
@@ -78,16 +94,17 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 180,
-                          height: 180,
+                          width: 150,
+                          height: 150,
                           decoration: const ShapeDecoration(
                               shape: RoundedRectangleBorder(),
                               color: Colors.white),
-                          child: const Center(
-                            child: Icon(
-                              Icons.history,
-                              color: Colors.red,
-                              size: 100,
+                          child: Center(
+                            child: Image.asset(
+                              'lib/assets/images/icone_linha_do_tempo.jpg',
+                              width: 90,
+                              height: 90,
+                              semanticLabel: 'Linha do Tempo',
                             ),
                           ),
                         )),
@@ -129,16 +146,16 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 180,
-                          height: 180,
+                          width: 150,
+                          height: 150,
                           decoration: const ShapeDecoration(
                               shape: RoundedRectangleBorder(),
                               color: Colors.white),
-                          child: const Center(
-                            child: Icon(
-                              Icons.video_library,
-                              color: Colors.red,
-                              size: 100,
+                          child: Center(
+                            child: Image.asset(
+                              'lib/assets/images/icone_foto_video.jpg',
+                              width: 90,
+                              height: 90,
                             ),
                           ),
                         )),
@@ -150,16 +167,16 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 180,
-                          height: 180,
+                          width: 150,
+                          height: 150,
                           decoration: const ShapeDecoration(
                               shape: RoundedRectangleBorder(),
                               color: Colors.white),
-                          child: const Center(
-                            child: Icon(
-                              Icons.library_books,
-                              color: Colors.red,
-                              size: 100,
+                          child: Center(
+                            child: Image.asset(
+                              'lib/assets/images/icone_livro.jpg',
+                              width: 80,
+                              height: 80,
                             ),
                           ),
                         )),
@@ -201,16 +218,16 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 180,
-                          height: 180,
+                          width: 150,
+                          height: 150,
                           decoration: const ShapeDecoration(
                               shape: RoundedRectangleBorder(),
                               color: Colors.white),
-                          child: const Center(
-                            child: Icon(
-                              Icons.sort_by_alpha,
-                              color: Colors.red,
-                              size: 100,
+                          child: Center(
+                            child: Image.asset(
+                              'lib/assets/images/icone_az.jpg',
+                              width: 90,
+                              height: 90,
                             ),
                           ),
                         )),
@@ -222,8 +239,8 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 180,
-                          height: 180,
+                          width: 150,
+                          height: 150,
                           decoration: const ShapeDecoration(
                               shape: RoundedRectangleBorder(),
                               color: Colors.white),
@@ -263,7 +280,22 @@ class _PauloFreireState extends State<PauloFreire> {
                     ),
                   ],
                 ),
-                const Spacer(),
+                const VerticalSpacerBox(size: SpacerSize.large),
+                Row(
+                  children: const [
+                    HorizontalSpacerBox(size: SpacerSize.large),
+                    Text(
+                      'Realização:',
+                      style: kTextIcons,
+                    ),
+                    HorizontalSpacerBox(size: SpacerSize.verylarge),
+                    Text(
+                      'Desenvolvido por:',
+                      style: kTextIcons,
+                    ),
+                  ],
+                ),
+                const VerticalSpacerBox(size: SpacerSize.small),
                 Row(
                   children: [
                     Row(

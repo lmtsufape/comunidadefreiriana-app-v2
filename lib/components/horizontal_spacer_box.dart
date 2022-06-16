@@ -15,6 +15,8 @@ class HorizontalSpacerBox extends StatelessWidget {
         return kMediumtHeight;
       case SpacerSize.large:
         return kLargeHeight;
+      case SpacerSize.verylarge:
+        return kVeryLargeHeight;
       default:
         return kMediumtHeight;
     }
