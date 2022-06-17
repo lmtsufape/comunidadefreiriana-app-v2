@@ -26,7 +26,6 @@ class LocationService {
     var json = convert.jsonDecode(response.body);
     var results = json['result'] as Map<String, dynamic>;
 
-    print(results);
     return results;
   }
 
@@ -47,8 +46,6 @@ class LocationService {
       'polyline_decoded': PolylinePoints()
           .decodePolyline(json['routes'][0]['overview_polyline']['points']),
     };
-
-    print(results);
 
     return results;
   }

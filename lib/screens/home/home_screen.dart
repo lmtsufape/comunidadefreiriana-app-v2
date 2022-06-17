@@ -50,17 +50,16 @@ class _HomeScreenState extends State<HomeScreen> {
               const VerticalSpacerBox(size: SpacerSize.small),
               Image.asset(
                 'lib/assets/images/logo.png',
-                width: size.width * 0.8,
+                width: size.width * 0.9,
               ),
-              const VerticalSpacerBox(size: SpacerSize.medium),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              const VerticalSpacerBox(size: SpacerSize.small),
+              Wrap(
                 children: const [
                   Text(
                     'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
-                    strutStyle: StrutStyle(
-                      fontSize: 15,
-                    ),
+                    strutStyle:
+                        StrutStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),

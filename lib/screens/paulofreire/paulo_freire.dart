@@ -1,6 +1,7 @@
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -57,11 +58,13 @@ class _PauloFreireState extends State<PauloFreire> {
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(22.7),
+            padding: const EdgeInsets.all(17),
             child: Column(
               children: [
+                const VerticalSpacerBox(size: SpacerSize.small),
                 Row(
                   children: [
+                    const HorizontalSpacerBox(size: SpacerSize.medium),
                     InkWell(
                         onTap: () async {
                           if (await canLaunchUrl(PauloFreire)) {
@@ -69,76 +72,79 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 150,
-                          height: 150,
-                          decoration: const ShapeDecoration(
-                              shape: RoundedRectangleBorder(),
-                              color: Colors.white),
-                          child: Center(
-                              child: ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(25)),
-                            child: Image.asset(
-                              'lib/assets/images/paulo_freire.jpg',
-                              width: 170,
-                              height: 170,
-                              semanticLabel: 'Conheça Paulo Freire',
-                            ),
-                          )),
+                          width: 180,
+                          height: 180,
+                          decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          child: Stack(
+                            children: [
+                              Center(
+                                child: Image.asset(
+                                  'lib/assets/images/paulo_freire.jpg',
+                                  width: 180,
+                                  height: 180,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.bottomCenter,
+                                child: const Text(
+                                  'Conheça Paulo Freire',
+                                  style: kTextIcons,
+                                ),
+                              ),
+                            ],
+                          ),
                         )),
-                    const Spacer(),
+                    const HorizontalSpacerBox(size: SpacerSize.small),
                     InkWell(
                         onTap: () async {
                           if (await canLaunchUrl(LinhaTempo)) {
                             await launchUrl(LinhaTempo);
                           }
                         },
-                        child: Container(
-                          width: 150,
-                          height: 150,
-                          decoration: const ShapeDecoration(
-                              shape: RoundedRectangleBorder(),
-                              color: Colors.white),
-                          child: Center(
-                            child: Image.asset(
-                              'lib/assets/images/icone_linha_do_tempo.jpg',
-                              width: 90,
-                              height: 90,
-                              semanticLabel: 'Linha do Tempo',
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 180,
+                              height: 180,
+                              decoration: const BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              child: Wrap(
+                                children: [
+                                  Center(
+                                    child: Image.asset(
+                                      'lib/assets/images/icone_linha_do_tempo.jpg',
+                                      width: 140,
+                                      height: 140,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Center(
+                                        child: Text(
+                                          'Linha do Tempo',
+                                          style: kTextIcons,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
+                          ],
                         )),
                   ],
                 ),
-                const Spacer(),
+                const VerticalSpacerBox(size: SpacerSize.small),
                 Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        HorizontalSpacerBox(size: SpacerSize.medium),
-                        Text(
-                          'Conheça Paulo Freire',
-                          style: kTextIcons,
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'Linha do Tempo',
-                          style: kTextIcons,
-                        ),
-                        HorizontalSpacerBox(size: SpacerSize.medium),
-                      ],
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Row(
-                  children: [
+                    const HorizontalSpacerBox(size: SpacerSize.medium),
                     InkWell(
                         onTap: () async {
                           if (await canLaunchUrl(Acervo)) {
@@ -146,20 +152,38 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 150,
-                          height: 150,
-                          decoration: const ShapeDecoration(
-                              shape: RoundedRectangleBorder(),
-                              color: Colors.white),
+                          width: 180,
+                          height: 180,
+                          decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
                           child: Center(
-                            child: Image.asset(
-                              'lib/assets/images/icone_foto_video.jpg',
-                              width: 90,
-                              height: 90,
+                            child: Wrap(
+                              children: [
+                                Center(
+                                  child: Image.asset(
+                                    'lib/assets/images/icone_foto_video.jpg',
+                                    width: 130,
+                                    height: 130,
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Center(
+                                      child: Text(
+                                        'Acervo Digital',
+                                        style: kTextIcons,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         )),
-                    const Spacer(),
+                    const HorizontalSpacerBox(size: SpacerSize.small),
                     InkWell(
                         onTap: () async {
                           if (await canLaunchUrl(Biblioteca)) {
@@ -167,50 +191,42 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 150,
-                          height: 150,
-                          decoration: const ShapeDecoration(
-                              shape: RoundedRectangleBorder(),
-                              color: Colors.white),
+                          width: 180,
+                          height: 180,
+                          decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
                           child: Center(
-                            child: Image.asset(
-                              'lib/assets/images/icone_livro.jpg',
-                              width: 80,
-                              height: 80,
+                            child: Wrap(
+                              children: [
+                                const Center(
+                                    child: Icon(
+                                  Icons.menu_book,
+                                  color: Colors.red,
+                                  size: 110,
+                                )),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Center(
+                                      child: Text(
+                                        'Biblioteca',
+                                        style: kTextIcons,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         )),
                   ],
                 ),
-                const Spacer(),
+                const VerticalSpacerBox(size: SpacerSize.small),
                 Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        HorizontalSpacerBox(size: SpacerSize.large),
-                        Text(
-                          'Acervo Digital',
-                          style: kTextIcons,
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'Biblioteca',
-                          style: kTextIcons,
-                        ),
-                        HorizontalSpacerBox(size: SpacerSize.large),
-                      ],
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Row(
-                  children: [
+                    const HorizontalSpacerBox(size: SpacerSize.medium),
                     InkWell(
                         onTap: () async {
                           if (await canLaunchUrl(Glossario)) {
@@ -218,20 +234,38 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 150,
-                          height: 150,
-                          decoration: const ShapeDecoration(
-                              shape: RoundedRectangleBorder(),
-                              color: Colors.white),
+                          width: 180,
+                          height: 180,
+                          decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
                           child: Center(
-                            child: Image.asset(
-                              'lib/assets/images/icone_az.jpg',
-                              width: 90,
-                              height: 90,
+                            child: Wrap(
+                              children: [
+                                Center(
+                                  child: Image.asset(
+                                    'lib/assets/images/icone_az.jpg',
+                                    width: 120,
+                                    height: 120,
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Center(
+                                      child: Text(
+                                        'Glossário',
+                                        style: kTextIcons,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         )),
-                    const Spacer(),
+                    const HorizontalSpacerBox(size: SpacerSize.small),
                     InkWell(
                         onTap: () async {
                           if (await canLaunchUrl(Memorial)) {
@@ -239,48 +273,34 @@ class _PauloFreireState extends State<PauloFreire> {
                           }
                         },
                         child: Container(
-                          width: 150,
-                          height: 150,
-                          decoration: const ShapeDecoration(
-                              shape: RoundedRectangleBorder(),
-                              color: Colors.white),
-                          child: const Center(
-                            child: Icon(
-                              Icons.call,
-                              color: Colors.red,
-                              size: 100,
+                          width: 180,
+                          height: 180,
+                          decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          child: Center(
+                            child: Wrap(
+                              children: const [
+                                Center(
+                                    child: Icon(
+                                  Icons.call,
+                                  color: Colors.red,
+                                  size: 110,
+                                )),
+                                Center(
+                                  child: Text(
+                                    'Contato',
+                                    style: kTextIcons,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         )),
                   ],
                 ),
-                const Spacer(),
-                Row(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        HorizontalSpacerBox(size: SpacerSize.large),
-                        Text(
-                          'Glossário',
-                          style: kTextIcons,
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'Contato',
-                          style: kTextIcons,
-                        ),
-                        HorizontalSpacerBox(size: SpacerSize.large),
-                      ],
-                    ),
-                  ],
-                ),
-                const VerticalSpacerBox(size: SpacerSize.large),
+                const VerticalSpacerBox(size: SpacerSize.medium),
                 Row(
                   children: const [
                     HorizontalSpacerBox(size: SpacerSize.large),
@@ -295,29 +315,30 @@ class _PauloFreireState extends State<PauloFreire> {
                     ),
                   ],
                 ),
-                const VerticalSpacerBox(size: SpacerSize.small),
+                const VerticalSpacerBox(size: SpacerSize.tiny),
                 Row(
                   children: [
+                    const HorizontalSpacerBox(size: SpacerSize.medium),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Image.asset(
                           'lib/assets/images/logo_ipf.png',
-                          width: size.width * 0.3,
+                          width: size.width * 0.26,
                         ),
                       ],
                     ),
-                    const Spacer(),
+                    const HorizontalSpacerBox(size: SpacerSize.large),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
                           'lib/assets/images/logo_ufape.png',
-                          width: size.width * 0.1,
+                          width: size.width * 0.08,
                         ),
                       ],
                     ),
-                    const Spacer(),
+                    const HorizontalSpacerBox(size: SpacerSize.medium),
                     InkWell(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -336,18 +357,6 @@ class _PauloFreireState extends State<PauloFreire> {
                     ),
                   ],
                 ),
-                Row(
-                  children: const [
-                    Spacer(),
-                    Icon(Icons.expand_less),
-                    Text(
-                      'Link para site do LMTS.',
-                      style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Colors.blue),
-                    ),
-                  ],
-                )
               ],
             ),
           )),

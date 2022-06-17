@@ -37,7 +37,6 @@ class App extends StatelessWidget {
         PauloFreire.id: (context) => const PauloFreire(),
         SolicitarCadastro.id: (context) => const SolicitarCadastro(),
         Maps.id: (context) => const Maps(),
-       
       },
     );
   }

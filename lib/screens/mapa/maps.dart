@@ -1,4 +1,5 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, prefer_typing_uninitialized_variables, unnecessary_type_check
+import 'dart:io';
 import 'package:comunidadefreiriana/components/error_dialog.dart';
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
@@ -18,6 +19,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
+import 'package:comunidadefreiriana/components/custom_date_formater.dart';
 
 final appKey = GlobalKey();
 
@@ -46,22 +48,22 @@ class _MapsState extends State<Maps> {
 
     for (var i in data) {
       model = InstituicaoModel(
-        id: i["id"],
-        nome: i["nome"],
-        categoria: i["categoria"],
-        pais: i["pais"],
-        endereco: i["endereco"],
-        estado: i["estado"],
-        cidade: i["cidade"],
-        cep: i["cep"],
-        telefone: i["telefone"],
-        email: i["email"],
-        site: i["site"],
-        coordenador: i["coordenador"],
+        id: i["id"] ?? 'Não consta',
+        nome: i["nome"] ?? 'Não consta',
+        categoria: i["categoria"] ?? 'Não consta',
+        pais: i["pais"] ?? 'Não consta',
+        endereco: i["endereco"] ?? 'Não consta',
+        estado: i["estado"] ?? 'Não consta',
+        cidade: i["cidade"] ?? 'Não consta',
+        cep: i["cep"] ?? 'Não consta',
+        telefone: i["telefone"] ?? 'Não consta',
+        email: i["email"] ?? 'Não consta',
+        site: i["site"] ?? 'Não consta',
+        coordenador: i["coordenador"] ?? 'Não consta',
         datafundacao: DateTime.parse(i["datafundacao"]),
-        latitude: i["latitude"],
-        longitude: i["longitude"],
-        info: i["info"],
+        latitude: i["latitude"] ?? 'Não consta',
+        longitude: i["longitude"] ?? 'Não consta',
+        info: i["info"] ?? 'Não consta',
       );
       loadInstitution(model);
     }
@@ -73,10 +75,7 @@ class _MapsState extends State<Maps> {
     assert(lat is double);
     var long = double.parse(model.longitude!);
     assert(long is double);
-    final fotos = await MapsRepository().getImageInstitution(model.id);
-    for (var y in fotos) {
-      path = y["path"];
-    }
+
     makers.add(Marker(
         markerId: MarkerId(model.nome.toString()),
         position: LatLng(lat, long),
@@ -87,20 +86,17 @@ class _MapsState extends State<Maps> {
             builder: (BuildContext context) {
               // ignore: avoid_unnecessary_containers
               return Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Wrap(
-                    children: [
-                      // Image.network(
-                      //   path,
-                      //   height: 250,
-                      //   width: MediaQuery.of(context).size.width,
-                      //   fit: BoxFit.cover,
-                      // ),
-                      const Spacer(),
-                      Wrap(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(12))),
+                child: Wrap(
+                  children: [
+                    Center(
+                      child: Wrap(
                         children: [
-                          const VerticalSpacerBox(size: SpacerSize.verylarge),
+                          const VerticalSpacerBox(size: SpacerSize.medium),
                           Text(
                             model.nome.toString(),
                             style: const TextStyle(
@@ -108,83 +104,209 @@ class _MapsState extends State<Maps> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          const VerticalSpacerBox(size: SpacerSize.verylarge),
-                        ],
-                      ),
-
-                      Wrap(
-                        children: [
-                          const HorizontalSpacerBox(size: SpacerSize.small),
-                          Text(
-                            'Endereço: ${model.endereco.toString()}',
-                            style: kDescription,
-                          ),
-                          const VerticalSpacerBox(size: SpacerSize.medium),
-                        ],
-                      ),
-
-                      Wrap(
-                        children: [
-                          const HorizontalSpacerBox(size: SpacerSize.small),
-                          const Icon(Icons.phone),
-                          const HorizontalSpacerBox(size: SpacerSize.small),
-                          Text(model.telefone.toString()),
-                          const VerticalSpacerBox(size: SpacerSize.medium),
-                        ],
-                      ),
-
-                      Wrap(
-                        children: [
-                          const HorizontalSpacerBox(size: SpacerSize.small),
-                          const Icon(Icons.email),
-                          const HorizontalSpacerBox(size: SpacerSize.small),
-                          Text(model.email.toString()),
-                        ],
-                      ),
-                      const Divider(color: kSecondaryTextColor),
-                      Row(
-                        children: [
-                          const HorizontalSpacerBox(size: SpacerSize.small),
-                          Text(
-                            'Data da realização: ${model.datafundacao!.day}/${model.datafundacao!.month}/${model.datafundacao!.year}',
-                            style: kDescription,
-                          ),
-                          const VerticalSpacerBox(size: SpacerSize.medium),
-                        ],
-                      ),
-                      const VerticalSpacerBox(size: SpacerSize.medium),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const HorizontalSpacerBox(size: SpacerSize.small),
-                          Text(
-                            'Mais informações: ${model.info.toString()}',
-                            style: kDescription,
-                          ),
                           const VerticalSpacerBox(size: SpacerSize.large),
                         ],
                       ),
-                      FloatingActionButton.extended(
-                        label: const Text(
-                          'Informações',
-                          style: kSubtitleTextStyle,
-                        ), // <-- Text
-                        backgroundColor: Colors.grey,
-                        icon: const Icon(
-                          // <-- Icon
-                          Icons.add,
-                          size: 24.0,
+                    ),
+                    Wrap(
+                      children: [
+                        Wrap(
+                          children: [
+                            const Icon(
+                              Icons.location_on,
+                              color: Colors.red,
+                              size: 20,
+                            ),
+                            const HorizontalSpacerBox(size: SpacerSize.small),
+                            Text(
+                              model.endereco.toString(),
+                              style: const TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.red),
+                            ),
+                          ],
                         ),
-                        onPressed: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return const Scaffold();
-                              });
-                        },
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                    const VerticalSpacerBox(size: SpacerSize.medium),
+                    Row(
+                      children: [
+                        const Spacer(),
+                        OutlinedButton.icon(
+                          style: OutlinedButton.styleFrom(
+                            fixedSize: const Size(130, 30),
+                            alignment: const AlignmentDirectional(-1, 0),
+                            backgroundColor: Colors.blue,
+                          ),
+                          label: const Text(
+                            'Outras info',
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ), // <-- Text
+
+                          icon: const Icon(
+                            // <-- Icon
+                            Icons.arrow_forward_ios,
+                            size: 15.0,
+                            color: Colors.white,
+                          ),
+
+                          onPressed: () async {
+                            final fotos = await MapsRepository()
+                                .getImageInstitution(model.id);
+                            for (var y in fotos) {
+                              path = y["path"];
+                            }
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Scaffold(
+                                      body: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 24),
+                                    decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(12))),
+                                    child: Wrap(
+                                      children: [
+                                        const Spacer(),
+                                        Center(
+                                          child: Text(
+                                            model.nome.toString(),
+                                            style: const TextStyle(
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        Center(
+                                          child: Text(
+                                            '(${model.categoria})',
+                                            style: const TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                        const VerticalSpacerBox(
+                                            size: SpacerSize.large),
+                                        Wrap(
+                                          children: [
+                                            const HorizontalSpacerBox(
+                                                size: SpacerSize.small),
+                                            const Text(
+                                              'Telefone',
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black),
+                                            ),
+                                            Row(
+                                              children: [
+                                                const HorizontalSpacerBox(
+                                                    size: SpacerSize.small),
+                                                Text(
+                                                  '${model.telefone}',
+                                                  style: const TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.grey),
+                                                ),
+                                              ],
+                                            ),
+                                            const VerticalSpacerBox(
+                                                size: SpacerSize.large),
+                                          ],
+                                        ),
+                                        Wrap(
+                                          children: [
+                                            const HorizontalSpacerBox(
+                                                size: SpacerSize.small),
+                                            const Text(
+                                              'E-mail',
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black),
+                                            ),
+                                            Row(
+                                              children: [
+                                                const HorizontalSpacerBox(
+                                                    size: SpacerSize.small),
+                                                Text(
+                                                  '${model.email}',
+                                                  style: const TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.grey),
+                                                ),
+                                              ],
+                                            ),
+                                            const VerticalSpacerBox(
+                                                size: SpacerSize.large),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: const [
+                                            HorizontalSpacerBox(
+                                                size: SpacerSize.small),
+                                            Text(
+                                              'Site',
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black),
+                                            ),
+                                          ],
+                                        ),
+                                        Wrap(
+                                          children: [
+                                            const HorizontalSpacerBox(
+                                                size: SpacerSize.small),
+                                            Text(
+                                              '${model.site}',
+                                              style: const TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.grey),
+                                            ),
+                                          ],
+                                        ),
+                                        const VerticalSpacerBox(
+                                            size: SpacerSize.large),
+                                        Wrap(
+                                          children: [
+                                            const HorizontalSpacerBox(
+                                                size: SpacerSize.small),
+                                            const Text(
+                                              'Mais Informações',
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black),
+                                            ),
+                                            Row(
+                                              children: [
+                                                const HorizontalSpacerBox(
+                                                    size: SpacerSize.small),
+                                                Text(
+                                                  '${model.info}',
+                                                  style: const TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.grey),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ));
+                                });
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               );
             })));
@@ -226,7 +348,7 @@ class _MapsState extends State<Maps> {
                 onMapCreated: local.onMapCreated,
                 initialCameraPosition: CameraPosition(
                   target: LatLng(local.lat, local.long),
-                  zoom: 17,
+                  zoom: 10,
                 ),
                 zoomGesturesEnabled: true,
                 zoomControlsEnabled: true,

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class MapsRepository extends ChangeNotifier {
   final _dio = Dio();
@@ -15,11 +14,15 @@ class MapsRepository extends ChangeNotifier {
         List<dynamic> data = map["data"];
         return data;
       } else {
-        print('primeiro null');
+        if (kDebugMode) {
+          print('primeiro null');
+        }
         return null;
       }
     } catch (e) {
-      print('é bronca pai');
+      if (kDebugMode) {
+        print('é bronca pai');
+      }
     }
   }
 
@@ -32,7 +35,9 @@ class MapsRepository extends ChangeNotifier {
       List<dynamic> data = map["data"]["images"];
       return data;
     } else {
-      print('primeiro null');
+      if (kDebugMode) {
+        print('primeiro null');
+      }
       return null;
     }
   }
