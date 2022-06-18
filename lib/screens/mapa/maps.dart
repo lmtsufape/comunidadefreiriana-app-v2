@@ -10,7 +10,6 @@ import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
@@ -32,8 +31,9 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
+  static const kGoogleApiKey = 'AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU';
+  final homeScaffoldKey = GlobalKey<ScaffoldState>();
   String path = '';
-  String googleApikey = "AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU";
   String location = "Procurar localidade";
   CameraPosition? cameraPosition;
   List<LatLng> tappedPoints = [];
@@ -121,7 +121,7 @@ class _MapsState extends State<Maps> {
                             Text(
                               model.endereco.toString(),
                               style: const TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.red),
                             ),
@@ -359,65 +359,6 @@ class _MapsState extends State<Maps> {
                 },
               );
             })),
-        Positioned(
-          top: 10,
-          child: InkWell(
-              onTap: () async {
-                var place = await PlacesAutocomplete.show(
-                    context: context,
-                    apiKey: googleApikey,
-                    mode: Mode.overlay,
-                    types: [],
-                    strictbounds: false,
-                    components: [Component(Component.country, 'br')],
-                    //google_map_webservice package
-                    onError: (err) {
-                      if (kDebugMode) {
-                        print(err);
-                      }
-                    });
-
-                if (place != null) {
-                  setState(() {
-                    location = place.description.toString();
-                  });
-
-                  //form google_maps_webservice package
-                  final plist = GoogleMapsPlaces(
-                    apiKey: googleApikey,
-                    apiHeaders: await const GoogleApiHeaders().getHeaders(),
-                    //from google_api_headers package
-                  );
-                  String placeid = place.placeId ?? "0";
-                  final detail = await plist.getDetailsByPlaceId(placeid);
-                  final geometry = detail.result.geometry!;
-                  final lat = geometry.location.lat;
-                  final long = geometry.location.lng;
-                  var newlatlang = LatLng(lat, long);
-
-                  //move map camera to selected place with animation
-                  MapsController().mapController.animateCamera(
-                      CameraUpdate.newCameraPosition(
-                          CameraPosition(target: newlatlang, zoom: 17)));
-                }
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Card(
-                  child: Container(
-                      padding: const EdgeInsets.all(0),
-                      width: MediaQuery.of(context).size.width - 40,
-                      child: ListTile(
-                        title: Text(
-                          location,
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                        trailing: const Icon(Icons.search),
-                        dense: true,
-                      )),
-                ),
-              )),
-        ),
       ]),
       floatingActionButton: Center(
         child: Padding(

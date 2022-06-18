@@ -1,7 +1,6 @@
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -75,7 +74,7 @@ class _PauloFreireState extends State<PauloFreire> {
                           width: 180,
                           height: 180,
                           decoration: const BoxDecoration(
-                              color: Colors.grey,
+                              color: Colors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
                           child: Stack(
@@ -83,8 +82,8 @@ class _PauloFreireState extends State<PauloFreire> {
                               Center(
                                 child: Image.asset(
                                   'lib/assets/images/paulo_freire.jpg',
-                                  width: 180,
-                                  height: 180,
+                                  width: 140,
+                                  height: 140,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -111,7 +110,7 @@ class _PauloFreireState extends State<PauloFreire> {
                               width: 180,
                               height: 180,
                               decoration: const BoxDecoration(
-                                  color: Colors.grey,
+                                  color: Colors.white,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15))),
                               child: Wrap(
@@ -123,16 +122,12 @@ class _PauloFreireState extends State<PauloFreire> {
                                       height: 140,
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Center(
-                                        child: Text(
-                                          'Linha do Tempo',
-                                          style: kTextIcons,
-                                        ),
-                                      ),
-                                    ],
+                                  Container(
+                                    alignment: Alignment.bottomCenter,
+                                    child: const Text(
+                                      'Linha do Tempo',
+                                      style: kTextIcons,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -155,7 +150,7 @@ class _PauloFreireState extends State<PauloFreire> {
                           width: 180,
                           height: 180,
                           decoration: const BoxDecoration(
-                              color: Colors.grey,
+                              color: Colors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
                           child: Center(
@@ -168,16 +163,12 @@ class _PauloFreireState extends State<PauloFreire> {
                                     height: 130,
                                   ),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Center(
-                                      child: Text(
-                                        'Acervo Digital',
-                                        style: kTextIcons,
-                                      ),
-                                    ),
-                                  ],
+                                Container(
+                                  alignment: Alignment.bottomCenter,
+                                  child: const Text(
+                                    'Acervo Digital',
+                                    style: kTextIcons,
+                                  ),
                                 ),
                               ],
                             ),
@@ -194,7 +185,7 @@ class _PauloFreireState extends State<PauloFreire> {
                           width: 180,
                           height: 180,
                           decoration: const BoxDecoration(
-                              color: Colors.grey,
+                              color: Colors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
                           child: Center(
@@ -206,16 +197,12 @@ class _PauloFreireState extends State<PauloFreire> {
                                   color: Colors.red,
                                   size: 110,
                                 )),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Center(
-                                      child: Text(
-                                        'Biblioteca',
-                                        style: kTextIcons,
-                                      ),
-                                    ),
-                                  ],
+                                Container(
+                                  alignment: Alignment.bottomCenter,
+                                  child: const Text(
+                                    'Biblioteca',
+                                    style: kTextIcons,
+                                  ),
                                 ),
                               ],
                             ),
@@ -237,7 +224,7 @@ class _PauloFreireState extends State<PauloFreire> {
                           width: 180,
                           height: 180,
                           decoration: const BoxDecoration(
-                              color: Colors.grey,
+                              color: Colors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
                           child: Center(
@@ -250,16 +237,12 @@ class _PauloFreireState extends State<PauloFreire> {
                                     height: 120,
                                   ),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Center(
-                                      child: Text(
-                                        'Glossário',
-                                        style: kTextIcons,
-                                      ),
-                                    ),
-                                  ],
+                                Container(
+                                  alignment: Alignment.bottomCenter,
+                                  child: const Text(
+                                    'Glossário',
+                                    style: kTextIcons,
+                                  ),
                                 ),
                               ],
                             ),
@@ -276,21 +259,22 @@ class _PauloFreireState extends State<PauloFreire> {
                           width: 180,
                           height: 180,
                           decoration: const BoxDecoration(
-                              color: Colors.grey,
+                              color: Colors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
                           child: Center(
                             child: Wrap(
-                              children: const [
-                                Center(
+                              children: [
+                                const Center(
                                     child: Icon(
                                   Icons.call,
                                   color: Colors.red,
                                   size: 110,
                                 )),
-                                Center(
-                                  child: Text(
-                                    'Contato',
+                                Container(
+                                  alignment: Alignment.bottomCenter,
+                                  child: const Text(
+                                    'Telefone',
                                     style: kTextIcons,
                                   ),
                                 ),
@@ -328,24 +312,14 @@ class _PauloFreireState extends State<PauloFreire> {
                         ),
                       ],
                     ),
-                    const HorizontalSpacerBox(size: SpacerSize.large),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'lib/assets/images/logo_ufape.png',
-                          width: size.width * 0.08,
-                        ),
-                      ],
-                    ),
                     const HorizontalSpacerBox(size: SpacerSize.medium),
                     InkWell(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Image.asset(
-                            'lib/assets/images/logo_lmts.png',
-                            width: size.width * 0.3,
+                            'lib/assets/images/icone_ufape_lmts.jpg',
+                            width: size.width * 0.5,
                           ),
                         ],
                       ),

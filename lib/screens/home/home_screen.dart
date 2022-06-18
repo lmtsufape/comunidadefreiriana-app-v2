@@ -177,23 +177,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'lib/assets/images/logo_ufape.png',
-                        width: size.width * 0.1,
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
                   InkWell(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Image.asset(
-                          'lib/assets/images/logo_lmts.png',
-                          width: size.width * 0.3,
+                          'lib/assets/images/icone_ufape_lmts.jpg',
+                          width: size.width * 0.5,
                         ),
                       ],
                     ),
@@ -205,18 +195,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              Row(
-                children: const [
-                  Spacer(),
-                  Icon(Icons.expand_less),
-                  Text(
-                    'Link para site do LMTS.',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue),
-                  ),
-                ],
-              )
             ],
           ),
         ),
