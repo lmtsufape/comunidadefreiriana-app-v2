@@ -28,16 +28,17 @@ class MapsRepository extends ChangeNotifier {
 
   Future getImageInstitution(id) async {
     // ignore: unnecessary_brace_in_string_interps
-    var image = await _dio.get(baseUrl + '/instituicao/show/${id}');
+    try {
+      var image = await _dio.get(baseUrl + '/instituicao/show/${id}');
 
-    if (image.statusCode == 200) {
-      Map<String, dynamic> map = image.data;
-      List<dynamic> data = map["data"]["images"];
-      return data;
-    } else {
-      if (kDebugMode) {
-        print('primeiro null');
+      if (image.statusCode == 200) {
+        Map<String, dynamic> map = image.data;
+        List<dynamic> data = map["data"]["images"];
+        return data[0];
+      } else {
+        return null;
       }
+    } catch (e) {
       return null;
     }
   }

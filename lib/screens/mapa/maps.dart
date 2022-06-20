@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:comunidadefreiriana/components/error_dialog.dart';
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
+import 'package:comunidadefreiriana/core/models/image_model.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
 import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
@@ -70,6 +71,7 @@ class _MapsState extends State<Maps> {
   }
 
   loadInstitution(x) async {
+    ImageModel imgModel;
     InstituicaoModel model = x;
     var lat = double.parse(model.latitude!);
     assert(lat is double);
@@ -152,11 +154,13 @@ class _MapsState extends State<Maps> {
                           ),
 
                           onPressed: () async {
-                            final fotos = await MapsRepository()
+                            final data = await MapsRepository()
                                 .getImageInstitution(model.id);
-                            for (var y in fotos) {
-                              path = y["path"];
-                            }
+                            imgModel = ImageModel(
+                                path: data["path"],
+                                nome: data["nome"],
+                                instituicoesId: data["instituicoes_id"]);
+                            print(imgModel.path);
                             showModalBottomSheet(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -170,6 +174,8 @@ class _MapsState extends State<Maps> {
                                             Radius.circular(12))),
                                     child: Wrap(
                                       children: [
+                                        Image.network(
+                                            'http://sistemas.ufape.edu.br/comunidadefreiriana/storage/${imgModel.path}'),
                                         const Spacer(),
                                         Center(
                                           child: Text(
