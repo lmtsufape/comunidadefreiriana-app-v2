@@ -81,6 +81,11 @@ class _MapsState extends State<Maps> {
     assert(lat is double);
     var long = double.parse(model.longitude!);
     assert(long is double);
+    // final data = await MapsRepository().getImageInstitution(model.id);
+    // imgModel = ImageModel(
+    //     path: data["path"],
+    //     nome: data["nome"],
+    //     instituicoesId: data["instituicoes_id"]);
 
     makers.add(Marker(
         markerId: MarkerId(model.nome.toString()),
@@ -90,235 +95,314 @@ class _MapsState extends State<Maps> {
         onTap: () => showModalBottomSheet(
             context: context,
             builder: (BuildContext context) {
-              // ignore: avoid_unnecessary_containers
               return Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(12))),
-                child: Wrap(
-                  children: [
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(12))),
+                  child: Wrap(children: [
+                    // Image.network(
+                    //     'http://185.28.23.76/storage/${imgModel.path}'),
+                    const Spacer(),
                     Center(
-                      child: Wrap(
-                        children: [
-                          const VerticalSpacerBox(size: SpacerSize.medium),
-                          Text(
-                            model.nome.toString(),
-                            style: const TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const VerticalSpacerBox(size: SpacerSize.large),
-                        ],
+                      child: Text(
+                        model.nome.toString(),
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
+                    ),
+                    Center(
+                      child: Text(
+                        '(${model.categoria})',
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    const VerticalSpacerBox(size: SpacerSize.large),
+                    Wrap(
+                      children: [
+                        const HorizontalSpacerBox(size: SpacerSize.small),
+                        const Text(
+                          'Telefone',
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                        Row(
+                          children: [
+                            const HorizontalSpacerBox(size: SpacerSize.small),
+                            Text(
+                              '${model.telefone}',
+                              style: const TextStyle(
+                                  fontSize: 20, color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.large),
+                      ],
                     ),
                     Wrap(
                       children: [
-                        Wrap(
+                        const HorizontalSpacerBox(size: SpacerSize.small),
+                        const Text(
+                          'E-mail',
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                        Row(
                           children: [
-                            const Icon(
-                              Icons.location_on,
-                              color: Colors.red,
-                              size: 20,
-                            ),
                             const HorizontalSpacerBox(size: SpacerSize.small),
                             Text(
-                              model.endereco.toString(),
+                              '${model.email}',
                               style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.red),
+                                  fontSize: 20, color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.large),
+                      ],
+                    ),
+                    Row(
+                      children: const [
+                        HorizontalSpacerBox(size: SpacerSize.small),
+                        Text(
+                          'Site',
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                      ],
+                    ),
+                    Wrap(
+                      children: [
+                        const HorizontalSpacerBox(size: SpacerSize.small),
+                        Text(
+                          '${model.site}',
+                          style:
+                              const TextStyle(fontSize: 20, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    const VerticalSpacerBox(size: SpacerSize.large),
+                    Wrap(
+                      children: [
+                        const HorizontalSpacerBox(size: SpacerSize.small),
+                        const Text(
+                          'Mais Informações',
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                        Row(
+                          children: [
+                            const HorizontalSpacerBox(size: SpacerSize.small),
+                            Text(
+                              '${model.info}',
+                              style: const TextStyle(
+                                  fontSize: 20, color: Colors.grey),
                             ),
                           ],
                         ),
                       ],
                     ),
-                    const VerticalSpacerBox(size: SpacerSize.medium),
                     Row(
                       children: [
                         const Spacer(),
                         OutlinedButton.icon(
-                          style: OutlinedButton.styleFrom(
-                            fixedSize: const Size(130, 30),
-                            alignment: const AlignmentDirectional(-1, 0),
-                            backgroundColor: Colors.blue,
-                          ),
-                          label: const Text(
-                            'Outras info',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ), // <-- Text
+                            style: OutlinedButton.styleFrom(
+                              fixedSize: const Size(130, 30),
+                              alignment: const AlignmentDirectional(-1, 0),
+                              backgroundColor: Colors.blue,
+                            ),
+                            label: const Text(
+                              'Outras info',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
+                            ), // <-- Text
 
-                          icon: const Icon(
-                            // <-- Icon
-                            Icons.arrow_forward_ios,
-                            size: 15.0,
-                            color: Colors.white,
-                          ),
-
-                          onPressed: () async {
-                            final data = await MapsRepository()
-                                .getImageInstitution(model.id);
-                            imgModel = ImageModel(
-                                path: data["path"],
-                                nome: data["nome"],
-                                instituicoesId: data["instituicoes_id"]);
-                            print(imgModel.path);
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return Scaffold(
-                                      body: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 12, horizontal: 24),
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(12))),
-                                    child: Wrap(
-                                      children: [
-                                        Image.network(
-                                            'http://185.28.23.76/storage/${imgModel.path}'),
-                                        const Spacer(),
-                                        Center(
-                                          child: Text(
-                                            model.nome.toString(),
-                                            style: const TextStyle(
-                                              fontSize: 26,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                        Center(
-                                          child: Text(
-                                            '(${model.categoria})',
-                                            style: const TextStyle(
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        const VerticalSpacerBox(
-                                            size: SpacerSize.large),
-                                        Wrap(
-                                          children: [
-                                            const HorizontalSpacerBox(
-                                                size: SpacerSize.small),
-                                            const Text(
-                                              'Telefone',
-                                              style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
-                                            ),
-                                            Row(
-                                              children: [
-                                                const HorizontalSpacerBox(
-                                                    size: SpacerSize.small),
-                                                Text(
-                                                  '${model.telefone}',
+                            icon: const Icon(
+                              // <-- Icon
+                              Icons.arrow_forward_ios,
+                              size: 15.0,
+                              color: Colors.white,
+                            ),
+                            onPressed: () async {
+                              final data = await MapsRepository()
+                                  .getImageInstitution(model.id);
+                              imgModel = ImageModel(
+                                  path: data["path"],
+                                  nome: data["nome"],
+                                  instituicoesId: data["instituicoes_id"]);
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: SingleChildScrollView(
+                                        child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 12, horizontal: 24),
+                                            decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(12))),
+                                            child: Wrap(children: [
+                                              Image.network(
+                                                  'http://185.28.23.76/storage/${imgModel.path}'),
+                                              const Spacer(),
+                                              Center(
+                                                child: Text(
+                                                  model.nome.toString(),
                                                   style: const TextStyle(
-                                                      fontSize: 20,
-                                                      color: Colors.grey),
+                                                    fontSize: 26,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                  textAlign: TextAlign.center,
                                                 ),
-                                              ],
-                                            ),
-                                            const VerticalSpacerBox(
-                                                size: SpacerSize.large),
-                                          ],
-                                        ),
-                                        Wrap(
-                                          children: [
-                                            const HorizontalSpacerBox(
-                                                size: SpacerSize.small),
-                                            const Text(
-                                              'E-mail',
-                                              style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
-                                            ),
-                                            Row(
-                                              children: [
-                                                const HorizontalSpacerBox(
-                                                    size: SpacerSize.small),
-                                                Text(
-                                                  '${model.email}',
+                                              ),
+                                              Center(
+                                                child: Text(
+                                                  '(${model.categoria})',
                                                   style: const TextStyle(
-                                                      fontSize: 20,
-                                                      color: Colors.grey),
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
-                                              ],
-                                            ),
-                                            const VerticalSpacerBox(
-                                                size: SpacerSize.large),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: const [
-                                            HorizontalSpacerBox(
-                                                size: SpacerSize.small),
-                                            Text(
-                                              'Site',
-                                              style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
-                                            ),
-                                          ],
-                                        ),
-                                        Wrap(
-                                          children: [
-                                            const HorizontalSpacerBox(
-                                                size: SpacerSize.small),
-                                            Text(
-                                              '${model.site}',
-                                              style: const TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.grey),
-                                            ),
-                                          ],
-                                        ),
-                                        const VerticalSpacerBox(
-                                            size: SpacerSize.large),
-                                        Wrap(
-                                          children: [
-                                            const HorizontalSpacerBox(
-                                                size: SpacerSize.small),
-                                            const Text(
-                                              'Mais Informações',
-                                              style: TextStyle(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black),
-                                            ),
-                                            Row(
-                                              children: [
-                                                const HorizontalSpacerBox(
-                                                    size: SpacerSize.small),
-                                                Text(
-                                                  '${model.info}',
-                                                  style: const TextStyle(
-                                                      fontSize: 20,
-                                                      color: Colors.grey),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ));
-                                });
-                          },
-                        ),
+                                              ),
+                                              const VerticalSpacerBox(
+                                                  size: SpacerSize.large),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Telefone',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.telefone}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'E-mail',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.email}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: const [
+                                                  HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  Text(
+                                                    'Site',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                ],
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  Text(
+                                                    '${model.site}',
+                                                    style: const TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.grey),
+                                                  ),
+                                                ],
+                                              ),
+                                              const VerticalSpacerBox(
+                                                  size: SpacerSize.large),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Mais Informações',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.info}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ])),
+                                      ),
+                                    );
+                                  });
+                            })
                       ],
                     ),
-                  ],
-                ),
-              );
+                  ]));
             })));
   }
 

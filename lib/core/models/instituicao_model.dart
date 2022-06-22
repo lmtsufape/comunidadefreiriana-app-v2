@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
-class InstituicaoModel {
+import 'package:flutter/cupertino.dart';
+
+class InstituicaoModel with ChangeNotifier {
   int? id;
   String? nome;
   String? categoria;
