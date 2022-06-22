@@ -5,6 +5,7 @@ import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/core/models/image_model.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
+import 'package:comunidadefreiriana/screens/home/home_screen.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
 import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
@@ -20,6 +21,8 @@ import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:comunidadefreiriana/components/custom_date_formater.dart';
+// ignore: implementation_imports
+import 'package:flutter/src/foundation/change_notifier.dart';
 
 final appKey = GlobalKey();
 
@@ -32,6 +35,7 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
+  // ignore: unused_field
   static const kGoogleApiKey = 'AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU';
   final homeScaffoldKey = GlobalKey<ScaffoldState>();
   String path = '';
@@ -339,7 +343,7 @@ class _MapsState extends State<Maps> {
           ),
           //onPressed:() => Navigator.pop(context, false),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.popAndPushNamed(context, HomeScreen.id);
           },
         ),
       ),
@@ -347,9 +351,8 @@ class _MapsState extends State<Maps> {
         ChangeNotifierProvider<MapsController>(
             create: (context) => MapsController(),
             child: Builder(builder: (context) {
-              final local = context.watch<MapsController>();
               StoreInstitution();
-              //getInstituittion;
+              final local = context.watch<MapsController>();
               return GoogleMap(
                 onMapCreated: local.onMapCreated,
                 initialCameraPosition: CameraPosition(
@@ -361,7 +364,8 @@ class _MapsState extends State<Maps> {
                 mapType: MapType.normal,
                 markers: makers,
                 onCameraMove: (CameraPosition cameraPositiona) {
-                  cameraPosition = cameraPositiona; //when map is dragging
+                  cameraPosition = cameraPositiona;
+                  //when map is dragging
                 },
               );
             })),

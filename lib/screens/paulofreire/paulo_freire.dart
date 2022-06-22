@@ -1,6 +1,7 @@
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
+import 'package:comunidadefreiriana/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,9 +51,8 @@ class _PauloFreireState extends State<PauloFreire> {
                 Icons.arrow_back,
                 color: Colors.black,
               ),
-              //onPressed:() => Navigator.pop(context, false),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.popAndPushNamed(context, HomeScreen.id);
               },
             ),
           ),
