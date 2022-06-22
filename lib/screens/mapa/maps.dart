@@ -179,7 +179,7 @@ class _MapsState extends State<Maps> {
                                     child: Wrap(
                                       children: [
                                         Image.network(
-                                            'http://sistemas.ufape.edu.br/comunidadefreiriana/storage/${imgModel.path}'),
+                                            'http://185.28.23.76/storage/${imgModel.path}'),
                                         const Spacer(),
                                         Center(
                                           child: Text(
