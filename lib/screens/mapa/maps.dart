@@ -105,6 +105,7 @@ class _MapsState extends State<Maps> {
                     // Image.network(
                     //     'http://185.28.23.76/storage/${imgModel.path}'),
                     const Spacer(),
+
                     Center(
                       child: Text(
                         model.nome.toString(),
@@ -221,7 +222,7 @@ class _MapsState extends State<Maps> {
                         const Spacer(),
                         OutlinedButton.icon(
                             style: OutlinedButton.styleFrom(
-                              fixedSize: const Size(130, 30),
+                              fixedSize: const Size(140, 30),
                               alignment: const AlignmentDirectional(-1, 0),
                               backgroundColor: Colors.blue,
                             ),
@@ -282,6 +283,151 @@ class _MapsState extends State<Maps> {
                                               ),
                                               const VerticalSpacerBox(
                                                   size: SpacerSize.large),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Pais',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.pais}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Estado',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.estado}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Cidade',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.cidade}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Endereço',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.endereco}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'CEP',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.cep}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
                                               Wrap(
                                                 children: [
                                                   const HorizontalSpacerBox(
@@ -368,6 +514,122 @@ class _MapsState extends State<Maps> {
                                               ),
                                               const VerticalSpacerBox(
                                                   size: SpacerSize.large),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Coordenador(a)',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.coordenador}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Data de Fundação',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.datafundacao}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Latitude',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.latitude}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  const HorizontalSpacerBox(
+                                                      size: SpacerSize.small),
+                                                  const Text(
+                                                    'Longitude',
+                                                    style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const HorizontalSpacerBox(
+                                                          size:
+                                                              SpacerSize.small),
+                                                      Text(
+                                                        '${model.longitude}',
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.grey),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const VerticalSpacerBox(
+                                                      size: SpacerSize.large),
+                                                ],
+                                              ),
                                               Wrap(
                                                 children: [
                                                   const HorizontalSpacerBox(
