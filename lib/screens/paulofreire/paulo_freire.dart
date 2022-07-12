@@ -56,282 +56,285 @@ class _PauloFreireState extends State<PauloFreire> {
               },
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(17),
-            child: Column(
-              children: [
-                const VerticalSpacerBox(size: SpacerSize.small),
-                Row(
-                  children: [
-                    const HorizontalSpacerBox(size: SpacerSize.medium),
-                    InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(PauloFreire)) {
-                            await launchUrl(PauloFreire);
-                          }
-                        },
-                        child: Container(
-                          width: 180,
-                          height: 180,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          child: Stack(
-                            children: [
-                              Center(
-                                child: Image.asset(
-                                  'lib/assets/images/paulo_freire.jpg',
-                                  width: 140,
-                                  height: 140,
-                                  fit: BoxFit.fill,
+          body: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(17),
+              child: Column(
+                children: [
+                  const VerticalSpacerBox(size: SpacerSize.small),
+                  Row(
+                    children: [
+                      const HorizontalSpacerBox(size: SpacerSize.medium),
+                      InkWell(
+                          onTap: () async {
+                            if (await canLaunchUrl(PauloFreire)) {
+                              await launchUrl(PauloFreire);
+                            }
+                          },
+                          child: Container(
+                            width: 180,
+                            height: 180,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: Image.asset(
+                                    'lib/assets/images/paulo_freire.jpg',
+                                    width: 140,
+                                    height: 140,
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
-                              ),
+                                Container(
+                                  alignment: Alignment.bottomCenter,
+                                  child: const Text(
+                                    'Conheça Paulo Freire',
+                                    style: kTextIcons,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
+                      const HorizontalSpacerBox(size: SpacerSize.small),
+                      InkWell(
+                          onTap: () async {
+                            if (await canLaunchUrl(LinhaTempo)) {
+                              await launchUrl(LinhaTempo);
+                            }
+                          },
+                          child: Row(
+                            children: [
                               Container(
-                                alignment: Alignment.bottomCenter,
-                                child: const Text(
-                                  'Conheça Paulo Freire',
-                                  style: kTextIcons,
+                                width: 180,
+                                height: 180,
+                                decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15))),
+                                child: Wrap(
+                                  children: [
+                                    Center(
+                                      child: Image.asset(
+                                        'lib/assets/images/icone_linha_do_tempo.jpg',
+                                        width: 140,
+                                        height: 140,
+                                      ),
+                                    ),
+                                    Container(
+                                      alignment: Alignment.bottomCenter,
+                                      child: const Text(
+                                        'Linha do Tempo',
+                                        style: kTextIcons,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
-                          ),
-                        )),
-                    const HorizontalSpacerBox(size: SpacerSize.small),
-                    InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(LinhaTempo)) {
-                            await launchUrl(LinhaTempo);
-                          }
-                        },
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 180,
-                              height: 180,
-                              decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
+                          )),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.small),
+                  Row(
+                    children: [
+                      const HorizontalSpacerBox(size: SpacerSize.medium),
+                      InkWell(
+                          onTap: () async {
+                            if (await canLaunchUrl(Acervo)) {
+                              await launchUrl(Acervo);
+                            }
+                          },
+                          child: Container(
+                            width: 180,
+                            height: 180,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                            child: Center(
                               child: Wrap(
                                 children: [
                                   Center(
                                     child: Image.asset(
-                                      'lib/assets/images/icone_linha_do_tempo.jpg',
-                                      width: 140,
-                                      height: 140,
+                                      'lib/assets/images/icone_foto_video.jpg',
+                                      width: 130,
+                                      height: 130,
                                     ),
                                   ),
                                   Container(
                                     alignment: Alignment.bottomCenter,
                                     child: const Text(
-                                      'Linha do Tempo',
+                                      'Acervo Digital',
                                       style: kTextIcons,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                          ],
-                        )),
-                  ],
-                ),
-                const VerticalSpacerBox(size: SpacerSize.small),
-                Row(
-                  children: [
-                    const HorizontalSpacerBox(size: SpacerSize.medium),
-                    InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(Acervo)) {
-                            await launchUrl(Acervo);
-                          }
-                        },
-                        child: Container(
-                          width: 180,
-                          height: 180,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          child: Center(
-                            child: Wrap(
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    'lib/assets/images/icone_foto_video.jpg',
-                                    width: 130,
-                                    height: 130,
+                          )),
+                      const HorizontalSpacerBox(size: SpacerSize.small),
+                      InkWell(
+                          onTap: () async {
+                            if (await canLaunchUrl(Biblioteca)) {
+                              await launchUrl(Biblioteca);
+                            }
+                          },
+                          child: Container(
+                            width: 180,
+                            height: 180,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                            child: Center(
+                              child: Wrap(
+                                children: [
+                                  const Center(
+                                      child: Icon(
+                                    Icons.menu_book,
+                                    color: Colors.red,
+                                    size: 110,
+                                  )),
+                                  Container(
+                                    alignment: Alignment.bottomCenter,
+                                    child: const Text(
+                                      'Biblioteca',
+                                      style: kTextIcons,
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  alignment: Alignment.bottomCenter,
-                                  child: const Text(
-                                    'Acervo Digital',
-                                    style: kTextIcons,
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        )),
-                    const HorizontalSpacerBox(size: SpacerSize.small),
-                    InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(Biblioteca)) {
-                            await launchUrl(Biblioteca);
-                          }
-                        },
-                        child: Container(
-                          width: 180,
-                          height: 180,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          child: Center(
-                            child: Wrap(
-                              children: [
-                                const Center(
-                                    child: Icon(
-                                  Icons.menu_book,
-                                  color: Colors.red,
-                                  size: 110,
-                                )),
-                                Container(
-                                  alignment: Alignment.bottomCenter,
-                                  child: const Text(
-                                    'Biblioteca',
-                                    style: kTextIcons,
+                          )),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.small),
+                  Row(
+                    children: [
+                      const HorizontalSpacerBox(size: SpacerSize.medium),
+                      InkWell(
+                          onTap: () async {
+                            if (await canLaunchUrl(Glossario)) {
+                              await launchUrl(Glossario);
+                            }
+                          },
+                          child: Container(
+                            width: 180,
+                            height: 180,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                            child: Center(
+                              child: Wrap(
+                                children: [
+                                  Center(
+                                    child: Image.asset(
+                                      'lib/assets/images/icone_az.jpg',
+                                      width: 120,
+                                      height: 120,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Container(
+                                    alignment: Alignment.bottomCenter,
+                                    child: const Text(
+                                      'Glossário',
+                                      style: kTextIcons,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        )),
-                  ],
-                ),
-                const VerticalSpacerBox(size: SpacerSize.small),
-                Row(
-                  children: [
-                    const HorizontalSpacerBox(size: SpacerSize.medium),
-                    InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(Glossario)) {
-                            await launchUrl(Glossario);
-                          }
-                        },
-                        child: Container(
-                          width: 180,
-                          height: 180,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          child: Center(
-                            child: Wrap(
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    'lib/assets/images/icone_az.jpg',
-                                    width: 120,
-                                    height: 120,
+                          )),
+                      const HorizontalSpacerBox(size: SpacerSize.small),
+                      InkWell(
+                          onTap: () async {
+                            if (await canLaunchUrl(Memorial)) {
+                              await launchUrl(Memorial);
+                            }
+                          },
+                          child: Container(
+                            width: 180,
+                            height: 180,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                            child: Center(
+                              child: Wrap(
+                                children: [
+                                  const Center(
+                                      child: Icon(
+                                    Icons.call,
+                                    color: Colors.red,
+                                    size: 110,
+                                  )),
+                                  Container(
+                                    alignment: Alignment.bottomCenter,
+                                    child: const Text(
+                                      'Telefone',
+                                      style: kTextIcons,
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  alignment: Alignment.bottomCenter,
-                                  child: const Text(
-                                    'Glossário',
-                                    style: kTextIcons,
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        )),
-                    const HorizontalSpacerBox(size: SpacerSize.small),
-                    InkWell(
-                        onTap: () async {
-                          if (await canLaunchUrl(Memorial)) {
-                            await launchUrl(Memorial);
-                          }
-                        },
-                        child: Container(
-                          width: 180,
-                          height: 180,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          child: Center(
-                            child: Wrap(
-                              children: [
-                                const Center(
-                                    child: Icon(
-                                  Icons.call,
-                                  color: Colors.red,
-                                  size: 110,
-                                )),
-                                Container(
-                                  alignment: Alignment.bottomCenter,
-                                  child: const Text(
-                                    'Telefone',
-                                    style: kTextIcons,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )),
-                  ],
-                ),
-                const VerticalSpacerBox(size: SpacerSize.medium),
-                Row(
-                  children: const [
-                    HorizontalSpacerBox(size: SpacerSize.large),
-                    Text(
-                      'Realização:',
-                      style: kTextIcons,
-                    ),
-                    HorizontalSpacerBox(size: SpacerSize.verylarge),
-                    Text(
-                      'Desenvolvido por:',
-                      style: kTextIcons,
-                    ),
-                  ],
-                ),
-                const VerticalSpacerBox(size: SpacerSize.tiny),
-                Row(
-                  children: [
-                    const HorizontalSpacerBox(size: SpacerSize.medium),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          'lib/assets/images/logo_ipf.png',
-                          width: size.width * 0.26,
-                        ),
-                      ],
-                    ),
-                    const HorizontalSpacerBox(size: SpacerSize.medium),
-                    InkWell(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                          )),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.medium),
+                  Row(
+                    children: const [
+                      HorizontalSpacerBox(size: SpacerSize.large),
+                      Text(
+                        'Realização:',
+                        style: kTextIcons,
+                      ),
+                      HorizontalSpacerBox(size: SpacerSize.verylarge),
+                      Text(
+                        'Desenvolvido por:',
+                        style: kTextIcons,
+                      ),
+                    ],
+                  ),
+                  const VerticalSpacerBox(size: SpacerSize.tiny),
+                  Row(
+                    children: [
+                      const HorizontalSpacerBox(size: SpacerSize.medium),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Image.asset(
-                            'lib/assets/images/icone_ufape_lmts.jpg',
-                            width: size.width * 0.5,
+                            'lib/assets/images/logo_ipf.png',
+                            width: size.width * 0.26,
                           ),
                         ],
                       ),
-                      onTap: () async {
-                        if (await canLaunchUrl(lmts)) {
-                          await launchUrl(lmts);
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                      const HorizontalSpacerBox(size: SpacerSize.medium),
+                      InkWell(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Image.asset(
+                              'lib/assets/images/icone_ufape_lmts.jpg',
+                              width: size.width * 0.5,
+                            ),
+                          ],
+                        ),
+                        onTap: () async {
+                          if (await canLaunchUrl(lmts)) {
+                            await launchUrl(lmts);
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           )),
     );

@@ -47,8 +47,12 @@ class _MapsState extends State<Maps> {
   Set<Marker> makers = <Marker>{};
 
   // ignore: non_constant_identifier_names
+
+  // ignore: non_constant_identifier_names
   StoreInstitution() async {
+    ImageModel imgModel;
     var model;
+    var data2;
     final data = await MapsRepository().getInstitution();
 
     for (var i in data) {
@@ -70,22 +74,24 @@ class _MapsState extends State<Maps> {
         longitude: i["longitude"] ?? 'Não consta',
         info: i["info"] ?? 'Não consta',
       );
-      loadInstitution(model);
+      String idPhoto = i["id"];
+      data2 = await MapsRepository().getImageInstitution(idPhoto);
+      imgModel = ImageModel(
+          path: data2["path"],
+          nome: data2["nome"],
+          instituicoesId: data2["instituicoes_id"]);
+      loadInstitution(model, imgModel);
     }
   }
 
-  loadInstitution(x) async {
+  loadInstitution(x, y) async {
     ImageModel imgModel;
     InstituicaoModel model = x;
+    ImageModel img = y;
     var lat = double.parse(model.latitude!);
     assert(lat is double);
     var long = double.parse(model.longitude!);
     assert(long is double);
-    // final data = await MapsRepository().getImageInstitution(model.id);
-    // imgModel = ImageModel(
-    //     path: data["path"],
-    //     nome: data["nome"],
-    //     instituicoesId: data["instituicoes_id"]);
 
     makers.add(Marker(
         markerId: MarkerId(model.nome.toString()),
@@ -102,10 +108,9 @@ class _MapsState extends State<Maps> {
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(12))),
                   child: Wrap(children: [
-                    // Image.network(
-                    //     'http://185.28.23.76/storage/${imgModel.path}'),
+                    Image.network(
+                        'http://185.28.23.76:8010/storage/${img.path}'),
                     const Spacer(),
-
                     Center(
                       child: Text(
                         model.nome.toString(),
@@ -260,7 +265,7 @@ class _MapsState extends State<Maps> {
                                                     Radius.circular(12))),
                                             child: Wrap(children: [
                                               Image.network(
-                                                  'http://185.28.23.76/storage/${imgModel.path}'),
+                                                  'http://185.28.23.76:8010/storage/${imgModel.path}'),
                                               const Spacer(),
                                               Center(
                                                 child: Text(
@@ -693,29 +698,27 @@ class _MapsState extends State<Maps> {
           },
         ),
       ),
-      body: Stack(children: <Widget>[
-        ChangeNotifierProvider<MapsController>(
-            create: (context) => MapsController(),
-            child: Builder(builder: (context) {
-              StoreInstitution();
-              final local = context.watch<MapsController>();
-              return GoogleMap(
-                onMapCreated: local.onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(local.lat, local.long),
-                  zoom: 10,
-                ),
-                zoomGesturesEnabled: true,
-                zoomControlsEnabled: true,
-                mapType: MapType.normal,
-                markers: makers,
-                onCameraMove: (CameraPosition cameraPositiona) {
-                  cameraPosition = cameraPositiona;
-                  //when map is dragging
-                },
-              );
-            })),
-      ]),
+      body: ChangeNotifierProvider<MapsController>(
+          create: (context) => MapsController(),
+          child: Builder(builder: (context) {
+            StoreInstitution();
+            final local = context.watch<MapsController>();
+            return GoogleMap(
+              onMapCreated: local.onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(local.lat, local.long),
+                zoom: 10,
+              ),
+              zoomGesturesEnabled: true,
+              zoomControlsEnabled: true,
+              mapType: MapType.normal,
+              markers: makers,
+              onCameraMove: (CameraPosition cameraPositiona) {
+                cameraPosition = cameraPositiona;
+                //when map is dragging
+              },
+            );
+          })),
       floatingActionButton: Center(
         child: Padding(
           padding: const EdgeInsets.all(5.0),

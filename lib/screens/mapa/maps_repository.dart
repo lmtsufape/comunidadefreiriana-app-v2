@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 class MapsRepository extends ChangeNotifier {
   final _dio = Dio();
-  static const String baseUrl = 'http://185.28.23.76/api';
+  static const String baseUrl = 'http://185.28.23.76:8010/api';
 
   Future getInstitution() async {
     try {
@@ -29,7 +29,7 @@ class MapsRepository extends ChangeNotifier {
   Future getImageInstitution(id) async {
     // ignore: unnecessary_brace_in_string_interps
     try {
-      var image = await _dio.get(baseUrl + '/instituicao/show/${id}');
+      var image = await _dio.get(baseUrl + '/instituicao/show/$id');
 
       if (image.statusCode == 200) {
         Map<String, dynamic> map = image.data;
