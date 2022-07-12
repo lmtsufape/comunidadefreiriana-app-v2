@@ -36,6 +36,7 @@ class _PauloFreireState extends State<PauloFreire> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
+            iconTheme: const IconThemeData(color: Colors.black),
             titleTextStyle: const TextStyle(
               fontSize: 21,
               fontWeight: FontWeight.bold,
@@ -46,15 +47,6 @@ class _PauloFreireState extends State<PauloFreire> {
             ),
             elevation: 0.0,
             backgroundColor: Colors.white,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.popAndPushNamed(context, HomeScreen.id);
-              },
-            ),
           ),
           body: Padding(
             padding: const EdgeInsets.all(17),

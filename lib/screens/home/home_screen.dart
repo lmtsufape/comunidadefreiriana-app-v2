@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: kHomeButtonColor1,
                 ),
                 onPressed: () {
-                  Navigator.popAndPushNamed(context, PauloFreire.id);
+                  Navigator.pushNamed(context, PauloFreire.id);
                 },
                 icon: const Icon(
                   Icons.ads_click,

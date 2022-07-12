@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 class Api {
   // ignore: unused_field
   final _dio = Dio();
-  static const String baseUrl = 'http://185.28.23.76/api';
+  static const String baseUrl = 'http://185.28.23.76:8010/api';
 
   getAllInstitutions(BuildContext context) async {
     try {
