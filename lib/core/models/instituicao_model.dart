@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
@@ -19,7 +20,7 @@ class InstituicaoModel with ChangeNotifier {
   String? latitude;
   String? longitude;
   String? info;
-  Uint8List? imagem;
+  File? imagem;
   bool? autorizado;
   bool? confirmacaoEmail;
   String? deletedAt;

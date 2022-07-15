@@ -40,7 +40,9 @@ class Api {
       'confirmacaoEmail': false,
       'datafundacao':
           ('${cadastroModel.datafundacao!.year}-${cadastroModel.datafundacao!.month}-${cadastroModel.datafundacao!.day}')
-              .toString()
+              .toString(),
+      'imagem': MultipartFile.fromFile(cadastroModel.imagem!.path,
+          filename: 'image.jpg')
     });
     try {
       Response response = await _dio.post(baseUrl + '/instituicao/store',
