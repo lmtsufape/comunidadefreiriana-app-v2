@@ -1,3 +1,4 @@
+import 'package:comunidadefreiriana/constants/app_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,11 +6,11 @@ import 'package:flutter/cupertino.dart';
 class Api {
   // ignore: unused_field
   final _dio = Dio();
-  static const String baseUrl = 'http://185.28.23.76:8010/api';
 
   getAllInstitutions(BuildContext context) async {
     try {
-      var response = await _dio.get<List>(baseUrl + '/instituicao/aprovados');
+      var response =
+          await _dio.get<List>(kBaseUrl + '/api/instituicao/aprovados');
       if (response.statusCode == 200) {
         return response.data;
       } else {
@@ -45,7 +46,7 @@ class Api {
           filename: 'image.jpg')
     });
     try {
-      Response response = await _dio.post(baseUrl + '/instituicao/store',
+      Response response = await _dio.post(kBaseUrl + '/api/instituicao/store',
           data: body,
           options: Options(
             headers: {

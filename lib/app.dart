@@ -20,7 +20,7 @@ class App extends StatelessWidget {
       ],
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
-      // supportedLocales: const [Locale('pt', 'BR')],
+      supportedLocales: const [Locale('pt', 'BR')],
       debugShowCheckedModeBanner: false,
       builder: (context, widget) => DevicePreview.appBuilder(
         context,

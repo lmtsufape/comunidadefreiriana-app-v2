@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:comunidadefreiriana/components/auth_form_field.dart'
     show AuthFormField;
 import 'package:comunidadefreiriana/components/error_dialog.dart';
@@ -342,7 +344,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                     Row(
                       children: const [
                         Text(
-                          'Adicionar Imagem',
+                          'Adicionar Imagem*',
                           style: kHomeScreen2,
                         ),
                       ],
@@ -415,6 +417,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         text: 'Solicitar Cadastro',
                         onPressed: () {
                           _controller.validateAdress();
+                          log(_controller.validateFields().toString());
                           if (_controller.validateFields() &&
                               _controller.hasAddress) {
                             showDialog(

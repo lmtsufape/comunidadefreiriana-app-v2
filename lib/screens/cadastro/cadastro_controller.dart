@@ -40,6 +40,7 @@ class CadastroController with ChangeNotifier {
 
   void finishCadastro(BuildContext context) async {
     isLoading = true;
+    cadastroModel.imagem = _selectedImage;
     _api.cadastrar(cadastroModel).then((value) {
       isLoading = false;
       notifyListeners();
@@ -64,20 +65,21 @@ class CadastroController with ChangeNotifier {
   }
 
   bool validateFields() {
-    if (cadastroModel.nome == '' ||
-        cadastroModel.categoria == 'Selecione' ||
-        cadastroModel.categoria == '' ||
-        cadastroModel.pais == '' ||
-        cadastroModel.estado == '' ||
-        cadastroModel.cidade == '' ||
-        cadastroModel.endereco == '' ||
-        cadastroModel.cep == '' ||
-        cadastroModel.email == '' ||
-        cadastroModel.coordenador == '' ||
-        cadastroModel.datafundacao == null) {
-      return false;
-    } else {
+    if (cadastroModel.nome != '' &&
+        cadastroModel.categoria != 'Selecione' &&
+        cadastroModel.categoria != '' &&
+        cadastroModel.pais != '' &&
+        cadastroModel.estado != '' &&
+        cadastroModel.cidade != '' &&
+        cadastroModel.endereco != '' &&
+        cadastroModel.cep != '' &&
+        cadastroModel.email != '' &&
+        cadastroModel.coordenador != '' &&
+        cadastroModel.datafundacao != null &&
+        selectedImage != null) {
       return true;
+    } else {
+      return false;
     }
   }
 
