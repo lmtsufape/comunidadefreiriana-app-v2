@@ -1,4 +1,5 @@
 // ignore_for_file: unused_import, prefer_typing_uninitialized_variables, unnecessary_type_check
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -39,7 +40,7 @@ class Maps extends StatefulWidget {
   State<Maps> createState() => _MapsState();
 }
 
-class _MapsState extends State<Maps> {
+class _MapsState extends State<Maps> with WidgetsBindingObserver {
   // ignore: unused_field
   static const kGoogleApiKey = 'AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU';
   final homeScaffoldKey = GlobalKey<ScaffoldState>();
@@ -51,8 +52,28 @@ class _MapsState extends State<Maps> {
   late double long;
   Set<Marker> makers = <Marker>{};
 
+  Completer<GoogleMapController> controller = Completer();
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    super.didChangeAppLifecycleState(state);
+
+    if (state == AppLifecycleState.resumed) {
+      final GoogleMapController controller1 = await controller.future;
+      controller1.setMapStyle('[]');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    storeInstitution();
+
+    WidgetsBinding.instance.addObserver(this);
+  }
+
   // ignore: non_constant_identifier_names
-  StoreInstitution() async {
+  storeInstitution() async {
     var model;
     final data = await MapsRepository().getInstitution();
 
@@ -85,202 +106,229 @@ class _MapsState extends State<Maps> {
     assert(lat is double);
     var long = double.parse(model.longitude!);
     assert(long is double);
+    setState(() {
+      print('CALLING SET STATE');
+      makers.add(
+        Marker(
+            markerId: MarkerId(model.nome.toString()),
+            position: LatLng(lat, long),
+            infoWindow: InfoWindow(title: model.nome),
+            icon: BitmapDescriptor.defaultMarker,
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return FutureBuilder(
+                      future: MapsRepository().getImageInstitution(model.id),
+                      builder: (context, snapshot) {
+                        Map<dynamic, dynamic>? imageData;
+                        if (snapshot.hasData) {
+                          imageData = snapshot.data as Map<dynamic, dynamic>;
+                          //log('Image data is $imageData');
 
-    makers.add(Marker(
-        markerId: MarkerId(model.nome.toString()),
-        position: LatLng(lat, long),
-        infoWindow: InfoWindow(title: model.nome),
-        icon: BitmapDescriptor.defaultMarker,
-        onTap: () => showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return FutureBuilder(
-                future: MapsRepository().getImageInstitution(model.id),
-                builder: (context, snapshot) {
-                  Map<dynamic, dynamic>? imageData;
-                  if (snapshot.hasData) {
-                    imageData = snapshot.data as Map<dynamic, dynamic>;
-                    //log('Image data is $imageData');
-
-                    return Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 24),
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(12))),
-                      child: SingleChildScrollView(
-                          child: Wrap(children: [
-                        Image.network(
-                            'http://185.28.23.76:8010/storage/${imageData['path']}'),
-                        const Spacer(),
-                        Center(
-                          child: Text(
-                            model.nome.toString(),
-                            style: const TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Center(
-                          child: Text(
-                            '(${model.categoria})',
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        const VerticalSpacerBox(size: SpacerSize.large),
-                        const HorizontalInfoTitle(title: 'Telefone'),
-                        HorizontalInfoSubtitle(subtitle: model.telefone),
-                        const HorizontalInfoTitle(title: 'E-mail'),
-                        HorizontalInfoSubtitle(subtitle: model.email),
-                        const HorizontalInfoTitle(title: 'Site'),
-                        HorizontalInfoSubtitle(subtitle: model.site),
-                        const HorizontalInfoTitle(title: 'Mais Informações'),
-                        HorizontalInfoSubtitle(subtitle: model.info),
-                        Row(
-                          children: [
-                            const Spacer(),
-                            OutlinedButton.icon(
-                                style: OutlinedButton.styleFrom(
-                                  fixedSize: const Size(140, 30),
-                                  alignment: const AlignmentDirectional(-1, 0),
-                                  backgroundColor: Colors.blue,
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 24),
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12))),
+                            child: SingleChildScrollView(
+                                child: Wrap(children: [
+                              Image.network(
+                                  'http://185.28.23.76:8010/storage/${imageData['path']}'),
+                              const Spacer(),
+                              Center(
+                                child: Text(
+                                  model.nome.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
-                                label: const Text(
-                                  'Outras info',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
-                                ), // <-- Text
-
-                                icon: const Icon(
-                                  // <-- Icon
-                                  Icons.arrow_forward_ios,
-                                  size: 15.0,
-                                  color: Colors.white,
+                              ),
+                              Center(
+                                child: Text(
+                                  '(${model.categoria})',
+                                  style: const TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                                onPressed: () async {
-                                  showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: SingleChildScrollView(
-                                            child: Container(
+                              ),
+                              const VerticalSpacerBox(size: SpacerSize.large),
+                              const HorizontalInfoTitle(title: 'Telefone'),
+                              HorizontalInfoSubtitle(subtitle: model.telefone),
+                              const HorizontalInfoTitle(title: 'E-mail'),
+                              HorizontalInfoSubtitle(subtitle: model.email),
+                              const HorizontalInfoTitle(title: 'Site'),
+                              HorizontalInfoSubtitle(subtitle: model.site),
+                              const HorizontalInfoTitle(
+                                  title: 'Mais Informações'),
+                              HorizontalInfoSubtitle(subtitle: model.info),
+                              Row(
+                                children: [
+                                  const Spacer(),
+                                  OutlinedButton.icon(
+                                      style: OutlinedButton.styleFrom(
+                                        fixedSize: const Size(140, 30),
+                                        alignment:
+                                            const AlignmentDirectional(-1, 0),
+                                        backgroundColor: Colors.blue,
+                                      ),
+                                      label: const Text(
+                                        'Outras info',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16),
+                                      ), // <-- Text
+
+                                      icon: const Icon(
+                                        // <-- Icon
+                                        Icons.arrow_forward_ios,
+                                        size: 15.0,
+                                        color: Colors.white,
+                                      ),
+                                      onPressed: () async {
+                                        showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 12,
-                                                        horizontal: 24),
-                                                decoration: const BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                12))),
-                                                child: Wrap(children: [
-                                                  Image.network(
-                                                      'http://185.28.23.76:8010/storage/${imageData!['path']}'),
-                                                  const Spacer(),
-                                                  Center(
-                                                    child: Text(
-                                                      model.nome.toString(),
-                                                      style: const TextStyle(
-                                                        fontSize: 26,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                  ),
-                                                  Center(
-                                                    child: Text(
-                                                      '(${model.categoria})',
-                                                      style: const TextStyle(
-                                                        fontSize: 22,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'Pais'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.pais),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'Estado'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.estado),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'Cidade'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.cidade),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'Endereço'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.endereco),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'CEP'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.cep),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'Telefone'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.telefone),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'E-Mail'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.email),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'Site'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.site),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'Corrdenador(a)'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle:
-                                                          model.coordenador),
-                                                  const HorizontalInfoTitle(
-                                                      title:
-                                                          'Data de Fundação'),
-                                                  HorizontalInfoTitle(
-                                                      title: model.datafundacao
-                                                          .toString()),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'Latitude'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.latitude),
-                                                  const HorizontalInfoTitle(
-                                                      title: 'Longitude'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle:
-                                                          model.longitude),
-                                                  const HorizontalInfoTitle(
-                                                      title:
-                                                          'Mais Informações'),
-                                                  HorizontalInfoSubtitle(
-                                                      subtitle: model.info),
-                                                ])),
-                                          ),
-                                        );
-                                      });
-                                })
-                          ],
-                        ),
-                      ])),
+                                                    const EdgeInsets.all(8.0),
+                                                child: SingleChildScrollView(
+                                                  child: Container(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 12,
+                                                          horizontal: 24),
+                                                      decoration: const BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          12))),
+                                                      child: Wrap(children: [
+                                                        Image.network(
+                                                            'http://185.28.23.76:8010/storage/${imageData!['path']}'),
+                                                        const Spacer(),
+                                                        Center(
+                                                          child: Text(
+                                                            model.nome
+                                                                .toString(),
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 26,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
+                                                        ),
+                                                        Center(
+                                                          child: Text(
+                                                            '(${model.categoria})',
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 22,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'Pais'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.pais),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'Estado'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.estado),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'Cidade'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.cidade),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'Endereço'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.endereco),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'CEP'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.cep),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'Telefone'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.telefone),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'E-Mail'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.email),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'Site'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.site),
+                                                        const HorizontalInfoTitle(
+                                                            title:
+                                                                'Corrdenador(a)'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle: model
+                                                                .coordenador),
+                                                        const HorizontalInfoTitle(
+                                                            title:
+                                                                'Data de Fundação'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                '${model.datafundacao!.day}/${model.datafundacao!.month}/${model.datafundacao!.year}'),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'Latitude'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.latitude),
+                                                        const HorizontalInfoTitle(
+                                                            title: 'Longitude'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle: model
+                                                                .longitude),
+                                                        const HorizontalInfoTitle(
+                                                            title:
+                                                                'Mais Informações'),
+                                                        HorizontalInfoSubtitle(
+                                                            subtitle:
+                                                                model.info),
+                                                      ])),
+                                                ),
+                                              );
+                                            });
+                                      })
+                                ],
+                              ),
+                            ])),
+                          );
+                        } else {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      },
                     );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-              );
-            })));
+                  });
+            }),
+      );
+    });
   }
 
   @override
@@ -312,7 +360,6 @@ class _MapsState extends State<Maps> {
         ChangeNotifierProvider<MapsController>(
             create: (context) => MapsController(),
             child: Builder(builder: (context) {
-              StoreInstitution();
               final local = context.watch<MapsController>();
               return GoogleMap(
                 onMapCreated: local.onMapCreated,
