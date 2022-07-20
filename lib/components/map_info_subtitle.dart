@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'horizontal_spacer_box.dart';
 import 'vertical_spacer_box.dart';
 
-class HorizontalInfoSubtitle extends StatelessWidget {
+class MapInfoSubtitle extends StatelessWidget {
   final String? subtitle;
-  const HorizontalInfoSubtitle({Key? key, required this.subtitle})
-      : super(key: key);
+  const MapInfoSubtitle({Key? key, required this.subtitle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

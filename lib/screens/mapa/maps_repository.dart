@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:comunidadefreiriana/constants/app_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -12,18 +14,20 @@ class MapsRepository extends ChangeNotifier {
       if (response.statusCode == 200) {
         Map<String, dynamic> map = response.data;
         List<dynamic> data = map["data"];
+        log('OK! Retornando data das instituições');
         return data;
       } else {
-        if (kDebugMode) {
-          print('primeiro null');
-        }
+        log('Ocorreu um erro ao pegar os dados da instituição: ${response.data} com status de: ${response.statusCode}');
+
         return null;
       }
+    } on DioError catch (e) {
+      log(e.error);
+
+      rethrow;
     } catch (e) {
-      if (kDebugMode) {
-        print('é bronca pai');
-        rethrow;
-      }
+      log('error ${e.toString()}');
+      return null;
     }
   }
 

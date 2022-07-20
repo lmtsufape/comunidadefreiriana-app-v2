@@ -4,9 +4,10 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:comunidadefreiriana/components/error_dialog.dart';
-import 'package:comunidadefreiriana/components/horizontal_info_subtitle.dart';
-import 'package:comunidadefreiriana/components/horizontal_info_title.dart';
+import 'package:comunidadefreiriana/components/map_info_subtitle.dart';
+import 'package:comunidadefreiriana/components/map_info_title.dart';
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
+import 'package:comunidadefreiriana/components/map_inst_screen.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
 import 'package:comunidadefreiriana/constants/app_constants.dart';
 import 'package:comunidadefreiriana/core/models/image_model.dart';
@@ -72,7 +73,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
   }
 
-  // ignore: non_constant_identifier_names
+  //Guarda as informações de todas as instituições dentro de uma lista
   storeInstitution() async {
     var model;
     final data = await MapsRepository().getInstitution();
@@ -100,6 +101,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
     }
   }
 
+//Carrega as informações das instituições no mapa
   loadInstitution(x) async {
     InstituicaoModel model = x;
     var lat = double.parse(model.latitude!);
@@ -107,7 +109,6 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
     var long = double.parse(model.longitude!);
     assert(long is double);
     setState(() {
-      print('CALLING SET STATE');
       makers.add(
         Marker(
             markerId: MarkerId(model.nome.toString()),
@@ -118,213 +119,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
               showModalBottomSheet(
                   context: context,
                   builder: (BuildContext context) {
-                    return FutureBuilder(
-                      future: MapsRepository().getImageInstitution(model.id),
-                      builder: (context, snapshot) {
-                        Map<dynamic, dynamic>? imageData;
-                        if (snapshot.hasData) {
-                          imageData = snapshot.data as Map<dynamic, dynamic>;
-                          //log('Image data is $imageData');
-
-                          return Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 12, horizontal: 24),
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12))),
-                            child: SingleChildScrollView(
-                                child: Wrap(children: [
-                              Image.network(
-                                  'http://185.28.23.76:8010/storage/${imageData['path']}'),
-                              const Spacer(),
-                              Center(
-                                child: Text(
-                                  model.nome.toString(),
-                                  style: const TextStyle(
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              Center(
-                                child: Text(
-                                  '(${model.categoria})',
-                                  style: const TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const VerticalSpacerBox(size: SpacerSize.large),
-                              const HorizontalInfoTitle(title: 'Telefone'),
-                              HorizontalInfoSubtitle(subtitle: model.telefone),
-                              const HorizontalInfoTitle(title: 'E-mail'),
-                              HorizontalInfoSubtitle(subtitle: model.email),
-                              const HorizontalInfoTitle(title: 'Site'),
-                              HorizontalInfoSubtitle(subtitle: model.site),
-                              const HorizontalInfoTitle(
-                                  title: 'Mais Informações'),
-                              HorizontalInfoSubtitle(subtitle: model.info),
-                              Row(
-                                children: [
-                                  const Spacer(),
-                                  OutlinedButton.icon(
-                                      style: OutlinedButton.styleFrom(
-                                        fixedSize: const Size(140, 30),
-                                        alignment:
-                                            const AlignmentDirectional(-1, 0),
-                                        backgroundColor: Colors.blue,
-                                      ),
-                                      label: const Text(
-                                        'Outras info',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 16),
-                                      ), // <-- Text
-
-                                      icon: const Icon(
-                                        // <-- Icon
-                                        Icons.arrow_forward_ios,
-                                        size: 15.0,
-                                        color: Colors.white,
-                                      ),
-                                      onPressed: () async {
-                                        showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: SingleChildScrollView(
-                                                  child: Container(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          vertical: 12,
-                                                          horizontal: 24),
-                                                      decoration: const BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          12))),
-                                                      child: Wrap(children: [
-                                                        Image.network(
-                                                            'http://185.28.23.76:8010/storage/${imageData!['path']}'),
-                                                        const Spacer(),
-                                                        Center(
-                                                          child: Text(
-                                                            model.nome
-                                                                .toString(),
-                                                            style:
-                                                                const TextStyle(
-                                                              fontSize: 26,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                            ),
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                          ),
-                                                        ),
-                                                        Center(
-                                                          child: Text(
-                                                            '(${model.categoria})',
-                                                            style:
-                                                                const TextStyle(
-                                                              fontSize: 22,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'Pais'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.pais),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'Estado'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.estado),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'Cidade'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.cidade),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'Endereço'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.endereco),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'CEP'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.cep),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'Telefone'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.telefone),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'E-Mail'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.email),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'Site'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.site),
-                                                        const HorizontalInfoTitle(
-                                                            title:
-                                                                'Corrdenador(a)'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle: model
-                                                                .coordenador),
-                                                        const HorizontalInfoTitle(
-                                                            title:
-                                                                'Data de Fundação'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                '${model.datafundacao!.day}/${model.datafundacao!.month}/${model.datafundacao!.year}'),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'Latitude'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.latitude),
-                                                        const HorizontalInfoTitle(
-                                                            title: 'Longitude'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle: model
-                                                                .longitude),
-                                                        const HorizontalInfoTitle(
-                                                            title:
-                                                                'Mais Informações'),
-                                                        HorizontalInfoSubtitle(
-                                                            subtitle:
-                                                                model.info),
-                                                      ])),
-                                                ),
-                                              );
-                                            });
-                                      })
-                                ],
-                              ),
-                            ])),
-                          );
-                        } else {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      },
-                    );
+                    return MapInstScreen(model: model);
                   });
             }),
       );

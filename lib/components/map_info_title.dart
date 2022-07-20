@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 import 'horizontal_spacer_box.dart';
 
-class HorizontalInfoTitle extends StatelessWidget {
+class MapInfoTitle extends StatelessWidget {
   final String title;
 
-  const HorizontalInfoTitle({Key? key, required this.title}) : super(key: key);
+  const MapInfoTitle({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
