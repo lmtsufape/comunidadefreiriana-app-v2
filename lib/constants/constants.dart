@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ======API======= //
+const kBaseUrl = 'http://185.28.23.76:8010';
+
 // =======COLORS=========//
 const Color kPrimaryColor = Color(0xFFEEEEEE);
 const Color kHomeButtonColor1 = Color.fromARGB(255, 76, 180, 212);
