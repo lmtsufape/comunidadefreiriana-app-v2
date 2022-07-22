@@ -9,7 +9,6 @@ import 'package:comunidadefreiriana/components/map_info_title.dart';
 import 'package:comunidadefreiriana/components/horizontal_spacer_box.dart';
 import 'package:comunidadefreiriana/components/map_inst_screen.dart';
 import 'package:comunidadefreiriana/components/vertical_spacer_box.dart';
-import 'package:comunidadefreiriana/constants/app_constants.dart';
 import 'package:comunidadefreiriana/core/models/image_model.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:comunidadefreiriana/screens/home/home_screen.dart';

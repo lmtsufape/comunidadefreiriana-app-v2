@@ -1,4 +1,4 @@
-import 'package:comunidadefreiriana/constants/app_constants.dart';
+import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/cupertino.dart';

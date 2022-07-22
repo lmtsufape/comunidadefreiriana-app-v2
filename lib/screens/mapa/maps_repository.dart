@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:comunidadefreiriana/constants/app_constants.dart';
+import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
