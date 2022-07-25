@@ -1,4 +1,4 @@
-package com.lmts.comunidadefreiriana
+package com.lmts.mapcomunidadefreiriana
 
 import io.flutter.embedding.android.FlutterActivity
 

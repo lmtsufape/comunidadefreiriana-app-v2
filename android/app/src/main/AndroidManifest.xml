@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lmts.comunidadefreiriana">
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    package="com.lmts.mapcomunidadefreiriana">
    <application
         android:label="Mapeamento da Comunidade Freiriana Internacional"
         android:requestLegacyExternalStorage="true"
