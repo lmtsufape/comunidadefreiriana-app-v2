@@ -1,5 +1,4 @@
 // ignore_for_file: unnecessary_type_check, prefer_typing_uninitialized_variables
-import 'package:comunidadefreiriana/screens/mapa/maps.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -19,7 +18,7 @@ class MapsController with ChangeNotifier {
 
   getPosicao() async {
     try {
-      final posicao = await _posicaoAtual();
+      final posicao = await posicaoAtual();
       lat = posicao.latitude;
       long = posicao.longitude;
       mapController.animateCamera(CameraUpdate.newLatLng(LatLng(lat, long)));
@@ -29,7 +28,7 @@ class MapsController with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Position> _posicaoAtual() async {
+  posicaoAtual() async {
     LocationPermission permissao;
 
     bool ativado = await Geolocator.isLocationServiceEnabled();
@@ -48,7 +47,6 @@ class MapsController with ChangeNotifier {
     if (permissao == LocationPermission.deniedForever) {
       return Future.error('Você precisa autorizar o acesso à localização');
     }
-
     return await Geolocator.getCurrentPosition();
   }
 }

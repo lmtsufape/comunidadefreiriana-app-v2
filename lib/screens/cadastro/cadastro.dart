@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:comunidadefreiriana/components/auth_form_field.dart'
     show AuthFormField;
 import 'package:comunidadefreiriana/components/error_dialog.dart';
