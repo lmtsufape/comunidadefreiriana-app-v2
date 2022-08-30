@@ -66,6 +66,8 @@ dependencies:
   device_preview: ^1.1.0
   cached_network_image: ^3.2.1
   flutter_launcher_icons: ^0.9.3
+  location: ^4.4.0
+  permission_handler: ^10.0.0
  
 
 

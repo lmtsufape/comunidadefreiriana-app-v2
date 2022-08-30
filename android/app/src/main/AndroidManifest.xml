@@ -1,11 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lmts.mapcomunidadefreiriana">
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Mapeamento da Comunidade Freiriana Internacional"
         android:requestLegacyExternalStorage="true"
         android:name="${applicationName}"
         android:usesCleartextTraffic="true"
-        
         android:icon="@mipmap/ic_launcher">
         
 
@@ -44,8 +45,6 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    
 
 </manifest>

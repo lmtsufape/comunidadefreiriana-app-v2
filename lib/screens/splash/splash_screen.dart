@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     controller.startApp(context);
-    mapsController.getPosicao();
+    mapsController.posicaoAtual();
     // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     return Scaffold(
