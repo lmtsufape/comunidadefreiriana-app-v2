@@ -1,4 +1,4 @@
-import 'package:comunidadefreiriana/screens/mapa/maps_controller.dart';
+import 'package:comunidadefreiriana/screens/permission/notify.dart';
 import 'package:flutter/material.dart';
 import 'package:comunidadefreiriana/screens/splash/splash_controller.dart';
 
@@ -12,14 +12,14 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final SplashScreenController controller = SplashScreenController();
-  final MapsController mapsController = MapsController();
+  final Notify notify = Notify();
   @override
   void initState() => super.initState();
 
   @override
   Widget build(BuildContext context) {
+    notify.requestMultiplePermissions();
     controller.startApp(context);
-    mapsController.posicaoAtual();
     // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     return Scaffold(

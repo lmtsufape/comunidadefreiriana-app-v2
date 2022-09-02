@@ -5,10 +5,8 @@ class SplashScreenController {
   void startApp(BuildContext context) {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.popAndPushNamed(context, HomeScreen.id);
-      
+
       // Navigator.popAndPushNamed(context, HomeScreen.id);
     });
-    
   }
-  
 }
