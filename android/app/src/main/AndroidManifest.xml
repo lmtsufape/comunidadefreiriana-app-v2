@@ -1,17 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lmts.mapcomunidadefreiriana">
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+ <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="Mapeamento da Comunidade Freiriana Internacional"
+        android:label="Comunidade Freiriana"
         android:requestLegacyExternalStorage="true"
-        android:name="com.lmts.mapcomunidadefreiriana"
+        android:name="${applicationName}"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU"/>
+        <!-- <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU"/> -->
         <activity
             android:name=".MainActivity"
             android:requestLegacyExternalStorage="true"
@@ -32,11 +32,11 @@
               />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- <action android:name="android.intent.action.VIEW" /> -->
+                <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+                <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
                 <category android:name="android.intent.category.LAUNCHER"/>
-                 <data android:scheme="ourScheme" />
+                 <!-- <data android:scheme="ourScheme" /> -->
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data belsow.
