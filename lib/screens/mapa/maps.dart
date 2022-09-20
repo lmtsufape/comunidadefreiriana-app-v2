@@ -42,14 +42,8 @@ class Maps extends StatefulWidget {
 
 class _MapsState extends State<Maps> with WidgetsBindingObserver {
   // ignore: unused_field
-  static const kGoogleApiKey = 'AIzaSyCyitTSqdXnZnYAcBj_oQd7Ho7qcR5BvFU';
-  final homeScaffoldKey = GlobalKey<ScaffoldState>();
-  String path = '';
-  String location = "Procurar localidade";
   CameraPosition? cameraPosition;
   List<LatLng> tappedPoints = [];
-  late double lat;
-  late double long;
   Set<Marker> makers = <Marker>{};
 
   Completer<GoogleMapController> controller = Completer();
@@ -144,7 +138,6 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
             Icons.arrow_back,
             color: Colors.white,
           ),
-          //onPressed:() => Navigator.pop(context, false),
           onPressed: () {
             Navigator.popAndPushNamed(context, HomeScreen.id);
           },

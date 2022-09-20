@@ -1,8 +1,5 @@
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import '../screens/mapa/maps_repository.dart';
 import 'map_info_subtitle.dart';
 import 'map_info_title.dart';
