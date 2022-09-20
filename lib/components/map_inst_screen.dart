@@ -21,10 +21,13 @@ class MapInstScreen extends StatelessWidget {
 
           return Container(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-            decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(12))),
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(12))),
             child: SingleChildScrollView(
                 child: Wrap(children: [
-              Image.network('http://185.28.23.76:8010/storage/${imageData['path']}'),
+              Image.network(
+                  'http://185.28.23.76:8010/storage/${imageData['path']}'),
               Center(
                 child: Text(
                   model.nome.toString(),
@@ -81,10 +84,15 @@ class MapInstScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: SingleChildScrollView(
                                   child: Container(
-                                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                                      decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(12))),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12, horizontal: 24),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12))),
                                       child: Wrap(children: [
-                                        Image.network('http://185.28.23.76:8010/storage/${imageData!['path']}'),
+                                        Image.network(
+                                            'http://185.28.23.76:8010/storage/${imageData!['path']}'),
                                         Center(
                                           child: Text(
                                             model.nome.toString(),
@@ -111,24 +119,34 @@ class MapInstScreen extends StatelessWidget {
                                         const MapInfoTitle(title: 'Cidade'),
                                         MapInfoSubtitle(subtitle: model.cidade),
                                         const MapInfoTitle(title: 'Endereço'),
-                                        MapInfoSubtitle(subtitle: model.endereco),
+                                        MapInfoSubtitle(
+                                            subtitle: model.endereco),
                                         const MapInfoTitle(title: 'CEP'),
                                         MapInfoSubtitle(subtitle: model.cep),
                                         const MapInfoTitle(title: 'Telefone'),
-                                        MapInfoSubtitle(subtitle: model.telefone),
+                                        MapInfoSubtitle(
+                                            subtitle: model.telefone),
                                         const MapInfoTitle(title: 'E-Mail'),
                                         MapInfoSubtitle(subtitle: model.email),
                                         const MapInfoTitle(title: 'Site'),
                                         MapInfoSubtitle(subtitle: model.site),
-                                        const MapInfoTitle(title: 'Corrdenador(a)'),
-                                        MapInfoSubtitle(subtitle: model.coordenador),
-                                        const MapInfoTitle(title: 'Data de Fundação'),
-                                        MapInfoSubtitle(subtitle: '${model.datafundacao!.day}/${model.datafundacao!.month}/${model.datafundacao!.year}'),
+                                        const MapInfoTitle(
+                                            title: 'Coordenador(a)'),
+                                        MapInfoSubtitle(
+                                            subtitle: model.coordenador),
+                                        const MapInfoTitle(
+                                            title: 'Data de Fundação'),
+                                        MapInfoSubtitle(
+                                            subtitle:
+                                                '${model.datafundacao!.day}/${model.datafundacao!.month}/${model.datafundacao!.year}'),
                                         const MapInfoTitle(title: 'Latitude'),
-                                        MapInfoSubtitle(subtitle: model.latitude),
+                                        MapInfoSubtitle(
+                                            subtitle: model.latitude),
                                         const MapInfoTitle(title: 'Longitude'),
-                                        MapInfoSubtitle(subtitle: model.longitude),
-                                        const MapInfoTitle(title: 'Mais Informações'),
+                                        MapInfoSubtitle(
+                                            subtitle: model.longitude),
+                                        const MapInfoTitle(
+                                            title: 'Mais Informações'),
                                         MapInfoSubtitle(subtitle: model.info),
                                       ])),
                                 ),
