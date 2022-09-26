@@ -45,7 +45,7 @@ const TextStyle kTitleStyles = TextStyle(
 );
 
 const TextStyle kTextIcons = TextStyle(
-  fontSize: 18,
+  fontSize: 17,
   fontWeight: FontWeight.bold,
   color: Colors.black,
 );

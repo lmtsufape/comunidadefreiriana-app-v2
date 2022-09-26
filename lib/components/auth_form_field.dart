@@ -7,15 +7,13 @@ class AuthFormField extends StatefulWidget {
   final TextInputType inputType;
   final Function(String) onChanged;
 
-
-  const AuthFormField(
-      {Key? key,
-      required this.label,
-      required this.isPassword,
-      required this.inputType,
-      required this.onChanged,
-      })
-      : super(key: key);
+  const AuthFormField({
+    Key? key,
+    required this.label,
+    required this.isPassword,
+    required this.inputType,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   State<AuthFormField> createState() => _AuthFormFieldState();
@@ -45,7 +43,6 @@ class _AuthFormFieldState extends State<AuthFormField> {
                       showPassword ? Icons.visibility : Icons.visibility_off,
                       color: kDetailColor))
               : null,
-          labelText: widget.label,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
