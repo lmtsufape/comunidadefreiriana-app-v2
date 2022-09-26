@@ -152,7 +152,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
                 onMapCreated: local.onMapCreated,
                 initialCameraPosition: CameraPosition(
                   target: LatLng(local.lat, local.long),
-                  zoom: 10,
+                  zoom: 8,
                 ),
                 zoomGesturesEnabled: true,
                 zoomControlsEnabled: true,
@@ -164,6 +164,28 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
                 },
               );
             })),
+        const Padding(
+          padding: EdgeInsets.all(18.0),
+          child: TextField(
+            keyboardType: TextInputType.text,
+            autofocus: true,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Color(0xFFFFFFFF),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
+              hintText: 'Pesquisar',
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              isDense: true,
+              prefixIcon: Icon(
+                Icons.search,
+                color: Colors.blue,
+                size: 25,
+              ),
+            ),
+          ),
+        ),
       ]),
       floatingActionButton: Center(
         child: Padding(
