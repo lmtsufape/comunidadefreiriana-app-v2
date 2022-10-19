@@ -130,7 +130,7 @@ class MapsController with ChangeNotifier {
                                                       );
                                                     });
                                               },
-                                              child: Text('Detalhes'))
+                                              child: Text('Ir'))
                                         ],
                                       )
                                     ],
