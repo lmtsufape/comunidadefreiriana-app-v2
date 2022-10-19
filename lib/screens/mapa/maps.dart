@@ -30,6 +30,8 @@ import 'package:comunidadefreiriana/components/custom_date_formater.dart';
 // ignore: implementation_imports
 import 'package:flutter/src/foundation/change_notifier.dart';
 
+import '../../components/search_bar.dart';
+
 final appKey = GlobalKey();
 
 class Maps extends StatefulWidget {
@@ -47,6 +49,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
   Set<Marker> makers = <Marker>{};
 
   Completer<GoogleMapController> controller = Completer();
+  final MapsController mapController = MapsController();
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
@@ -85,7 +88,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
         email: i["email"] ?? 'Não consta',
         site: i["site"] ?? 'Não consta',
         coordenador: i["coordenador"] ?? 'Não consta',
-        datafundacao: DateTime.parse(i["datafundacao"]),
+        datafundacao: i["datafundacao"] == null ? DateTime.now() : DateTime.parse(i["datafundacao"]),
         latitude: i["latitude"] ?? 'Não consta',
         longitude: i["longitude"] ?? 'Não consta',
         info: i["info"] ?? 'Não consta',
@@ -164,27 +167,9 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
                 },
               );
             })),
-        const Padding(
-          padding: EdgeInsets.all(18.0),
-          child: TextField(
-            keyboardType: TextInputType.text,
-            autofocus: true,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Color(0xFFFFFFFF),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30))),
-              hintText: 'Pesquisar',
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-              isDense: true,
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.blue,
-                size: 25,
-              ),
-            ),
-          ),
+        SearchBar(
+          controller: mapController.searchBarController,
+          onSearch: () => mapController.queryInstituition(context),
         ),
       ]),
       floatingActionButton: Center(

@@ -1,0 +1,146 @@
+Date : 2022-10-19 10:35:29
+Directory : c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2
+Total : 73 files,  3443 codes, 257 comments, 435 blanks, all 4135 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Dart       |         35 |      2,403 |         65 |        207 |      2,675 |
+| C++        |         14 |        493 |         99 |        160 |        752 |
+| JSON       |          3 |        180 |          0 |          3 |        183 |
+| XML        |         11 |        140 |         50 |         16 |        206 |
+| Groovy     |          3 |        105 |          1 |         24 |        130 |
+| HTML       |          1 |         80 |         18 |          7 |        105 |
+| Swift      |          1 |         16 |          0 |          2 |         18 |
+| Markdown   |          2 |         15 |          0 |         10 |         25 |
+| Properties |          2 |          8 |          1 |          2 |         11 |
+| YAML       |          1 |          3 |         23 |          4 |         30 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                      | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                         |         73 |      3,443 |        257 |        435 |      4,135 |
+| android                                                                                                                   |         14 |        192 |         50 |         40 |        282 |
+| android\app                                                                                                               |         10 |        148 |         49 |         29 |        226 |
+| android\app\src                                                                                                           |          9 |         79 |         48 |         14 |        141 |
+| android\app\src\debug                                                                                                     |          1 |          4 |          3 |          1 |          8 |
+| android\app\src\main                                                                                                      |          7 |         71 |         42 |         12 |        125 |
+| android\app\src\main\res                                                                                                  |          6 |         35 |         32 |          6 |         73 |
+| android\app\src\main\res\drawable                                                                                         |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\drawable-v21                                                                                     |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\mipmap-anydpi-v26                                                                                |          1 |          5 |          0 |          0 |          5 |
+| android\app\src\main\res\values                                                                                           |          2 |         13 |          9 |          1 |         23 |
+| android\app\src\main\res\values-night                                                                                     |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\profile                                                                                                   |          1 |          4 |          3 |          1 |          8 |
+| android\gradle                                                                                                            |          1 |          5 |          1 |          1 |          7 |
+| android\gradle\wrapper                                                                                                    |          1 |          5 |          1 |          1 |          7 |
+| ios                                                                                                                       |          7 |        226 |          2 |          9 |        237 |
+| ios\Runner                                                                                                                |          7 |        226 |          2 |          9 |        237 |
+| ios\Runner\Assets.xcassets                                                                                                |          3 |        148 |          0 |          4 |        152 |
+| ios\Runner\Assets.xcassets\AppIcon.appiconset                                                                             |          1 |        122 |          0 |          1 |        123 |
+| ios\Runner\Assets.xcassets\LaunchImage.imageset                                                                           |          2 |         26 |          0 |          3 |         29 |
+| ios\Runner\Base.lproj                                                                                                     |          2 |         61 |          2 |          2 |         65 |
+| lib                                                                                                                       |         34 |      2,389 |         55 |        201 |      2,645 |
+| lib\components                                                                                                            |         16 |        559 |          7 |         61 |        627 |
+| lib\constants                                                                                                             |          2 |        132 |          4 |         24 |        160 |
+| lib\core                                                                                                                  |          3 |        120 |          1 |         10 |        131 |
+| lib\core\models                                                                                                           |          2 |         58 |          0 |          6 |         64 |
+| lib\image_control                                                                                                         |          1 |         33 |          0 |          4 |         37 |
+| lib\screens                                                                                                               |         10 |      1,479 |         43 |         97 |      1,619 |
+| lib\screens\cadastro                                                                                                      |          2 |        592 |          5 |         43 |        640 |
+| lib\screens\home                                                                                                          |          1 |        200 |          1 |          4 |        205 |
+| lib\screens\mapa                                                                                                          |          3 |        279 |         12 |         34 |        325 |
+| lib\screens\paulofreire                                                                                                   |          1 |        357 |          7 |          4 |        368 |
+| lib\screens\permission                                                                                                    |          1 |         15 |         16 |          4 |         35 |
+| lib\screens\splash                                                                                                        |          2 |         36 |          2 |          8 |         46 |
+| linux                                                                                                                     |          4 |         91 |         23 |         33 |        147 |
+| linux\flutter                                                                                                             |          1 |          5 |          5 |          6 |         16 |
+| test                                                                                                                      |          1 |         14 |         10 |          6 |         30 |
+| web                                                                                                                       |          2 |        115 |         18 |          8 |        141 |
+| windows                                                                                                                   |          9 |        401 |         76 |        126 |        603 |
+| windows\flutter                                                                                                           |          1 |          5 |          5 |          6 |         16 |
+| windows\runner                                                                                                            |          8 |        396 |         71 |        120 |        587 |
++---------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                  | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\README.md                                                     | Markdown   |         12 |          0 |          8 |         20 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\analysis_options.yaml                                         | YAML       |          3 |         23 |          4 |         30 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\build.gradle                                      | Groovy     |         69 |          1 |         15 |         85 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\src\debug\AndroidManifest.xml                     | XML        |          4 |          3 |          1 |          8 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\src\main\AndroidManifest.xml                      | XML        |         36 |         10 |          6 |         52 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\src\main\res\drawable-v21\launch_background.xml   | XML        |          4 |          7 |          2 |         13 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\src\main\res\drawable\launch_background.xml       | XML        |          4 |          7 |          2 |         13 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\src\main\res\mipmap-anydpi-v26\ic_launcher.xml    | XML        |          5 |          0 |          0 |          5 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\src\main\res\values-night\styles.xml              | XML        |          9 |          9 |          1 |         19 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\src\main\res\values\colors.xml                    | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\src\main\res\values\styles.xml                    | XML        |          9 |          9 |          1 |         19 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\app\src\profile\AndroidManifest.xml                   | XML        |          4 |          3 |          1 |          8 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\build.gradle                                          | Groovy     |         28 |          0 |          5 |         33 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\gradle.properties                                     | Properties |          3 |          0 |          1 |          4 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\gradle\wrapper\gradle-wrapper.properties              | Properties |          5 |          1 |          1 |          7 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\android\settings.gradle                                       | Groovy     |          8 |          0 |          4 |         12 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\ios\Runner\AppDelegate.swift                                  | Swift      |         16 |          0 |          2 |         18 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\ios\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json   | JSON       |        122 |          0 |          1 |        123 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\ios\Runner\Assets.xcassets\LaunchImage.imageset\Contents.json | JSON       |         23 |          0 |          1 |         24 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\ios\Runner\Assets.xcassets\LaunchImage.imageset\README.md     | Markdown   |          3 |          0 |          2 |          5 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\ios\Runner\Base.lproj\LaunchScreen.storyboard                 | XML        |         36 |          1 |          1 |         38 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\ios\Runner\Base.lproj\Main.storyboard                         | XML        |         25 |          1 |          1 |         27 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\ios\Runner\Runner-Bridging-Header.h                           | C++        |          1 |          0 |          1 |          2 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\app.dart                                                  | Dart       |         48 |          0 |          3 |         51 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\auth_form_field.dart                           | Dart       |         53 |          0 |          5 |         58 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\auth_space_box.dart                            | Dart       |          0 |          0 |          1 |          1 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\custom_date_formater.dart                      | Dart       |         12 |          3 |          4 |         19 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\custom_text_button.dart                        | Dart       |         14 |          0 |          3 |         17 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\error_dialog.dart                              | Dart       |         24 |          0 |          4 |         28 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\finish_dialog.dart                             | Dart       |         63 |          1 |          3 |         67 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\general_loader.dart                            | Dart       |         15 |          0 |          3 |         18 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\horizontal_spacer_box.dart                     | Dart       |         27 |          0 |          5 |         32 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\map_info_subtitle.dart                         | Dart       |         22 |          0 |          4 |         26 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\map_info_title.dart                            | Dart       |         20 |          0 |          5 |         25 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\map_inst_screen.dart                           | Dart       |        162 |          2 |          5 |        169 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\number_form_field.dart                         | Dart       |         28 |          0 |          4 |         32 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\primary_button.dart                            | Dart       |         36 |          0 |          3 |         39 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\primary_buttonCadastro.dart                    | Dart       |         36 |          1 |          4 |         41 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\secundary_button.dart                          | Dart       |         20 |          0 |          3 |         23 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\components\vertical_spacer_box.dart                       | Dart       |         27 |          0 |          5 |         32 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\constants\constants.dart                                  | Dart       |        109 |          4 |         22 |        135 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\constants\theme_manager.dart                              | Dart       |         23 |          0 |          2 |         25 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\core\api.dart                                             | Dart       |         62 |          1 |          4 |         67 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\core\models\image_model.dart                              | Dart       |          8 |          0 |          2 |         10 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\core\models\instituicao_model.dart                        | Dart       |         50 |          0 |          4 |         54 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\image_control\image_picker.controller.dart                | Dart       |         33 |          0 |          4 |         37 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\main.dart                                                 | Dart       |         18 |          0 |          2 |         20 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\cadastro\cadastro.dart                            | Dart       |        434 |          3 |         10 |        447 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\cadastro\cadastro_controller.dart                 | Dart       |        158 |          2 |         33 |        193 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\home\home_screen.dart                             | Dart       |        200 |          1 |          4 |        205 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\mapa\maps.dart                                    | Dart       |        196 |          8 |         14 |        218 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\mapa\maps_controller.dart                         | Dart       |         42 |          3 |         11 |         56 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\mapa\maps_repository.dart                         | Dart       |         41 |          1 |          9 |         51 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\paulofreire\paulo_freire.dart                     | Dart       |        357 |          7 |          4 |        368 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\permission\notify.dart                            | Dart       |         15 |         16 |          4 |         35 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\splash\splash_controller.dart                     | Dart       |          9 |          1 |          3 |         13 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\lib\screens\splash\splash_screen.dart                         | Dart       |         27 |          1 |          5 |         33 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\linux\flutter\generated_plugin_registrant.h                   | C++        |          5 |          5 |          6 |         16 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\linux\main.cc                                                 | C++        |          5 |          0 |          2 |          7 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\linux\my_application.cc                                       | C++        |         74 |         11 |         20 |        105 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\linux\my_application.h                                        | C++        |          7 |          7 |          5 |         19 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\test\widget_test.dart                                         | Dart       |         14 |         10 |          6 |         30 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\web\index.html                                                | HTML       |         80 |         18 |          7 |        105 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\web\manifest.json                                             | JSON       |         35 |          0 |          1 |         36 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\windows\flutter\generated_plugin_registrant.h                 | C++        |          5 |          5 |          6 |         16 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\windows\runner\flutter_window.cpp                             | C++        |         45 |          4 |         13 |         62 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\windows\runner\flutter_window.h                               | C++        |         20 |          5 |          9 |         34 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\windows\runner\main.cpp                                       | C++        |         30 |          4 |         10 |         44 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\windows\runner\resource.h                                     | C++        |          9 |          6 |          2 |         17 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\windows\runner\utils.cpp                                      | C++        |         53 |          2 |         10 |         65 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\windows\runner\utils.h                                        | C++        |          8 |          6 |          6 |         20 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\windows\runner\win32_window.cpp                               | C++        |        183 |         15 |         48 |        246 |
+| c:\Users\atali\Desktop\Jobs\LMTS\comunidadefreiriana-app-v2\windows\runner\win32_window.h                                 | C++        |         48 |         29 |         22 |         99 |
+| Total                                                                                                                     |            |      3,443 |        257 |        435 |      4,135 |
++---------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

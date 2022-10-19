@@ -39,9 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       HorizontalSpacerBox(size: SpacerSize.tiny),
                       Text(
                         'Português - BR',
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: Colors.blue),
+                        style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue),
                       ),
                     ],
                   ),
@@ -50,15 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
               const VerticalSpacerBox(size: SpacerSize.small),
               Image.asset(
                 'lib/assets/images/logo.png',
-                width: size.width * 0.9,
+                width: size.width * 0.6,
               ),
               const VerticalSpacerBox(size: SpacerSize.small),
               Wrap(
                 children: const [
                   Text(
                     'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
-                    strutStyle:
-                        StrutStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    strutStyle: StrutStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -172,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Image.asset(
                         'lib/assets/images/logo_ipf.png',
-                        width: size.width * 0.3,
+                        width: size.width * 0.2,
                       ),
                     ],
                   ),
@@ -183,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Image.asset(
                           'lib/assets/images/icone_ufape_lmts.jpg',
-                          width: size.width * 0.5,
+                          width: size.width * 0.4,
                         ),
                       ],
                     ),

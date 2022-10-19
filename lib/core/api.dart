@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:comunidadefreiriana/constants/constants.dart';
+import 'package:comunidadefreiriana/core/models/instituition_model.dart';
 import 'package:dio/dio.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,8 +12,7 @@ class Api {
 
   getAllInstitutions(BuildContext context) async {
     try {
-      var response =
-          await _dio.get<List>(kBaseUrl + '/api/instituicao/aprovados');
+      var response = await _dio.get<List>(kBaseUrl + '/api/instituicao/aprovados');
       if (response.statusCode == 200) {
         return response.data;
       } else {
@@ -19,6 +21,24 @@ class Api {
     } catch (e) {
       return null;
     }
+  }
+
+  Future<List<InstituitionModel>> queryInstituition(String query) async {
+    List<InstituitionModel> data = [];
+    try {
+      final response = await _dio.get(kBaseUrl + '/api/instituicao/buscar/$query');
+      if (response.statusCode == 200) {
+        for (var i = 0; i < response.data['data'].length; i++) {
+          data.add(InstituitionModel.fromJson(response.data['data'][i]));
+        }
+      } else {
+        return Future.error('Desculpe, estamos com problemas internos :(');
+      }
+    } on DioError catch (e) {
+      log('Something got wrong while quering $e');
+    }
+
+    return data;
   }
 
   Future cadastrar(InstituicaoModel cadastroModel) async {
@@ -39,11 +59,8 @@ class Api {
       'info': cadastroModel.info,
       'autorizado': false,
       'confirmacaoEmail': false,
-      'datafundacao':
-          ('${cadastroModel.datafundacao!.year}-${cadastroModel.datafundacao!.month}-${cadastroModel.datafundacao!.day}')
-              .toString(),
-      'imagem': MultipartFile.fromFile(cadastroModel.imagem!.path,
-          filename: 'image.jpg')
+      'datafundacao': ('${cadastroModel.datafundacao!.year}-${cadastroModel.datafundacao!.month}-${cadastroModel.datafundacao!.day}').toString(),
+      'imagem': MultipartFile.fromFile(cadastroModel.imagem!.path, filename: 'image.jpg')
     });
     try {
       Response response = await _dio.post(kBaseUrl + '/api/instituicao/store',
