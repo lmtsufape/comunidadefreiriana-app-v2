@@ -48,7 +48,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
   List<LatLng> tappedPoints = [];
   Set<Marker> makers = <Marker>{};
 
-  Completer<GoogleMapController> controller = Completer();
+  Completer<GoogleMapController> _controller = Completer();
   final MapsController mapController = MapsController();
 
   @override
@@ -56,7 +56,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
     super.didChangeAppLifecycleState(state);
 
     if (state == AppLifecycleState.resumed) {
-      final GoogleMapController controller1 = await controller.future;
+      final GoogleMapController controller1 = await _controller.future;
       controller1.setMapStyle('[]');
     }
   }
@@ -152,7 +152,9 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
             child: Builder(builder: (context) {
               final local = context.watch<MapsController>();
               return GoogleMap(
-                onMapCreated: local.onMapCreated,
+                onMapCreated: (GoogleMapController maps) {
+                  _controller.complete(maps);
+                },
                 initialCameraPosition: CameraPosition(
                   target: LatLng(local.lat, local.long),
                   zoom: 8,
@@ -169,7 +171,11 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
             })),
         SearchBar(
           controller: mapController.searchBarController,
-          onSearch: () => mapController.queryInstituition(context),
+          onSearch: () => mapController.queryInstituition(context, (lat, long) async {
+            Navigator.pop(context);
+            final GoogleMapController controller = await _controller.future;
+            controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(lat, long), zoom: 15)));
+          }),
         ),
       ]),
       floatingActionButton: Center(

@@ -5,6 +5,7 @@ import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../components/map_info_subtitle.dart';
@@ -25,11 +26,11 @@ class MapsController with ChangeNotifier {
   final Api _api = Api();
 
   onMapCreated(GoogleMapController gmc) async {
-    getPosicao();
     mapController = gmc;
+    getPosicao();
   }
 
-  void queryInstituition(BuildContext context) {
+  void queryInstituition(BuildContext context, Function(double lat, double long) onGoToLocation) {
     _api.queryInstituition(_searchBarController.text).then((value) {
       showModalBottomSheet(
           context: context,
@@ -59,7 +60,10 @@ class MapsController with ChangeNotifier {
                                   return Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(value[index].nome),
+                                      Text(
+                                        value[index].nome,
+                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                                      ),
                                       Row(
                                         children: [
                                           Text(
@@ -67,72 +71,84 @@ class MapsController with ChangeNotifier {
                                             style: TextStyle(fontSize: 16, color: Colors.grey),
                                           ),
                                           Text(value[index].pais),
-                                          Spacer(),
-                                          TextButton(
-                                              onPressed: () {
-                                                showModalBottomSheet(
-                                                    isScrollControlled: true,
-                                                    context: context,
-                                                    builder: (BuildContext context) {
-                                                      return Padding(
-                                                        padding: const EdgeInsets.all(8.0),
-                                                        child: SingleChildScrollView(
-                                                          child: Container(
-                                                              padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                                                              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(12))),
-                                                              child: Wrap(children: [
-                                                                Center(
-                                                                  child: Text(
-                                                                    value[index].nome.toString(),
-                                                                    style: const TextStyle(
-                                                                      fontSize: 26,
-                                                                      fontWeight: FontWeight.w600,
+                                          const Spacer(),
+                                          Column(
+                                            children: [
+                                              TextButton.icon(
+                                                onPressed: () => onGoToLocation(double.parse(value[index].latitude), double.parse(value[index].longitude)),
+                                                label: Text('Ir para'),
+                                                icon: Icon(Icons.location_on_sharp),
+                                              ),
+                                              TextButton.icon(
+                                                icon: Icon(Icons.info),
+                                                onPressed: () {
+                                                  showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      context: context,
+                                                      builder: (BuildContext context) {
+                                                        return Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: SingleChildScrollView(
+                                                            child: Container(
+                                                                padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                                                decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(12))),
+                                                                child: Wrap(children: [
+                                                                  Center(
+                                                                    child: Text(
+                                                                      value[index].nome.toString(),
+                                                                      style: const TextStyle(
+                                                                        fontSize: 26,
+                                                                        fontWeight: FontWeight.w600,
+                                                                      ),
+                                                                      textAlign: TextAlign.center,
                                                                     ),
-                                                                    textAlign: TextAlign.center,
                                                                   ),
-                                                                ),
-                                                                Center(
-                                                                  child: Text(
-                                                                    '(${value[index].categoria})',
-                                                                    style: const TextStyle(
-                                                                      fontSize: 22,
-                                                                      fontWeight: FontWeight.w600,
+                                                                  Center(
+                                                                    child: Text(
+                                                                      '(${value[index].categoria})',
+                                                                      style: const TextStyle(
+                                                                        fontSize: 22,
+                                                                        fontWeight: FontWeight.w600,
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                                const MapInfoTitle(title: 'Pais'),
-                                                                MapInfoSubtitle(subtitle: value[index].pais),
-                                                                const MapInfoTitle(title: 'Estado'),
-                                                                MapInfoSubtitle(subtitle: value[index].estado),
-                                                                const MapInfoTitle(title: 'Cidade'),
-                                                                MapInfoSubtitle(subtitle: value[index].cidade),
-                                                                const MapInfoTitle(title: 'Endereço'),
-                                                                MapInfoSubtitle(subtitle: value[index].endereco),
-                                                                const MapInfoTitle(title: 'CEP'),
-                                                                MapInfoSubtitle(subtitle: value[index].cep),
-                                                                const MapInfoTitle(title: 'Telefone'),
-                                                                MapInfoSubtitle(subtitle: value[index].telefone),
-                                                                const MapInfoTitle(title: 'E-Mail'),
-                                                                MapInfoSubtitle(subtitle: value[index].email),
-                                                                const MapInfoTitle(title: 'Site'),
-                                                                MapInfoSubtitle(subtitle: value[index].site),
-                                                                const MapInfoTitle(title: 'Coordenador(a)'),
-                                                                MapInfoSubtitle(subtitle: value[index].coordenador),
-                                                                const MapInfoTitle(title: 'Data de Fundação'),
-                                                                MapInfoSubtitle(subtitle: '${value[index].datafundacao.day}/${value[index].datafundacao.month}/${value[index].datafundacao.year}'),
-                                                                const MapInfoTitle(title: 'Latitude'),
-                                                                MapInfoSubtitle(subtitle: value[index].latitude),
-                                                                const MapInfoTitle(title: 'Longitude'),
-                                                                MapInfoSubtitle(subtitle: value[index].longitude),
-                                                                // const MapInfoTitle(title: 'Mais Informações'),
-                                                              ])),
-                                                        ),
-                                                      );
-                                                    });
-                                              },
-                                              child: Text('Ir'))
+                                                                  const MapInfoTitle(title: 'Pais'),
+                                                                  MapInfoSubtitle(subtitle: value[index].pais),
+                                                                  const MapInfoTitle(title: 'Estado'),
+                                                                  MapInfoSubtitle(subtitle: value[index].estado),
+                                                                  const MapInfoTitle(title: 'Cidade'),
+                                                                  MapInfoSubtitle(subtitle: value[index].cidade),
+                                                                  const MapInfoTitle(title: 'Endereço'),
+                                                                  MapInfoSubtitle(subtitle: value[index].endereco),
+                                                                  const MapInfoTitle(title: 'CEP'),
+                                                                  MapInfoSubtitle(subtitle: value[index].cep),
+                                                                  const MapInfoTitle(title: 'Telefone'),
+                                                                  MapInfoSubtitle(subtitle: value[index].telefone),
+                                                                  const MapInfoTitle(title: 'E-Mail'),
+                                                                  MapInfoSubtitle(subtitle: value[index].email),
+                                                                  const MapInfoTitle(title: 'Site'),
+                                                                  MapInfoSubtitle(subtitle: value[index].site),
+                                                                  const MapInfoTitle(title: 'Coordenador(a)'),
+                                                                  MapInfoSubtitle(subtitle: value[index].coordenador),
+                                                                  const MapInfoTitle(title: 'Data de Fundação'),
+                                                                  MapInfoSubtitle(subtitle: '${value[index].datafundacao.day}/${value[index].datafundacao.month}/${value[index].datafundacao.year}'),
+                                                                  const MapInfoTitle(title: 'Latitude'),
+                                                                  MapInfoSubtitle(subtitle: value[index].latitude),
+                                                                  const MapInfoTitle(title: 'Longitude'),
+                                                                  MapInfoSubtitle(subtitle: value[index].longitude),
+                                                                  // const MapInfoTitle(title: 'Mais Informações'),
+                                                                ])),
+                                                          ),
+                                                        );
+                                                      });
+                                                },
+                                                label: Text('Detalhes'),
+                                              ),
+                                            ],
+                                          ),
                                         ],
-                                      )
+                                      ),
+                                      Divider()
                                     ],
                                   );
                                 }))
@@ -153,8 +169,12 @@ class MapsController with ChangeNotifier {
       final posicao = await posicaoAtual();
       lat = posicao.latitude;
       long = posicao.longitude;
-      mapController.animateCamera(CameraUpdate.newLatLng(LatLng(lat, long)));
+      log('PEGANDO POSIÇÃO');
+      await mapController.animateCamera(CameraUpdate.newLatLng(LatLng(lat, long))).catchError((e) {
+        log('erro ao animar camera $e');
+      });
     } catch (e) {
+      log(e.toString());
       return e.toString();
     }
     notifyListeners();
