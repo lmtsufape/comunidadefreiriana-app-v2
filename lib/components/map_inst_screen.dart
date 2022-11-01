@@ -57,6 +57,7 @@ class MapInstScreen extends StatelessWidget {
               const MapInfoTitle(title: 'Mais Informações'),
               MapInfoSubtitle(subtitle: model.info),
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   OutlinedButton.icon(
                       style: OutlinedButton.styleFrom(
@@ -112,6 +113,9 @@ class MapInstScreen extends StatelessWidget {
                                             ),
                                           ),
                                         ),
+                                        // ignore: prefer_const_constructors
+                                        VerticalSpacerBox(
+                                            size: SpacerSize.large),
                                         const MapInfoTitle(title: 'Pais'),
                                         MapInfoSubtitle(subtitle: model.pais),
                                         const MapInfoTitle(title: 'Estado'),

@@ -39,23 +39,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       HorizontalSpacerBox(size: SpacerSize.tiny),
                       Text(
                         'Português - BR',
-                        style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue),
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.blue),
                       ),
                     ],
                   ),
                 ],
               ),
-              const VerticalSpacerBox(size: SpacerSize.small),
+              const VerticalSpacerBox(size: SpacerSize.medium),
               Image.asset(
                 'lib/assets/images/logo.png',
-                width: size.width * 0.6,
+                width: size.width * 0.8,
               ),
               const VerticalSpacerBox(size: SpacerSize.small),
               Wrap(
                 children: const [
                   Text(
                     'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
-                    strutStyle: StrutStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    strutStyle:
+                        StrutStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -150,18 +153,19 @@ class _HomeScreenState extends State<HomeScreen> {
               const Spacer(),
               Row(
                 children: const [
-                  HorizontalSpacerBox(size: SpacerSize.large),
+                  HorizontalSpacerBox(size: SpacerSize.medium),
                   Text(
                     'Realização:',
-                    style: kTextIcons,
+                    style: kTextIcons2,
                   ),
                   HorizontalSpacerBox(size: SpacerSize.verylarge),
                   Text(
                     'Desenvolvido por:',
-                    style: kTextIcons,
+                    style: kTextIcons2,
                   ),
                 ],
               ),
+              const VerticalSpacerBox(size: SpacerSize.small),
               Row(
                 children: [
                   Row(
@@ -169,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Image.asset(
                         'lib/assets/images/logo_ipf.png',
-                        width: size.width * 0.2,
+                        width: size.width * 0.25,
                       ),
                     ],
                   ),
@@ -180,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Image.asset(
                           'lib/assets/images/icone_ufape_lmts.jpg',
-                          width: size.width * 0.4,
+                          width: size.width * 0.5,
                         ),
                       ],
                     ),

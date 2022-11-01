@@ -1,11 +1,7 @@
 // ignore_for_file: unnecessary_type_check, prefer_typing_uninitialized_variables
 import 'dart:developer';
-
-import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../components/map_info_subtitle.dart';
@@ -30,7 +26,8 @@ class MapsController with ChangeNotifier {
     getPosicao();
   }
 
-  void queryInstituition(BuildContext context, Function(double lat, double long) onGoToLocation) {
+  void queryInstituition(
+      BuildContext context, Function(double lat, double long) onGoToLocation) {
     _api.queryInstituition(_searchBarController.text).then((value) {
       showModalBottomSheet(
           context: context,
@@ -41,114 +38,199 @@ class MapsController with ChangeNotifier {
                   children: <Widget>[
                     Text(
                       'Instituições encontradas: ${value.length}',
-                      style: TextStyle(fontSize: 28),
+                      style: const TextStyle(fontSize: 28),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 28,
                     ),
                     value.isEmpty
-                        ? Center(child: Text('Nada encontrado'))
+                        ? const Center(child: Text('Nada encontrado'))
                         : Expanded(
                             child: ListView.separated(
                                 itemCount: value.length,
                                 separatorBuilder: (_, index) {
-                                  return SizedBox(
+                                  return const SizedBox(
                                     height: 14,
                                   );
                                 },
                                 itemBuilder: (_, index) {
                                   return Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         value[index].nome,
-                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 22),
                                       ),
                                       Row(
                                         children: [
                                           Text(
                                             value[index].cidade + ', ',
-                                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.grey),
                                           ),
                                           Text(value[index].pais),
                                           const Spacer(),
                                           Column(
                                             children: [
                                               TextButton.icon(
-                                                onPressed: () => onGoToLocation(double.parse(value[index].latitude), double.parse(value[index].longitude)),
-                                                label: Text('Ir para'),
-                                                icon: Icon(Icons.location_on_sharp),
+                                                onPressed: () => onGoToLocation(
+                                                  double.parse(
+                                                      value[index].latitude),
+                                                  double.parse(
+                                                      value[index].longitude),
+                                                ),
+                                                label: const Text('Ir para'),
+                                                icon: const Icon(
+                                                    Icons.location_on_sharp),
                                               ),
                                               TextButton.icon(
-                                                icon: Icon(Icons.info),
+                                                icon: const Icon(Icons.info),
                                                 onPressed: () {
                                                   showModalBottomSheet(
                                                       isScrollControlled: true,
                                                       context: context,
-                                                      builder: (BuildContext context) {
+                                                      builder: (BuildContext
+                                                          context) {
                                                         return Padding(
-                                                          padding: const EdgeInsets.all(8.0),
-                                                          child: SingleChildScrollView(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child:
+                                                              SingleChildScrollView(
                                                             child: Container(
-                                                                padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                                                                decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(12))),
-                                                                child: Wrap(children: [
-                                                                  Center(
-                                                                    child: Text(
-                                                                      value[index].nome.toString(),
-                                                                      style: const TextStyle(
-                                                                        fontSize: 26,
-                                                                        fontWeight: FontWeight.w600,
+                                                                padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                    vertical:
+                                                                        32,
+                                                                    horizontal:
+                                                                        24),
+                                                                decoration: const BoxDecoration(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    borderRadius:
+                                                                        BorderRadius.all(Radius.circular(
+                                                                            12))),
+                                                                child: Wrap(
+                                                                    children: [
+                                                                      Center(
+                                                                        child:
+                                                                            Text(
+                                                                          value[index]
+                                                                              .nome
+                                                                              .toString(),
+                                                                          style:
+                                                                              const TextStyle(
+                                                                            fontSize:
+                                                                                26,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                        ),
                                                                       ),
-                                                                      textAlign: TextAlign.center,
-                                                                    ),
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      '(${value[index].categoria})',
-                                                                      style: const TextStyle(
-                                                                        fontSize: 22,
-                                                                        fontWeight: FontWeight.w600,
+                                                                      Center(
+                                                                        child:
+                                                                            Text(
+                                                                          '(${value[index].categoria})',
+                                                                          style:
+                                                                              const TextStyle(
+                                                                            fontSize:
+                                                                                22,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                          ),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  ),
-                                                                  const MapInfoTitle(title: 'Pais'),
-                                                                  MapInfoSubtitle(subtitle: value[index].pais),
-                                                                  const MapInfoTitle(title: 'Estado'),
-                                                                  MapInfoSubtitle(subtitle: value[index].estado),
-                                                                  const MapInfoTitle(title: 'Cidade'),
-                                                                  MapInfoSubtitle(subtitle: value[index].cidade),
-                                                                  const MapInfoTitle(title: 'Endereço'),
-                                                                  MapInfoSubtitle(subtitle: value[index].endereco),
-                                                                  const MapInfoTitle(title: 'CEP'),
-                                                                  MapInfoSubtitle(subtitle: value[index].cep),
-                                                                  const MapInfoTitle(title: 'Telefone'),
-                                                                  MapInfoSubtitle(subtitle: value[index].telefone),
-                                                                  const MapInfoTitle(title: 'E-Mail'),
-                                                                  MapInfoSubtitle(subtitle: value[index].email),
-                                                                  const MapInfoTitle(title: 'Site'),
-                                                                  MapInfoSubtitle(subtitle: value[index].site),
-                                                                  const MapInfoTitle(title: 'Coordenador(a)'),
-                                                                  MapInfoSubtitle(subtitle: value[index].coordenador),
-                                                                  const MapInfoTitle(title: 'Data de Fundação'),
-                                                                  MapInfoSubtitle(subtitle: '${value[index].datafundacao.day}/${value[index].datafundacao.month}/${value[index].datafundacao.year}'),
-                                                                  const MapInfoTitle(title: 'Latitude'),
-                                                                  MapInfoSubtitle(subtitle: value[index].latitude),
-                                                                  const MapInfoTitle(title: 'Longitude'),
-                                                                  MapInfoSubtitle(subtitle: value[index].longitude),
-                                                                  // const MapInfoTitle(title: 'Mais Informações'),
-                                                                ])),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Pais'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].pais),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Estado'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].estado),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Cidade'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].cidade),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Endereço'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].endereco),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'CEP'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].cep),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Telefone'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].telefone),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'E-Mail'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].email),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Site'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].site),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Coordenador(a)'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].coordenador),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Data de Fundação'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              '${value[index].datafundacao.day}/${value[index].datafundacao.month}/${value[index].datafundacao.year}'),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Latitude'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].latitude),
+                                                                      const MapInfoTitle(
+                                                                          title:
+                                                                              'Longitude'),
+                                                                      MapInfoSubtitle(
+                                                                          subtitle:
+                                                                              value[index].longitude),
+                                                                      // const MapInfoTitle(title: 'Mais Informações'),
+                                                                    ])),
                                                           ),
                                                         );
                                                       });
                                                 },
-                                                label: Text('Detalhes'),
+                                                label: const Text('Detalhes'),
                                               ),
                                             ],
                                           ),
                                         ],
                                       ),
-                                      Divider()
+                                      const Divider()
                                     ],
                                   );
                                 }))
@@ -170,7 +252,9 @@ class MapsController with ChangeNotifier {
       lat = posicao.latitude;
       long = posicao.longitude;
       log('PEGANDO POSIÇÃO');
-      await mapController.animateCamera(CameraUpdate.newLatLng(LatLng(lat, long))).catchError((e) {
+      await mapController
+          .animateCamera(CameraUpdate.newLatLng(LatLng(lat, long)))
+          .catchError((e) {
         log('erro ao animar camera $e');
       });
     } catch (e) {
@@ -200,7 +284,8 @@ class MapsController with ChangeNotifier {
       return Future.error('Você precisa autorizar o acesso à localização');
     }
 
-    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.low);
     //return await Geolocator.getCurrentPosition();
   }
 }

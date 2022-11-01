@@ -48,7 +48,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
   List<LatLng> tappedPoints = [];
   Set<Marker> makers = <Marker>{};
 
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
   final MapsController mapController = MapsController();
 
   @override
@@ -88,7 +88,9 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
         email: i["email"] ?? 'Não consta',
         site: i["site"] ?? 'Não consta',
         coordenador: i["coordenador"] ?? 'Não consta',
-        datafundacao: i["datafundacao"] == null ? DateTime.now() : DateTime.parse(i["datafundacao"]),
+        datafundacao: i["datafundacao"] == null
+            ? DateTime.now()
+            : DateTime.parse(i["datafundacao"]),
         latitude: i["latitude"] ?? 'Não consta',
         longitude: i["longitude"] ?? 'Não consta',
         info: i["info"] ?? 'Não consta',
@@ -152,8 +154,8 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
             child: Builder(builder: (context) {
               final local = context.watch<MapsController>();
               return GoogleMap(
-                onMapCreated: (GoogleMapController maps) {
-                  _controller.complete(maps);
+                onMapCreated: (GoogleMapController controller) {
+                  mapController.onMapCreated(controller);
                 },
                 initialCameraPosition: CameraPosition(
                   target: LatLng(local.lat, local.long),
@@ -171,10 +173,12 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
             })),
         SearchBar(
           controller: mapController.searchBarController,
-          onSearch: () => mapController.queryInstituition(context, (lat, long) async {
+          onSearch: () =>
+              mapController.queryInstituition(context, (lat, long) async {
             Navigator.pop(context);
             final GoogleMapController controller = await _controller.future;
-            controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(lat, long), zoom: 15)));
+            controller.animateCamera(CameraUpdate.newCameraPosition(
+                CameraPosition(target: LatLng(lat, long), zoom: 15)));
           }),
         ),
       ]),

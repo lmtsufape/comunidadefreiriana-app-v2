@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class SearchBar extends StatelessWidget {
   final TextEditingController controller;
+
   final VoidCallback onSearch;
   const SearchBar({
     Key? key,
@@ -22,7 +23,8 @@ class SearchBar extends StatelessWidget {
         decoration: const InputDecoration(
           filled: true,
           fillColor: Color(0xFFFFFFFF),
-          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30))),
           hintText: 'Pesquisar',
           contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
           isDense: true,
