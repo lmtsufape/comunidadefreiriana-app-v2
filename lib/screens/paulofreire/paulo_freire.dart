@@ -312,8 +312,8 @@ class _PauloFreireState extends State<PauloFreire> {
                     ],
                   ),
                   const VerticalSpacerBox(size: SpacerSize.medium),
-                  Row(
-                    children: const [
+                  const Row(
+                    children: [
                       HorizontalSpacerBox(size: SpacerSize.large),
                       Text(
                         'Realização:',

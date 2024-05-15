@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:comunidadefreiriana/constants/constants.dart';
-import 'package:comunidadefreiriana/core/api.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -22,13 +21,10 @@ class MapsRepository extends ChangeNotifier {
 
         return null;
       }
-    } on DioError catch (e) {
-      log(e.error);
+    } catch (e) {
+      log(e.toString());
 
       rethrow;
-    } catch (e) {
-      log('error ${e.toString()}');
-      return null;
     }
   }
 

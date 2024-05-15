@@ -4,21 +4,19 @@ import 'package:flutter/material.dart';
 class ThemeManager {
   static ThemeData themeData = ThemeData(
     primaryColor: Colors.blue,
-    backgroundColor: kPrimaryColor,
     scaffoldBackgroundColor: kPrimaryColor,
-    primarySwatch: Colors.blue,
     appBarTheme: const AppBarTheme(backgroundColor: kDetailColor),
     progressIndicatorTheme:
         const ProgressIndicatorThemeData(color: kDetailColor),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        primary: kDetailColor,
+        backgroundColor: kDetailColor,
         textStyle: const TextStyle(
           color: kLightColor,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
       ),
-    ),
+    ), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(surface: kPrimaryColor),
   );
 }

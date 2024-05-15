@@ -10,7 +10,7 @@ class CustomTextButton extends StatelessWidget {
         onPressed: () {},
         child: Text(
           text,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ));
   }
 }

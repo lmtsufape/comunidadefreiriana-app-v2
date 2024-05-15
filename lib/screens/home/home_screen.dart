@@ -28,10 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
+              const Row(
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.public,
                         color: Colors.grey,
@@ -53,8 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: size.width * 0.8,
               ),
               const VerticalSpacerBox(size: SpacerSize.small),
-              Wrap(
-                children: const [
+              const Wrap(
+                children: [
                   Text(
                     'Este aplicativo busca contribuir com o registro e divulgação de organizações, movimentos sociais ou projetos que se inspiram no legado do educador Paulo Freire.',
                     strutStyle:
@@ -151,8 +151,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ), // <--,
               ),
               const Spacer(),
-              Row(
-                children: const [
+              const Row(
+                children: [
                   HorizontalSpacerBox(size: SpacerSize.medium),
                   Text(
                     'Realização:',

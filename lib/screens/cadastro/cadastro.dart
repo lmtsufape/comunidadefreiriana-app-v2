@@ -56,8 +56,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                 child: SingleChildScrollView(
                   child: Form(
                       child: Column(children: [
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Nome*',
                           style: kCadastro,
@@ -73,8 +73,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setNome(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Categoria*',
                           style: kCadastro,
@@ -122,8 +122,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setCategoria(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'País*',
                           style: kCadastro,
@@ -139,8 +139,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setPais(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Estado*',
                           style: kCadastro,
@@ -156,8 +156,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setEstado(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Cidade*',
                           style: kCadastro,
@@ -173,8 +173,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setCidade(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Endereço*',
                           style: kCadastro,
@@ -190,8 +190,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setEndereco(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'CEP*',
                           style: kCadastro,
@@ -207,8 +207,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setCEP(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Telefone (Com DDD)',
                           style: kCadastro,
@@ -224,8 +224,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setTelefone(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'E-mail*',
                           style: kCadastro,
@@ -241,8 +241,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setEmail(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Site',
                           style: kCadastro,
@@ -258,8 +258,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setSite(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Coordenador(a)*',
                           style: kCadastro,
@@ -275,8 +275,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           _controller.setCoord(value);
                         }),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Data de Fundação*',
                           style: kCadastro,
@@ -297,7 +297,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                           suffixIcon: const Icon(Icons.event_note),
                           labelText: 'Data',
                         ),
-                        onDateSelected: (DateTime value) {
+                        onChanged: (DateTime? value) {
                           setState(() {
                             _controller.setDataFund(value);
                           });
@@ -305,7 +305,7 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                         mode: DateTimeFieldPickerMode.date,
                         firstDate: DateTime(1000),
                         lastDate: DateTime(2222),
-                        selectedDate: _controller.getDataTime),
+                        value: _controller.getDataTime),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -340,8 +340,8 @@ class _SolicitarCadastroState extends State<SolicitarCadastro> {
                     )),
                     const Divider(color: kSecondaryTextColor),
                     const VerticalSpacerBox(size: SpacerSize.medium),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Adicionar Imagem*',
                           style: kHomeScreen2,

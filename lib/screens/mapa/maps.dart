@@ -13,7 +13,6 @@ import 'package:comunidadefreiriana/core/models/image_model.dart';
 import 'package:comunidadefreiriana/core/models/instituicao_model.dart';
 import 'package:comunidadefreiriana/screens/home/home_screen.dart';
 import 'package:comunidadefreiriana/screens/mapa/maps_repository.dart';
-import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
 import 'package:comunidadefreiriana/constants/constants.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro.dart';
 import 'package:comunidadefreiriana/screens/cadastro/cadastro_controller.dart';
@@ -23,14 +22,12 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_webservice/places.dart';
 import 'package:comunidadefreiriana/components/custom_date_formater.dart';
 // ignore: implementation_imports
 import 'package:flutter/src/foundation/change_notifier.dart';
 
-import '../../components/search_bar.dart';
+import '../../components/search_bar.dart' as search_bar;
 
 final appKey = GlobalKey();
 
@@ -171,7 +168,7 @@ class _MapsState extends State<Maps> with WidgetsBindingObserver {
                 },
               );
             })),
-        SearchBar(
+        search_bar.SearchBar(
           controller: mapController.searchBarController,
           onSearch: () =>
               mapController.queryInstituition(context, (lat, long) async {
