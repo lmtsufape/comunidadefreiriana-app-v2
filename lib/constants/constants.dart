@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // ======API======= //
-const kBaseUrl = 'https://gestaocomunidadefreiriana.paulofreire.org';
+const kBaseUrl = 'http://gestaocomunidadefreiriana.paulofreire.org';
 
 // =======COLORS=========//
 const Color kPrimaryColor = Color(0xFFEEEEEE);
